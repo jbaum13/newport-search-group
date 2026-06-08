@@ -55,5 +55,19 @@ Contract Staffing, RPO, Executive Search) · Staffing Industry · Industries
 2. **In Wix** — follow `WIX-CONTENT.md`: theme colors, fonts, menu structure,
    per-page SEO, and every section's copy ready to paste.
 
+## Automatic deploys (GitHub Pages)
+
+`.github/workflows/deploy.yml` builds and publishes `dist/` to GitHub Pages on
+every push to `main`. The workflow auto-detects the Pages base path, so internal
+links work whether the site is served from a project sub-path
+(`/newport-search-group`) or a custom domain at root. To sub-path build locally:
+
+```bash
+BASE_PATH=/newport-search-group npm run build:site
+```
+
+One-time setup: repo **Settings → Pages → Build and deployment → Source:
+GitHub Actions**.
+
 See `REVIEW.md` for what to add next (proof / case studies, lead routing, a real
 job feed, content for Resources).

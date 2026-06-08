@@ -10,19 +10,25 @@ const { site, nav, footer, pages, ctaBlocks, seoKeywords } = require("./src/cont
 
 const ROOT = __dirname;
 const DIST = path.join(ROOT, "dist");
+// Base path for sub-directory hosting (e.g. GitHub Pages project sites).
+// Empty by default -> site is served from the domain root. Set via env, e.g.
+//   BASE_PATH=/newport-search-group node build.js
+let BASE = (process.env.BASE_PATH || "").trim();
+if (BASE === "/") BASE = "";
+BASE = BASE.replace(/\/+$/, ""); // no trailing slash
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 // Brand lockup: the official logo. `white` variant (wave + white wordmark) is
 // used on dark surfaces (header/footer); `color` on light surfaces.
 function brand(href = "/", variant = "white") {
   const file = variant === "color" ? "logo.png" : "logo-white.png";
-  return `<a class="brand" href="${href}" aria-label="${esc(site.name)} home"><img src="/assets/${file}" alt="${esc(site.name)}" width="279" height="142" /></a>`;
+  return `<a class="brand" href="${BASE}${href}" aria-label="${esc(site.name)} home"><img src="${BASE}/assets/${file}" alt="${esc(site.name)}" width="279" height="142" /></a>`;
 }
 
 // ---- routing helpers -------------------------------------------------------
 // "/" -> dist/index.html ; "/a/b" -> dist/a/b/index.html
 const outFileFor = (route) => route === "/" ? path.join(DIST, "index.html") : path.join(DIST, route.replace(/^\//, ""), "index.html");
-const hrefFor = (route) => route; // pretty URLs; works on any static host with index.html resolution
+const hrefFor = (route) => BASE + route; // pretty URLs; BASE prefixes sub-path hosts
 
 // ---- shared chrome ---------------------------------------------------------
 function renderHeader(active) {
@@ -213,8 +219,8 @@ ${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<meta property="og
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="icon" type="image/png" href="/assets/favicon.png" />
-<link rel="stylesheet" href="/styles.css" />
+<link rel="icon" type="image/png" href="${BASE}/assets/favicon.png" />
+<link rel="stylesheet" href="${BASE}/styles.css" />
 <script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org", "@type": "Organization", name: site.name,
     description: site.positioning, url: `https://${site.domain}`, email: site.email, telephone: site.phone,
@@ -227,7 +233,7 @@ ${renderHeader(page.route)}
 ${body}
 </main>
 ${renderFooter()}
-<script src="/main.js"></script>
+<script src="${BASE}/main.js"></script>
 </body>
 </html>`;
 }
