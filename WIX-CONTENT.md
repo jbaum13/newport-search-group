@@ -9,7 +9,7 @@ _Paste-ready copy for the Wix Editor. One section per heading. Generated from `s
 ## Site setup
 
 **Business name:** Newport Search Group  
-**Primary email:** hello@newportsearchgroup.com  
+**Primary email:** hello@newportsg.com  
 **Phone:** (949) 555-0100
 
 **Theme colors** (Wix → Site Design → Color):

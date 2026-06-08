@@ -14,8 +14,8 @@ const site = {
   name: "Newport Search Group",
   category: "Agentic Staffing Company",
   tagline: "Human Relationships. Agentic Execution.",
-  domain: "newportsearchgroup.com",
-  email: "hello@newportsearchgroup.com",
+  domain: "newportsg.com",
+  email: "hello@newportsg.com",
   phone: "(949) 555-0100",
   positioning:
     "Newport Search Group is an Agentic Staffing Company built for the future of hiring. We pair autonomous AI agents with experienced recruiters to deliver faster searches, deeper talent intelligence, and better hiring outcomes. Our technology works around the clock while our recruiters focus on what matters most — building relationships and securing exceptional talent.",

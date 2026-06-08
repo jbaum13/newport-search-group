@@ -256,6 +256,8 @@ function buildSite() {
   const urls = pages.map((p) => `  <url><loc>https://${site.domain}${p.route}</loc></url>`).join("\n");
   writeFile(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
   writeFile(path.join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: https://${site.domain}/sitemap.xml\n`);
+  // Custom domain for GitHub Pages (apex). www redirects to it automatically.
+  if (site.domain) writeFile(path.join(DIST, "CNAME"), site.domain + "\n");
   console.log(`✓ Built ${pages.length} pages → dist/`);
 }
 
