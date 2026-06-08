@@ -1,0 +1,25 @@
+{
+  "name": "newport-search-group",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marketing website for Newport Search Group — an agentic staffing company. Zero-dependency static-site generator driven by a single content source.",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node build.js --wix",
+    "build:site": "node build.js",
+    "wix": "node build.js --wix",
+    "preview": "node build.js --wix && python3 -m http.server 8766 --directory dist",
+    "serve": "python3 -m http.server 8766 --directory dist",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "newport-search-group",
+    "agentic-staffing",
+    "static-site",
+    "recruiting"
+  ],
+  "license": "UNLICENSED"
+}

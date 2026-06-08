@@ -1,0 +1,17 @@
+# Build output (regenerated with `npm run build`)
+dist/
+
+# Dependencies (none today, but just in case)
+node_modules/
+
+# OS / editor junk
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# Preview server config is machine-local
+.claude/
+
+# Archived prior (Velo exec-search) build — kept on disk, not tracked
+_archive-velo-execsearch/
