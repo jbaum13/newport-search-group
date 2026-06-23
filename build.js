@@ -68,7 +68,14 @@ function renderFooter() {
 }
 
 // ---- buttons ---------------------------------------------------------------
-const btn = (b, cls) => b ? `<a class="btn ${cls}" href="${hrefFor(b.route)}">${esc(b.label)}</a>` : "";
+const isExternal = (r) => /^https?:\/\//i.test(r || "");
+const btn = (b, cls) => {
+  if (!b) return "";
+  const ext = isExternal(b.route);
+  const href = ext ? b.route : hrefFor(b.route);
+  const attrs = ext ? ' target="_blank" rel="noopener noreferrer"' : "";
+  return `<a class="btn ${cls}" href="${href}"${attrs}>${esc(b.label)}</a>`;
+};
 
 // ---- section renderers -----------------------------------------------------
 function head(s, darkLead) {

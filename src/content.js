@@ -16,6 +16,7 @@ const site = {
   tagline: "Human Relationships. Agentic Execution.",
   domain: "newportsg.com",
   email: "hello@newportsg.com",
+  schedulingUrl: "https://calendar.app.google/Y5jYXQbb4y5THX8V8",
   phone: "(949) 555-0100",
   positioning:
     "Newport Search Group is an Agentic Staffing Company built for the future of hiring. We pair autonomous AI agents with experienced recruiters to deliver faster searches, deeper talent intelligence, and better hiring outcomes. Our technology works around the clock while our recruiters focus on what matters most — building relationships and securing exceptional talent.",
@@ -119,10 +120,10 @@ const pages = [
     sections: [
       {
         type: "hero",
-        eyebrow: "Agentic Staffing Company",
+        eyebrow: "Human Connection, Agentic Execution",
         headline: "The Future of Hiring Is Agentic",
         sub: "Newport Search Group combines autonomous AI agents with experienced recruiters to deliver faster searches, deeper talent intelligence, and better hiring outcomes.",
-        primary: { label: "Schedule a Consultation", route: "/contact" },
+        primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
         secondary: { label: "Request Talent", route: "/contact?intent=talent" },
         stats: [
           { value: "24/7", label: "Continuous sourcing" },
@@ -189,7 +190,7 @@ const pages = [
         type: "cta",
         headline: "Let's build your team.",
         body: "Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.",
-        primary: { label: "Schedule a Consultation", route: "/contact" },
+        primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
         secondary: { label: "Request Talent", route: "/contact?intent=talent" },
       },
     ],
@@ -257,7 +258,7 @@ const pages = [
         eyebrow: "Agentic Platform",
         headline: "Meet your digital recruiting workforce",
         sub: "Traditional recruiting is limited by human bandwidth. Agentic recruiting is not. Our agents execute sourcing, market mapping, engagement, and intelligence workflows continuously — so our recruiters can focus on judgment, relationships, and closing.",
-        primary: { label: "Schedule a Consultation", route: "/contact" },
+        primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
       },
       {
         type: "cards",
@@ -397,7 +398,7 @@ const pages = [
         eyebrow: "Staffing Solutions / RPO",
         headline: "Your recruiting function, embedded and amplified",
         sub: "Embedded recruiting teams powered by agentic technology and experienced recruiting leadership.",
-        primary: { label: "Schedule a Consultation", route: "/contact" },
+        primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
       },
       {
         type: "intro",
@@ -427,7 +428,7 @@ const pages = [
         eyebrow: "Staffing Solutions / Executive Search",
         headline: "Find the leaders who define what's next",
         sub: "Retained search for the executives and senior leaders who set strategy, build teams, and shape culture.",
-        primary: { label: "Schedule a Consultation", route: "/contact" },
+        primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
       },
       {
         type: "intro",
@@ -792,7 +793,7 @@ const ctaBlocks = {
     type: "cta",
     headline: "Let's build your team.",
     body: "Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.",
-    primary: { label: "Schedule a Consultation", route: "/contact" },
+    primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
     secondary: { label: "Request Talent", route: "/contact?intent=talent" },
   },
 };

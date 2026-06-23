@@ -58,13 +58,13 @@ _Paste-ready copy for the Wix Editor. One section per heading. Generated from `s
 **Meta description:** Newport Search Group is an agentic staffing company pairing autonomous AI recruiting agents with experienced recruiters for faster searches and better hires.
 
 ### Section 1 — Hero
-*Eyebrow:* Agentic Staffing Company  
+*Eyebrow:* Human Connection, Agentic Execution  
 **The Future of Hiring Is Agentic**  
 Newport Search Group combines autonomous AI agents with experienced recruiters to deliver faster searches, deeper talent intelligence, and better hiring outcomes.
 - **24/7** — Continuous sourcing
 - **3x** — Faster pipeline build
 - **100%** — Human-led closing
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 ### Section 2 — Intro / statement
 *Eyebrow:* What Is Agentic Recruiting?  
@@ -111,7 +111,7 @@ Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 ### Section 7 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -155,7 +155,7 @@ The best candidates are rarely looking, and they don't make career decisions bec
 ### Section 6 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -170,7 +170,7 @@ Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/cont
 *Eyebrow:* Agentic Platform  
 **Meet your digital recruiting workforce**  
 Traditional recruiting is limited by human bandwidth. Agentic recruiting is not. Our agents execute sourcing, market mapping, engagement, and intelligence workflows continuously — so our recruiters can focus on judgment, relationships, and closing.
-Buttons: [Schedule a Consultation] → `/contact`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8`
 
 ### Section 2 — Card grid
 *Eyebrow:* The Agents  
@@ -200,7 +200,7 @@ Every Newport search runs on a simple division of labor. The agents work the par
 ### Section 5 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -227,7 +227,7 @@ However you need to hire — one critical leader, a project team, or an embedded
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -263,7 +263,7 @@ Our discovery and mapping agents build a complete picture of the available talen
 ### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -297,7 +297,7 @@ When timelines move faster than headcount approvals, contract staffing keeps you
 ### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -312,7 +312,7 @@ Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/cont
 *Eyebrow:* Staffing Solutions / RPO  
 **Your recruiting function, embedded and amplified**  
 Embedded recruiting teams powered by agentic technology and experienced recruiting leadership.
-Buttons: [Schedule a Consultation] → `/contact`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8`
 
 ### Section 2 — Intro / statement
 *Eyebrow:* How it works  
@@ -332,7 +332,7 @@ Newport RPO drops a complete, agent-powered recruiting function into your organi
 ### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -347,7 +347,7 @@ Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/cont
 *Eyebrow:* Staffing Solutions / Executive Search  
 **Find the leaders who define what's next**  
 Retained search for the executives and senior leaders who set strategy, build teams, and shape culture.
-Buttons: [Schedule a Consultation] → `/contact`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8`
 
 ### Section 2 — Intro / statement
 *Eyebrow:* How it works  
@@ -366,7 +366,7 @@ Executive searches are won on coverage and discretion. Our market mapping agents
 ### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -455,7 +455,7 @@ From recruiting team buildouts to executive search, staffing M&A support, and co
 ### Section 9 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -484,7 +484,7 @@ We focus where the talent market is tightest — and where deep domain knowledge
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -515,7 +515,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -545,7 +545,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -575,7 +575,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -605,7 +605,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -635,7 +635,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -665,7 +665,7 @@ Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `/contact` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
 
 
 
