@@ -37,4 +37,35 @@
       }
     });
   }
+
+  // Scroll reveal — elements fade/slide in as they enter the viewport.
+  // Gated by the 'anim' class so content still shows if JS is disabled.
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("anim");
+    var selectors = [
+      ".section__head", ".card", ".split", ".statband .stat",
+      ".pills", ".ctaband", ".form-wrap", ".jobsearch"
+    ];
+    var targets = [];
+    selectors.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (el) {
+        // don't hide above-the-fold hero content
+        if (el.closest(".hero") || el.closest(".breadcrumb-hero")) return;
+        el.classList.add("reveal");
+        targets.push(el);
+      });
+    });
+    // stagger siblings within a grid for a cascade effect
+    document.querySelectorAll(".grid, .statband").forEach(function (grid) {
+      var kids = grid.querySelectorAll(".reveal");
+      kids.forEach(function (k, i) { k.classList.add("d" + ((i % 4) + 1)); });
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (t) { io.observe(t); });
+  }
 })();

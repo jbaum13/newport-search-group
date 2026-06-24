@@ -84,10 +84,11 @@ p { margin: 0 0 1em; }
   background: rgba(10, 17, 36, 0.85); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line); color: #fff;
 }
-.site-header .container { display: flex; align-items: center; gap: 1.5rem; min-height: 70px; }
-.brand { display: inline-flex; align-items: center; line-height: 0; }
-.brand img { display: block; height: 52px; width: auto; }
-.site-footer .brand img { height: 58px; }
+.site-header .container { display: flex; align-items: center; gap: 1.5rem; min-height: 104px; }
+.brand { display: inline-flex; align-items: center; line-height: 0; transition: transform .25s ease; }
+.brand:hover { transform: scale(1.03); }
+.brand img { display: block; height: 78px; width: auto; filter: drop-shadow(0 4px 18px rgba(47,123,255,.32)); }
+.site-footer .brand img { height: 86px; }
 .nav { display: flex; align-items: center; gap: 0.3rem; margin-left: auto; }
 .nav a, .nav__group > span {
   display: inline-flex; align-items: center; gap: .3rem;
@@ -253,7 +254,7 @@ a.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-co
   .nav { display: none; }
   .nav-toggle { display: inline-flex; }
   .site-header.open .nav {
-    display: flex; position: absolute; top: 70px; left: 0; right: 0; flex-direction: column;
+    display: flex; position: absolute; top: 104px; left: 0; right: 0; flex-direction: column;
     align-items: stretch; background: var(--navy-800); border-bottom: 1px solid var(--line);
     padding: 0.8rem var(--gut) 1.4rem; gap: 0.2rem;
   }
@@ -264,4 +265,84 @@ a.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-co
   .form .grid2 { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
 }
-@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; transition: none !important; } }
+/* ============================================================
+   Sparkle layer — premium polish (gradients, glow, motion)
+   ============================================================ */
+
+/* Gradient text accent */
+.grad {
+  background: linear-gradient(100deg, #4f93ff 0%, #8db4ff 48%, #2f7bff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Eyebrow gets a glowing marker dot */
+.eyebrow::before {
+  content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue); box-shadow: 0 0 10px var(--blue), 0 0 4px var(--blue-bright);
+  margin-right: 0.55rem; vertical-align: middle; transform: translateY(-1px);
+}
+
+/* Hero: animated aurora glow above the grid, content stays on top */
+.hero .container { z-index: 2; }
+.hero::before { z-index: 0; }
+.hero::after {
+  content: ""; position: absolute; inset: -25% -12% auto -12%; height: 130%; z-index: 1;
+  pointer-events: none; filter: blur(18px); opacity: 0.9;
+  background:
+    radial-gradient(45% 38% at 76% 18%, rgba(47,123,255,.40), transparent 70%),
+    radial-gradient(40% 34% at 18% 82%, rgba(80,150,255,.20), transparent 70%);
+  animation: auroraDrift 18s ease-in-out infinite alternate;
+}
+@keyframes auroraDrift {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to   { transform: translate3d(4%, 3%, 0) scale(1.09); }
+}
+
+/* Gradient, faintly shimmering stat numbers */
+.hero-stats .num, .statband .num {
+  background: linear-gradient(120deg, #ffffff 0%, #aeccff 60%, #ffffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+@keyframes shimmer { to { background-position: 200% 0; } }
+
+/* Primary button: stronger glow + sweeping sheen on hover */
+.btn--primary { position: relative; overflow: hidden; }
+.btn--primary::after {
+  content: ""; position: absolute; top: 0; left: -130%; width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.40), transparent);
+  transform: skewX(-20deg); transition: left .6s ease;
+}
+.btn--primary:hover::after { left: 150%; }
+
+/* Cards: gradient top-edge + blue glow on hover */
+.card { position: relative; overflow: hidden; }
+.card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--blue), #8db4ff); opacity: 0; transition: opacity .25s ease;
+}
+a.card:hover::before { opacity: 1; }
+a.card:hover { box-shadow: 0 20px 55px -22px rgba(47,123,255,.50); }
+
+/* Split panel: subtle animated glow */
+.split__panel::after {
+  content: ""; position: absolute; width: 240px; height: 240px; right: -60px; top: -60px;
+  background: radial-gradient(circle, rgba(47,123,255,.45), transparent 70%);
+  filter: blur(10px); animation: auroraDrift 14s ease-in-out infinite alternate; pointer-events: none;
+}
+
+/* Scroll reveal (only active once JS adds .anim, so no-JS shows everything) */
+.anim .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.anim .reveal.in { opacity: 1; transform: none; }
+.anim .reveal.d1 { transition-delay: .07s; }
+.anim .reveal.d2 { transition-delay: .14s; }
+.anim .reveal.d3 { transition-delay: .21s; }
+.anim .reveal.d4 { transition-delay: .28s; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto; transition: none !important; }
+  .hero::after, .split__panel::after, .hero-stats .num, .statband .num { animation: none !important; }
+  .anim .reveal { opacity: 1 !important; transform: none !important; }
+  .btn--primary::after { display: none; }
+}

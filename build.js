@@ -6,6 +6,11 @@
 // ============================================================================
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
+// Short content hash for cache-busting asset URLs (changes only when file changes)
+const fileVer = (p) => crypto.createHash("sha1").update(fs.readFileSync(p)).digest("hex").slice(0, 8);
+const CSS_VER = fileVer(path.join(__dirname, "src/styles.css"));
+const JS_VER = fileVer(path.join(__dirname, "src/main.js"));
 const { site, nav, footer, pages, ctaBlocks, seoKeywords } = require("./src/content");
 
 const ROOT = __dirname;
@@ -77,6 +82,13 @@ const btn = (b, cls) => {
   return `<a class="btn ${cls}" href="${href}"${attrs}>${esc(b.label)}</a>`;
 };
 
+// Wrap the last word of a heading in a gradient accent span
+const gradLast = (text) => {
+  const t = esc(text);
+  const i = t.lastIndexOf(" ");
+  return i === -1 ? `<span class="grad">${t}</span>` : `${t.slice(0, i + 1)}<span class="grad">${t.slice(i + 1)}</span>`;
+};
+
 // ---- section renderers -----------------------------------------------------
 function head(s, darkLead) {
   const eb = s.eyebrow ? `<span class="eyebrow">${esc(s.eyebrow)}</span>` : "";
@@ -90,7 +102,7 @@ const renderers = {
     const stats = s.stats ? `<div class="hero-stats">${s.stats.map((x) => `<div><div class="num">${esc(x.value)}</div><div class="lbl">${esc(x.label)}</div></div>`).join("")}</div>` : "";
     return `<section class="hero"><div class="container">
       ${s.eyebrow ? `<span class="eyebrow">${esc(s.eyebrow)}</span>` : ""}
-      <h1>${esc(s.headline)}</h1>
+      <h1>${gradLast(s.headline)}</h1>
       <p class="lead">${esc(s.sub)}</p>
       <div class="btn-row">${btn(s.primary, "btn--primary")}${btn(s.secondary, "btn--ghost")}</div>
       ${stats}
@@ -227,7 +239,7 @@ ${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<meta property="og
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/png" href="${BASE}/assets/favicon.png" />
-<link rel="stylesheet" href="${BASE}/styles.css" />
+<link rel="stylesheet" href="${BASE}/styles.css?v=${CSS_VER}" />
 <script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org", "@type": "Organization", name: site.name,
     description: site.positioning, url: `https://${site.domain}`, email: site.email, telephone: site.phone,
@@ -240,7 +252,7 @@ ${renderHeader(page.route)}
 ${body}
 </main>
 ${renderFooter()}
-<script src="${BASE}/main.js"></script>
+<script src="${BASE}/main.js?v=${JS_VER}"></script>
 </body>
 </html>`;
 }
