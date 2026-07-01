@@ -56,7 +56,13 @@ function renderHeader(active) {
 }
 
 function renderFooter() {
-  const cols = footer.columns.map((c) => `<div class="footer-col"><h4>${esc(c.title)}</h4>${c.links.map((l) => `<a href="${hrefFor(l.route)}">${esc(l.label)}</a>`).join("")}</div>`).join("");
+  const footerLink = (l) => {
+    const ext = isExternal(l.route);
+    const href = ext ? l.route : hrefFor(l.route);
+    const extAttrs = ext ? ' target="_blank" rel="noopener noreferrer"' : "";
+    return `<a href="${href}"${extAttrs}>${esc(l.label)}</a>`;
+  };
+  const cols = footer.columns.map((c) => `<div class="footer-col"><h4>${esc(c.title)}</h4>${c.links.map(footerLink).join("")}</div>`).join("");
   return `<footer class="site-footer"><div class="container">
     <div class="footer-top">
       <div class="footer-brand">

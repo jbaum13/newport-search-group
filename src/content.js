@@ -72,6 +72,10 @@ const footer = {
         { label: "About", route: "/about" },
         { label: "Agentic Platform", route: "/agentic-platform" },
         { label: "Contact", route: "/contact" },
+        // Timecard portal — separate Next.js app deployed on Vercel. An http(s)
+        // route is auto-detected as external. Swap for a custom subdomain
+        // (e.g. portal.newportsearchgroup.com) once DNS is configured.
+        { label: "Portal", route: "https://newport-timecard.vercel.app" },
       ],
     },
     {
