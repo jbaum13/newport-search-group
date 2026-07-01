@@ -72,6 +72,9 @@ const footer = {
         { label: "About", route: "/about" },
         { label: "Agentic Platform", route: "/agentic-platform" },
         { label: "Contact", route: "/contact" },
+        // Timecard portal — separate app on its own subdomain. An http(s)
+        // route is auto-detected as external. Update once the portal deploys.
+        { label: "Portal", route: "https://portal.newportsearchgroup.com" },
       ],
     },
     {
