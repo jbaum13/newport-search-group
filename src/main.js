@@ -1,5 +1,13 @@
 // Newport Search Group — light client behavior (no dependencies)
 (function () {
+  // Shrink header on scroll (big logo at top, compact once scrolling)
+  var hdr = document.querySelector(".site-header");
+  if (hdr) {
+    var onScroll = function () { hdr.classList.toggle("scrolled", window.scrollY > 40); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
   // Mobile nav toggle
   var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");

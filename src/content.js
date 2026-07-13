@@ -13,7 +13,7 @@
 const site = {
   name: "Newport Search Group",
   category: "Agentic Staffing Company",
-  tagline: "Human Relationships. Agentic Execution.",
+  tagline: "Human Connection. Agentic Execution.",
   domain: "newportsg.com",
   email: "hello@newportsg.com",
   schedulingUrl: "https://calendar.app.google/Y5jYXQbb4y5THX8V8",
@@ -143,6 +143,12 @@ const pages = [
         cta: { label: "Explore the Agentic Platform", route: "/agentic-platform" },
       },
       {
+        // Trust strip — swap these for real client logos/names when available
+        type: "logos",
+        label: "Placing critical talent across",
+        items: ["Cybersecurity & Identity", "Advanced Energy", "Aerospace & Defense", "Manufacturing", "Technology", "Staffing & Recruiting"],
+      },
+      {
         type: "cards",
         eyebrow: "Staffing Solutions",
         headline: "Hiring models built for how you actually scale",
@@ -179,6 +185,14 @@ const pages = [
           { title: "Staffing & Recruiting", body: "Talent for the firms that build other companies' teams.", route: "/industries/staffing" },
         ],
       },
+      // TODO: Re-enable when a real client quote is available — the renderer
+      // and styles are already live; just fill in quote/name/role and uncomment.
+      // {
+      //   type: "testimonial",
+      //   quote: "…",
+      //   name: "Client Name",
+      //   role: "Title, Company",
+      // },
       {
         type: "stats",
         eyebrow: "Why Newport",

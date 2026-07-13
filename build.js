@@ -166,6 +166,23 @@ const renderers = {
       ${head(s)}<div class="statband">${items}</div>
     </div></section>`;
   },
+  logos(s) {
+    const items = s.items.map((i) => `<span>${esc(i)}</span>`).join("");
+    return `<section class="section ${s.dark ? "section--dark" : "section--tint"}" style="padding-block: clamp(36px,5vw,60px)"><div class="container">
+      <div class="logostrip">
+        <div class="strip-label">${esc(s.label)}</div>
+        <div class="strip-items">${items}</div>
+      </div>
+    </div></section>`;
+  },
+  testimonial(s) {
+    return `<section class="section ${s.dark ? "section--dark" : ""}"><div class="container">
+      <figure class="testimonial">
+        <blockquote>${esc(s.quote)}</blockquote>
+        <figcaption><strong>${esc(s.name)}</strong>${esc(s.role)}</figcaption>
+      </figure>
+    </div></section>`;
+  },
   cta(s) {
     return `<section class="section section--dark"><div class="container"><div class="ctaband">
       <h2>${esc(s.headline)}</h2>
@@ -238,12 +255,17 @@ function renderPage(page) {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.description)}" />
-${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<meta property="og:title" content="${esc(page.title)}" />
+${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<link rel="canonical" href="https://${site.domain}${page.route === "/404.html" ? "/" : page.route}" />
+<meta property="og:title" content="${esc(page.title)}" />
 <meta property="og:description" content="${esc(page.description)}" />
 <meta property="og:type" content="website" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<meta property="og:url" content="https://${site.domain}${page.route === "/404.html" ? "/" : page.route}" />
+<meta property="og:image" content="https://${site.domain}/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://${site.domain}/assets/og-image.png" />
+<link rel="preload" href="${BASE}/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="icon" type="image/png" href="${BASE}/assets/favicon.png" />
 <link rel="stylesheet" href="${BASE}/styles.css?v=${CSS_VER}" />
 <script type="application/ld+json">${JSON.stringify({
@@ -272,11 +294,28 @@ function buildSite() {
   fs.mkdirSync(DIST, { recursive: true });
   fs.copyFileSync(path.join(ROOT, "src/styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(ROOT, "src/main.js"), path.join(DIST, "main.js"));
-  fs.mkdirSync(path.join(DIST, "assets"), { recursive: true });
-  for (const a of ["logo.png", "logo-white.png", "favicon.png"]) {
+  fs.mkdirSync(path.join(DIST, "assets", "fonts"), { recursive: true });
+  for (const a of ["logo.png", "logo-white.png", "favicon.png", "og-image.png"]) {
     fs.copyFileSync(path.join(ROOT, "src/assets", a), path.join(DIST, "assets", a));
   }
+  fs.copyFileSync(path.join(ROOT, "src/assets/fonts/inter-var.woff2"), path.join(DIST, "assets/fonts/inter-var.woff2"));
   for (const page of pages) writeFile(outFileFor(page.route), renderPage(page));
+  // Branded 404 (GitHub Pages serves /404.html for unknown routes)
+  writeFile(path.join(DIST, "404.html"), renderPage({
+    route: "/404.html",
+    title: "Page Not Found | " + site.name,
+    description: "That page doesn't exist — but the talent you're looking for does.",
+    sections: [
+      {
+        type: "breadcrumbHero",
+        eyebrow: "404",
+        headline: "This page went off the market",
+        sub: "Like the best candidates, it's no longer available. Let's get you somewhere useful.",
+        primary: { label: "Back to Home", route: "/" },
+        secondary: { label: "Contact Us", route: "/contact" },
+      },
+    ],
+  }));
   // sitemap + robots
   const urls = pages.map((p) => `  <url><loc>https://${site.domain}${p.route}</loc></url>`).join("\n");
   writeFile(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);

@@ -3,7 +3,7 @@
 _Paste-ready copy for the Wix Editor. One section per heading. Generated from `src/content.js` — keep this and the website in sync by re-running `node build.js --wix`._
 
 **Category:** Agentic Staffing Company  
-**Tagline:** Human Relationships. Agentic Execution.
+**Tagline:** Human Connection. Agentic Execution.
 
 
 ## Site setup
@@ -72,7 +72,15 @@ Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5T
 Traditional recruiting is capped by human bandwidth — a recruiter can only source, screen, and follow up with so many people in a day. Agentic recruiting removes that ceiling. Our autonomous agents run sourcing, market mapping, candidate engagement, and intelligence workflows around the clock, then hand qualified, contextualized candidates to our recruiters. The result: the speed and coverage of automation with the judgment and trust of an experienced human team.
 Buttons: [Explore the Agentic Platform] → `/agentic-platform`
 
-### Section 3 — Card grid
+### Section 3 — logos
+- Cybersecurity & Identity
+- Advanced Energy
+- Aerospace & Defense
+- Manufacturing
+- Technology
+- Staffing & Recruiting
+
+### Section 4 — Card grid
 *Eyebrow:* Staffing Solutions  
 **Hiring models built for how you actually scale**  
 - **Direct Hire** — Permanent placement across technical, operational, commercial, and executive functions. (links to `/staffing-solutions/direct-hire`)
@@ -80,7 +88,7 @@ Buttons: [Explore the Agentic Platform] → `/agentic-platform`
 - **RPO** — Embedded recruiting teams powered by agentic technology and senior recruiting leadership. (links to `/staffing-solutions/rpo`)
 - **Executive Search** — Retained search for the leaders who define the next chapter of your company. (links to `/staffing-solutions/executive-search`)
 
-### Section 4 — Split feature
+### Section 5 — Split feature
 *Eyebrow:* Staffing Industry Solutions  
 **We Recruit Recruiters**  
 Staffing firms, search firms, RPO providers, MSPs, and workforce solutions companies come to us to build their own recruiting, sales, and leadership teams — and to modernize how they operate with agentic technology.
@@ -90,7 +98,7 @@ Staffing firms, search firms, RPO providers, MSPs, and workforce solutions compa
 - Corporate development & staffing M&A support
 Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 
-### Section 5 — Card grid
+### Section 6 — Card grid
 *Eyebrow:* Industries Served  
 **Deep specialization where talent is scarce**  
 - **Cybersecurity & Identity** — IAM, PAM, CIAM, cloud and application security, GRC. (links to `/industries/cybersecurity`)
@@ -100,7 +108,7 @@ Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 - **Technology** — Engineering, product, sales, and leadership for growth and enterprise. (links to `/industries/technology`)
 - **Staffing & Recruiting** — Talent for the firms that build other companies' teams. (links to `/industries/staffing`)
 
-### Section 6 — Stats band
+### Section 7 — Stats band
 *Eyebrow:* Why Newport  
 **The advantages of automation, none of the cold-machine feeling**  
 - [object Object]
@@ -108,7 +116,7 @@ Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 - [object Object]
 - [object Object]
 
-### Section 7 — Call to action
+### Section 8 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
 Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
