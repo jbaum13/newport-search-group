@@ -270,6 +270,26 @@ a.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-co
 .testimonial figcaption strong { color: inherit; display: block; font-size: 1.05rem; }
 .section--dark .testimonial figcaption { color: var(--steel-300); }
 
+/* ---- Articles ---- */
+.article-meta { color: var(--steel-300); font-size: 0.95rem; margin-top: 0.4rem; }
+.article-card .cat {
+  display: inline-block; align-self: flex-start; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue);
+  background: rgba(47,123,255,.08); border: 1px solid rgba(47,123,255,.22);
+  border-radius: 999px; padding: 0.25rem 0.7rem; margin-bottom: 0.6rem;
+}
+.prose { max-width: 760px; margin-inline: auto; font-size: 1.06rem; line-height: 1.75; }
+.prose h2 { font-size: 1.45rem; margin: 2.4rem 0 0.7rem; }
+.prose h2::before {
+  content: ""; display: block; width: 44px; height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue), #8db4ff); margin-bottom: 0.8rem;
+}
+.prose p { margin-bottom: 1.15em; }
+.prose ul { padding-left: 1.25rem; display: grid; gap: 0.55rem; margin: 0 0 1.3em; }
+.prose li::marker { color: var(--blue); }
+.prose-back { margin-top: 2.6rem; }
+.prose-back a { color: var(--blue); font-weight: 600; }
+
 /* ---- Footer ---- */
 .site-footer { background: var(--navy-900); color: var(--steel-300); padding-block: clamp(48px, 7vw, 80px) 2rem; }
 .footer-top { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 2rem; }

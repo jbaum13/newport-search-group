@@ -725,15 +725,9 @@ Buttons: [Submit Your Resume] → `/contact?intent=candidate`
 **Insights from the front lines of agentic recruiting**  
 Perspectives on where hiring is going — and how to win talent in the markets that matter most.
 
-### Section 2 — Card grid
-*Eyebrow:* Blog Categories  
-**Browse by topic**  
-- **Agentic Recruiting** — How autonomous agents are reshaping how searches get run.
-- **Hiring Trends** — Signals, data, and what they mean for your next hire.
-- **Staffing Industry** — For the firms that build other companies' teams.
-- **Talent Intelligence** — Turning market data into hiring advantage.
-- **Executive Hiring** — What it takes to land transformational leaders.
-- **AI in Recruiting** — Practical, honest takes on AI in talent acquisition.
+### Section 2 — articleList
+*Eyebrow:* Latest Articles  
+**Browse the latest**  
 
 ### Section 3 — Split feature
 *Eyebrow:* Newsletter  

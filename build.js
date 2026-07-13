@@ -12,6 +12,7 @@ const fileVer = (p) => crypto.createHash("sha1").update(fs.readFileSync(p)).dige
 const CSS_VER = fileVer(path.join(__dirname, "src/styles.css"));
 const JS_VER = fileVer(path.join(__dirname, "src/main.js"));
 const { site, nav, footer, pages, ctaBlocks, seoKeywords } = require("./src/content");
+const { articles } = require("./src/articles");
 
 const ROOT = __dirname;
 const DIST = path.join(ROOT, "dist");
@@ -87,6 +88,38 @@ const btn = (b, cls) => {
   const attrs = ext ? ' target="_blank" rel="noopener noreferrer"' : "";
   return `<a class="btn ${cls}" href="${href}"${attrs}>${esc(b.label)}</a>`;
 };
+
+// ---- articles ---------------------------------------------------------------
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const fmtDate = (iso) => { const [y,m,d] = iso.split("-").map(Number); return `${MONTHS[m-1]} ${d}, ${y}`; };
+const sortedArticles = [...articles].sort((a, b) => b.date.localeCompare(a.date));
+const articleRoute = (a) => `/resources/${a.slug}`;
+
+// Article data -> page object (rendered via the `article` branch in renderPage)
+const articlePages = sortedArticles.map((a) => ({
+  route: articleRoute(a),
+  title: `${a.title} | Newport Search Group`,
+  description: a.excerpt,
+  article: a,
+}));
+
+function renderArticleBody(a) {
+  const blocks = a.body.map((b) => {
+    if (b.h2) return `<h2>${esc(b.h2)}</h2>`;
+    if (b.ul) return `<ul>${b.ul.map((li) => `<li>${esc(li)}</li>`).join("")}</ul>`;
+    return `<p>${esc(b.p)}</p>`;
+  }).join("\n");
+  return `<section class="breadcrumb-hero"><div class="container">
+      <span class="eyebrow">Resources / ${esc(a.category)}</span>
+      <h1>${esc(a.title)}</h1>
+      <p class="article-meta">${fmtDate(a.date)} · ${esc(a.readTime)} read · ${esc(site.name)}</p>
+    </div></section>
+    <article class="section"><div class="container"><div class="prose">
+      ${blocks}
+      <p class="prose-back"><a href="${hrefFor("/resources")}">&larr; All articles</a></p>
+    </div></div></article>
+    ${renderers.cta(ctaBlocks.buildYourTeam)}`;
+}
 
 // Wrap the last word of a heading in a gradient accent span
 const gradLast = (text) => {
@@ -164,6 +197,17 @@ const renderers = {
     const items = s.items.map((x) => `<div class="stat"><div class="num">${esc(x.value)}</div><div class="lbl">${esc(x.label)}</div></div>`).join("");
     return `<section class="section section--dark"><div class="container">
       ${head(s)}<div class="statband">${items}</div>
+    </div></section>`;
+  },
+  articleList(s) {
+    const cards = sortedArticles.map((a) => `<a class="card article-card" href="${hrefFor(articleRoute(a))}">
+        <span class="cat">${esc(a.category)}</span>
+        <h3>${esc(a.title)}</h3>
+        <p>${esc(a.excerpt)}</p>
+        <span class="arrow">${fmtDate(a.date)} · ${esc(a.readTime)} — Read →</span>
+      </a>`).join("");
+    return `<section class="section section--tint"><div class="container">
+      ${head(s)}<div class="grid grid--3">${cards}</div>
     </div></section>`;
   },
   logos(s) {
@@ -246,7 +290,9 @@ const renderers = {
 };
 
 function renderPage(page) {
-  const body = page.sections.map((s) => (renderers[s.type] || (() => ""))(s)).join("\n");
+  const body = page.article
+    ? renderArticleBody(page.article)
+    : page.sections.map((s) => (renderers[s.type] || (() => ""))(s)).join("\n");
   const kw = page.route === "/" ? seoKeywords.join(", ") : "";
   return `<!doctype html>
 <html lang="en">
@@ -299,7 +345,8 @@ function buildSite() {
     fs.copyFileSync(path.join(ROOT, "src/assets", a), path.join(DIST, "assets", a));
   }
   fs.copyFileSync(path.join(ROOT, "src/assets/fonts/inter-var.woff2"), path.join(DIST, "assets/fonts/inter-var.woff2"));
-  for (const page of pages) writeFile(outFileFor(page.route), renderPage(page));
+  const allPages = [...pages, ...articlePages];
+  for (const page of allPages) writeFile(outFileFor(page.route), renderPage(page));
   // Branded 404 (GitHub Pages serves /404.html for unknown routes)
   writeFile(path.join(DIST, "404.html"), renderPage({
     route: "/404.html",
@@ -317,12 +364,12 @@ function buildSite() {
     ],
   }));
   // sitemap + robots
-  const urls = pages.map((p) => `  <url><loc>https://${site.domain}${p.route}</loc></url>`).join("\n");
+  const urls = allPages.map((p) => `  <url><loc>https://${site.domain}${p.route}</loc></url>`).join("\n");
   writeFile(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
   writeFile(path.join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: https://${site.domain}/sitemap.xml\n`);
   // Custom domain for GitHub Pages (apex). www redirects to it automatically.
   if (site.domain) writeFile(path.join(DIST, "CNAME"), site.domain + "\n");
-  console.log(`✓ Built ${pages.length} pages → dist/`);
+  console.log(`✓ Built ${allPages.length} pages (${articlePages.length} articles) → dist/`);
 }
 
 // ---- Wix export (paste-ready Markdown) ------------------------------------

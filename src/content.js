@@ -765,17 +765,10 @@ const pages = [
         sub: "Perspectives on where hiring is going — and how to win talent in the markets that matter most.",
       },
       {
-        type: "cards",
-        eyebrow: "Blog Categories",
-        headline: "Browse by topic",
-        cards: [
-          { title: "Agentic Recruiting", body: "How autonomous agents are reshaping how searches get run." },
-          { title: "Hiring Trends", body: "Signals, data, and what they mean for your next hire." },
-          { title: "Staffing Industry", body: "For the firms that build other companies' teams." },
-          { title: "Talent Intelligence", body: "Turning market data into hiring advantage." },
-          { title: "Executive Hiring", body: "What it takes to land transformational leaders." },
-          { title: "AI in Recruiting", body: "Practical, honest takes on AI in talent acquisition." },
-        ],
+        // Articles live in src/articles.js — add one there and rebuild.
+        type: "articleList",
+        eyebrow: "Latest Articles",
+        headline: "Browse the latest",
       },
       {
         type: "split",
