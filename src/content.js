@@ -153,10 +153,10 @@ const pages = [
         eyebrow: "Staffing Solutions",
         headline: "Hiring models built for how you actually scale",
         cards: [
-          { title: "Direct Hire", body: "Permanent placement across technical, operational, commercial, and executive functions.", route: "/staffing-solutions/direct-hire" },
-          { title: "Contract Staffing", body: "Flexible workforce solutions that let you scale quickly while keeping operational control.", route: "/staffing-solutions/contract-staffing" },
-          { title: "RPO", body: "Embedded recruiting teams powered by agentic technology and senior recruiting leadership.", route: "/staffing-solutions/rpo" },
-          { title: "Executive Search", body: "Retained search for the leaders who define the next chapter of your company.", route: "/staffing-solutions/executive-search" },
+          { icon: "direct-hire", title: "Direct Hire", body: "Permanent placement across technical, operational, commercial, and executive functions.", route: "/staffing-solutions/direct-hire" },
+          { icon: "contract", title: "Contract Staffing", body: "Flexible workforce solutions that let you scale quickly while keeping operational control.", route: "/staffing-solutions/contract-staffing" },
+          { icon: "rpo", title: "RPO", body: "Embedded recruiting teams powered by agentic technology and senior recruiting leadership.", route: "/staffing-solutions/rpo" },
+          { icon: "executive", title: "Executive Search", body: "Retained search for the leaders who define the next chapter of your company.", route: "/staffing-solutions/executive-search" },
         ],
       },
       {
@@ -177,12 +177,12 @@ const pages = [
         eyebrow: "Industries Served",
         headline: "Deep specialization where talent is scarce",
         cards: [
-          { title: "Cybersecurity & Identity", body: "IAM, PAM, CIAM, cloud and application security, GRC.", route: "/industries/cybersecurity" },
-          { title: "Advanced Energy", body: "Power generation, infrastructure, and energy innovation.", route: "/industries/energy" },
-          { title: "Aerospace & Defense", body: "Mission-driven technical, operational, and leadership talent.", route: "/industries/aerospace-defense" },
-          { title: "Manufacturing", body: "Production, quality, engineering, supply chain, plant leadership.", route: "/industries/manufacturing" },
-          { title: "Technology", body: "Engineering, product, sales, and leadership for growth and enterprise.", route: "/industries/technology" },
-          { title: "Staffing & Recruiting", body: "Talent for the firms that build other companies' teams.", route: "/industries/staffing" },
+          { icon: "cyber", title: "Cybersecurity & Identity", body: "IAM, PAM, CIAM, cloud and application security, GRC.", route: "/industries/cybersecurity" },
+          { icon: "energy", title: "Advanced Energy", body: "Power generation, infrastructure, and energy innovation.", route: "/industries/energy" },
+          { icon: "aerospace", title: "Aerospace & Defense", body: "Mission-driven technical, operational, and leadership talent.", route: "/industries/aerospace-defense" },
+          { icon: "manufacturing", title: "Manufacturing", body: "Production, quality, engineering, supply chain, plant leadership.", route: "/industries/manufacturing" },
+          { icon: "technology", title: "Technology", body: "Engineering, product, sales, and leadership for growth and enterprise.", route: "/industries/technology" },
+          { icon: "staffing", title: "Staffing & Recruiting", body: "Talent for the firms that build other companies' teams.", route: "/industries/staffing" },
         ],
       },
       // TODO: Re-enable when a real client quote is available — the renderer

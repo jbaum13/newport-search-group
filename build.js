@@ -24,6 +24,22 @@ if (BASE === "/") BASE = "";
 BASE = BASE.replace(/\/+$/, ""); // no trailing slash
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
+// Inline line-icons (stroke = currentColor) used as optional card accents.
+// Reference one from content via a card's `icon:` key. Unknown keys render nothing.
+const ICONS = {
+  "direct-hire": '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m17 11 2 2 4-4"/>',
+  contract: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/>',
+  rpo: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',
+  executive: '<path d="m12 2 2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.8 7.2 17l.9-5.4L4.2 7.7l5.4-.8z"/>',
+  cyber: '<path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5z"/><path d="M9 12l2 2 4-4"/>',
+  energy: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+  aerospace: '<path d="M12 2s5 3 5 10c0 3-1 5-1 5l-4 3-4-3s-1-2-1-5c0-7 5-10 5-10z"/><circle cx="12" cy="9" r="1.6"/><path d="M8 17l-3 3M16 17l3 3"/>',
+  manufacturing: '<path d="M2 20h20M4 20V9l6 4V9l6 4V6l4 2v12"/><circle cx="6" cy="16" r="1"/><circle cx="12" cy="16" r="1"/>',
+  technology: '<rect x="4" y="4" width="16" height="12" rx="2"/><path d="M2 20h20M9 8h6M9 12h4"/>',
+  staffing: '<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15 20a5 5 0 0 1 6.5-4.8"/>',
+};
+const icon = (k) => (ICONS[k] ? `<span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg></span>` : "");
+
 // Brand lockup: the official logo. `white` variant (wave + white wordmark) is
 // used on dark surfaces (header/footer); `color` on light surfaces.
 function brand(href = "/", variant = "white") {
@@ -168,7 +184,7 @@ const renderers = {
   cards(s) {
     const n = s.cards.length % 4 === 0 ? 4 : (s.cards.length % 3 === 0 || s.cards.length > 4 ? 3 : 2);
     const cards = s.cards.map((c) => {
-      const inner = `<h3>${esc(c.title)}</h3><p>${esc(c.body)}</p>${c.route ? `<span class="arrow">Learn more →</span>` : ""}`;
+      const inner = `${icon(c.icon)}<h3>${esc(c.title)}</h3><p>${esc(c.body)}</p>${c.route ? `<span class="arrow">Learn more →</span>` : ""}`;
       return c.route ? `<a class="card" href="${hrefFor(c.route)}">${inner}</a>` : `<div class="card">${inner}</div>`;
     }).join("");
     return `<section class="section ${s.tint ? "section--tint" : ""}" ${s.id ? `id="${s.id}"` : ""}><div class="container">
