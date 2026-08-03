@@ -44,7 +44,9 @@ const icon = (k) => (ICONS[k] ? `<span class="card__icon" aria-hidden="true"><sv
 // used on dark surfaces (header/footer); `color` on light surfaces.
 function brand(href = "/", variant = "white") {
   const file = variant === "color" ? "logo.png" : "logo-white.png";
-  return `<a class="brand" href="${BASE}${href}" aria-label="${esc(site.name)} home"><img src="${BASE}/assets/${file}" alt="${esc(site.name)}" width="279" height="142" /></a>`;
+  // White wordmark ships a 2x asset for crisp rendering at larger / high-DPI sizes.
+  const srcset = variant === "color" ? "" : ` srcset="${BASE}/assets/logo-white.png 1x, ${BASE}/assets/logo-white@2x.png 2x"`;
+  return `<a class="brand" href="${BASE}${href}" aria-label="${esc(site.name)} home"><img src="${BASE}/assets/${file}"${srcset} alt="${esc(site.name)}" width="279" height="142" /></a>`;
 }
 
 // ---- routing helpers -------------------------------------------------------
@@ -357,7 +359,7 @@ function buildSite() {
   fs.copyFileSync(path.join(ROOT, "src/styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(ROOT, "src/main.js"), path.join(DIST, "main.js"));
   fs.mkdirSync(path.join(DIST, "assets", "fonts"), { recursive: true });
-  for (const a of ["logo.png", "logo-white.png", "favicon.png", "og-image.png"]) {
+  for (const a of ["logo.png", "logo-white.png", "logo-white@2x.png", "favicon.png", "og-image.png"]) {
     fs.copyFileSync(path.join(ROOT, "src/assets", a), path.join(DIST, "assets", a));
   }
   fs.copyFileSync(path.join(ROOT, "src/assets/fonts/inter-var.woff2"), path.join(DIST, "assets/fonts/inter-var.woff2"));
