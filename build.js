@@ -99,11 +99,12 @@ function renderFooter() {
 
 // ---- buttons ---------------------------------------------------------------
 const isExternal = (r) => /^https?:\/\//i.test(r || "");
+// Absolute = already a full URL/scheme (http, mailto, tel) — must not get a BASE prefix.
+const isAbsolute = (r) => /^(https?:|mailto:|tel:)/i.test(r || "");
 const btn = (b, cls) => {
   if (!b) return "";
-  const ext = isExternal(b.route);
-  const href = ext ? b.route : hrefFor(b.route);
-  const attrs = ext ? ' target="_blank" rel="noopener noreferrer"' : "";
+  const href = isAbsolute(b.route) ? b.route : hrefFor(b.route);
+  const attrs = isExternal(b.route) ? ' target="_blank" rel="noopener noreferrer"' : "";
   return `<a class="btn ${cls}" href="${href}"${attrs}>${esc(b.label)}</a>`;
 };
 
