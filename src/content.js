@@ -23,11 +23,49 @@ const site = {
 };
 
 // ---------------------------------------------------------------------------
+// Duke & Scout — the two faces of the agentic platform.
+// Drop `duke.png` and `scout.png` (character cutouts) into src/assets/.
+// ---------------------------------------------------------------------------
+const agents = [
+  {
+    name: "Duke",
+    role: "Chief Talent Retriever",
+    side: "Human Relationships",
+    accent: "gold",
+    img: "duke.jpg",
+    imgAlt: "Duke, the Newport Search Group golden retriever agent",
+    tagline: "Builds trust. Creates connections.",
+    mission: "Retrieve the talent others cannot reach.",
+    ability: "Follows overlooked signals to exceptional people.",
+    signature: "Consider it retrieved.",
+  },
+  {
+    name: "Scout",
+    role: "The Newport Navigator",
+    side: "Agentic Execution",
+    accent: "blue",
+    img: "scout.jpg",
+    imgAlt: "Scout, the Newport Search Group navigator seal agent",
+    tagline: "Finds signal. Delivers results.",
+    mission: "Navigate complex talent markets to find the people others miss.",
+    ability: "Turns overlooked signals into clear paths to exceptional talent.",
+    signature: "I'll find the way.",
+  },
+];
+
+// ---------------------------------------------------------------------------
 // Navigation (header). `children` renders a dropdown.
 // ---------------------------------------------------------------------------
 const nav = [
   { label: "Home", route: "/" },
-  { label: "Agentic Platform", route: "/agentic-platform" },
+  {
+    label: "Agentic Platform",
+    route: "/agentic-platform",
+    children: [
+      { label: "Overview", route: "/agentic-platform" },
+      { label: "Meet Duke & Scout", route: "/agentic-platform/duke-and-scout" },
+    ],
+  },
   {
     label: "Services",
     route: "/staffing-solutions",
@@ -71,6 +109,7 @@ const footer = {
       links: [
         { label: "About", route: "/about" },
         { label: "Agentic Platform", route: "/agentic-platform" },
+        { label: "Meet Duke & Scout", route: "/agentic-platform/duke-and-scout" },
         { label: "Contact", route: "/contact" },
         // Timecard portal — separate Next.js app on Vercel. DISABLED 2026-07-13:
         // the deployment at newport-timecard.vercel.app returns
@@ -141,6 +180,16 @@ const pages = [
         headline: "Recruiters set the strategy. Agents do the work that never sleeps.",
         body: "Traditional recruiting is capped by human bandwidth — a recruiter can only source, screen, and follow up with so many people in a day. Agentic recruiting removes that ceiling. Our autonomous agents run sourcing, market mapping, candidate engagement, and intelligence workflows around the clock, then hand qualified, contextualized candidates to our recruiters. The result: the speed and coverage of automation with the judgment and trust of an experienced human team.",
         cta: { label: "Explore the Agentic Platform", route: "/agentic-platform" },
+      },
+      {
+        type: "characters",
+        center: true,
+        eyebrow: "Meet the Agents",
+        headline: "Say hello to Duke & Scout",
+        body: "Behind every Newport search are two agents who split the work the way it should be split — Duke builds the human relationships, Scout navigates the market.",
+        characters: agents,
+        unity: "Two sides. One mission. Together, they navigate what others miss.",
+        cta: { label: "Meet Duke & Scout", route: "/agentic-platform/duke-and-scout" },
       },
       {
         // Trust strip — swap these for real client logos/names when available
@@ -279,9 +328,19 @@ const pages = [
         primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
       },
       {
+        type: "characters",
+        center: true,
+        eyebrow: "Meet the Agents",
+        headline: "The two faces of your search",
+        body: "Every Newport search is run by two agents who split the work the way it should be split — one builds the relationships, the other navigates the market.",
+        characters: agents,
+        unity: "Two sides. One mission. Together, they navigate what others miss.",
+        cta: { label: "Meet Duke & Scout", route: "/agentic-platform/duke-and-scout" },
+      },
+      {
         type: "cards",
-        eyebrow: "The Agents",
-        headline: "Five specialized agent teams, one search",
+        eyebrow: "Their Capabilities",
+        headline: "What Duke and Scout actually do",
         cards: [
           { title: "Talent Discovery Agents", body: "Continuously source active and passive candidates across every channel, building living pipelines instead of one-time lists." },
           { title: "Market Mapping Agents", body: "Map entire companies, teams, and talent pools so you see the complete landscape — competitors, comp, and where the best people sit today." },
@@ -310,6 +369,56 @@ const pages = [
           { value: "Visible", label: "Better talent visibility through continuous, complete market mapping." },
           { value: "Engaged", label: "Stronger passive-candidate engagement that keeps the best people in play." },
           { value: "Scalable", label: "Recruiting capacity that flexes up and down without rehiring." },
+        ],
+      },
+      { type: "ctaRef", ref: "buildYourTeam" },
+    ],
+  },
+
+  // ===================== MEET DUKE & SCOUT =====================
+  {
+    route: "/agentic-platform/duke-and-scout",
+    title: "Meet Duke & Scout | Newport Search Group",
+    description:
+      "Duke and Scout are the two agents behind every Newport search — one builds human relationships, the other navigates the market. Human Relationships. Agentic Execution.",
+    sections: [
+      {
+        type: "breadcrumbHero",
+        eyebrow: "Meet the Agents",
+        headline: "Duke & Scout",
+        sub: "Human Relationships. Agentic Execution. Two agents, one mission — to navigate what others miss and deliver the talent that changes companies.",
+        primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
+        secondary: { label: "See the platform", route: "/agentic-platform" },
+      },
+      {
+        type: "characters",
+        center: true,
+        eyebrow: "The Duo",
+        headline: "One retrieves. One navigates.",
+        characters: agents,
+        unity: "Two sides. One mission. Together, they navigate what others miss.",
+      },
+      {
+        type: "split",
+        eyebrow: "How They Work Together",
+        headline: "Scout finds the way. Duke brings them home.",
+        body: "Scout works the parts of recruiting that reward speed, coverage, and pattern-finding — mapping markets and surfacing the signals everyone else overlooks. Duke works the parts that reward trust — reaching the people others can't and building the relationships that actually close. Neither works without the other.",
+        bullets: [
+          "Scout: navigate, map, surface signal, find the path",
+          "Duke: reach, build trust, advocate, bring them home",
+          "You: a faster search with a human you actually trust",
+        ],
+      },
+      {
+        type: "cards",
+        eyebrow: "Their Capabilities",
+        headline: "What they do behind the scenes",
+        cards: [
+          { title: "Talent Discovery", body: "Continuously source active and passive candidates across every channel, building living pipelines instead of one-time lists." },
+          { title: "Market Mapping", body: "Map entire companies, teams, and talent pools so you see the complete landscape — competitors, comp, and where the best people sit today." },
+          { title: "Candidate Engagement", body: "Initiate and nurture personalized outreach at scale, keeping passive candidates warm until the right moment and a recruiter takes over." },
+          { title: "Talent Intelligence", body: "Synthesize market data, compensation benchmarks, and competitor signals into briefings your team and hiring managers can act on." },
+          { title: "Recruiting Operations", body: "Handle scheduling, status tracking, data hygiene, and reporting so nothing slips and everyone stays aligned." },
         ],
       },
       { type: "ctaRef", ref: "buildYourTeam" },

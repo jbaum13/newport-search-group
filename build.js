@@ -40,6 +40,10 @@ const ICONS = {
 };
 const icon = (k) => (ICONS[k] ? `<span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg></span>` : "");
 
+// True if an asset file exists in src/assets — lets sections degrade gracefully
+// to a placeholder until the real image is dropped in.
+const hasAsset = (f) => { try { return !!f && fs.existsSync(path.join(ROOT, "src/assets", f)); } catch { return false; } };
+
 // Brand lockup: the official logo. `white` variant (wave + white wordmark) is
 // used on dark surfaces (header/footer); `color` on light surfaces.
 function brand(href = "/", variant = "white") {
@@ -212,6 +216,35 @@ const renderers = {
       <div class="split__panel">${bullets || `<p class="muted">${esc(s.body || "")}</p>`}</div>
     </div></div></section>`;
   },
+  characters(s) {
+    const cards = s.characters.map((c) => {
+      const media = hasAsset(c.img)
+        ? `<img class="char__img" src="${BASE}/assets/${c.img}" alt="${esc(c.imgAlt || `${c.name}, ${c.role}`)}" loading="lazy" />`
+        : `<div class="char__ph"><span>${esc(c.name)}</span><small>add <code>src/assets/${esc(c.img)}</code></small></div>`;
+      const facts = [
+        c.mission && ["Mission", c.mission],
+        c.ability && ["Special ability", c.ability],
+      ].filter(Boolean).map(([k, v]) => `<div class="char__fact"><span class="char__k">${esc(k)}</span><span>${esc(v)}</span></div>`).join("");
+      return `<article class="char" data-accent="${esc(c.accent || "blue")}">
+        <div class="char__media">${media}</div>
+        <div class="char__body">
+          <div class="char__role">${esc(c.role)}</div>
+          <h3 class="char__name">${esc(c.name)}</h3>
+          <span class="char__side">${esc(c.side)}</span>
+          ${c.tagline ? `<p class="char__tag">${esc(c.tagline)}</p>` : ""}
+          ${facts ? `<div class="char__facts">${facts}</div>` : ""}
+          ${c.signature ? `<p class="char__sig">&ldquo;${esc(c.signature)}&rdquo;</p>` : ""}
+        </div>
+      </article>`;
+    }).join("");
+    const cls = `section ${s.dark === false ? "" : "section--dark"} ${s.center ? "section--center" : ""}`.trim();
+    return `<section class="${cls}" ${s.id ? `id="${s.id}"` : ""}><div class="container">
+      ${head(s)}
+      <div class="chars">${cards}</div>
+      ${s.unity ? `<p class="chars__unity">${esc(s.unity)}</p>` : ""}
+      ${(s.cta || s.secondary) ? `<div class="btn-row" style="justify-content:center;margin-top:1.6rem">${btn(s.cta, "btn--primary")}${btn(s.secondary, "btn--ghost")}</div>` : ""}
+    </div></section>`;
+  },
   stats(s) {
     const items = s.items.map((x) => `<div class="stat"><div class="num">${esc(x.value)}</div><div class="lbl">${esc(x.label)}</div></div>`).join("");
     return `<section class="section section--dark"><div class="container">
@@ -360,8 +393,9 @@ function buildSite() {
   fs.copyFileSync(path.join(ROOT, "src/styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(ROOT, "src/main.js"), path.join(DIST, "main.js"));
   fs.mkdirSync(path.join(DIST, "assets", "fonts"), { recursive: true });
-  for (const a of ["logo.png", "logo-white.png", "logo-white@2x.png", "favicon.png", "og-image.png"]) {
-    fs.copyFileSync(path.join(ROOT, "src/assets", a), path.join(DIST, "assets", a));
+  for (const a of ["logo.png", "logo-white.png", "logo-white@2x.png", "favicon.png", "og-image.png", "duke.jpg", "scout.jpg"]) {
+    const src = path.join(ROOT, "src/assets", a);
+    if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, "assets", a)); // optional assets skipped until added
   }
   fs.copyFileSync(path.join(ROOT, "src/assets/fonts/inter-var.woff2"), path.join(DIST, "assets/fonts/inter-var.woff2"));
   const allPages = [...pages, ...articlePages];
