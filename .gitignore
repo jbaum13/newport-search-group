@@ -15,3 +15,11 @@ node_modules/
 
 # Archived prior (Velo exec-search) build — kept on disk, not tracked
 _archive-velo-execsearch/
+
+# Finn smoke-test screenshots
+
+# Agent smoke-test screenshots
+.agent-screenshots/
+
+# Desktop app scratch
+Claude outputs/

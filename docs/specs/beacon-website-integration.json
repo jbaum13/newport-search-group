@@ -1,0 +1,282 @@
+{
+  "project": {
+    "name": "Beacon Website Integration",
+    "company": "Newport Search Group",
+    "platform": "Newport Agentic Recruiting Platform",
+    "implementation_target": "Existing Newport website",
+    "primary_goal": "Add Beacon as Newport's Market Intelligence Agent using the supplied lighthouse mascot graphic."
+  },
+  "agent": {
+    "name": "Beacon",
+    "role": "Market Intelligence Agent",
+    "mascot": "Anthropomorphic Lighthouse",
+    "mission": "Help employers and visitors discover workforce market intelligence, hiring trends, talent availability, compensation insights, industry signals, and strategic recruiting opportunities while guiding qualified conversations into Newport's business development workflow.",
+    "personality": {
+      "traits": [
+        "trusted",
+        "insightful",
+        "calm",
+        "strategic",
+        "forward-looking",
+        "helpful"
+      ],
+      "voice": "Executive, concise, intelligent, approachable, evidence-oriented."
+    },
+    "brand": {
+      "primary_message": "Greater Opportunities Ahead.",
+      "company": "Newport Search Group"
+    }
+  },
+  "claude_code_instructions": {
+    "mode": "inspect_then_implement",
+    "rules": [
+      "Inspect the existing repository before making changes.",
+      "Determine framework, routing, components, styling, analytics, API conventions, and asset pipeline.",
+      "Reuse Newport's existing design system and shared UI.",
+      "Implement Beacon as reusable components.",
+      "Do not modify unrelated functionality.",
+      "Keep API credentials server-side using environment variables.",
+      "Run lint, typecheck, tests, and production build."
+    ]
+  },
+  "asset": {
+    "filename": "beacon_lighthouse.png",
+    "source": "Use the Beacon lighthouse mascot image supplied in this conversation.",
+    "usage": [
+      "floating launcher",
+      "homepage CTA",
+      "market intelligence panel",
+      "empty states",
+      "employer CTA cards"
+    ],
+    "instructions": [
+      "Preserve aspect ratio.",
+      "Prefer transparent PNG or WebP.",
+      "Optimize for responsive loading.",
+      "Do not redraw unless requested."
+    ]
+  },
+  "experience": {
+    "entry_points": [
+      {
+        "location": "global",
+        "component": "BeaconLauncher",
+        "behavior": "Persistent floating lighthouse launcher."
+      },
+      {
+        "location": "homepage",
+        "component": "BeaconHeroCTA",
+        "behavior": "Introduce Beacon as Newport's market intelligence guide."
+      },
+      {
+        "location": "employer_services",
+        "component": "BeaconInsightCTA",
+        "behavior": "Invite employers to ask workforce and hiring questions."
+      },
+      {
+        "location": "industry_pages",
+        "component": "BeaconContextPanel",
+        "behavior": "Provide contextual intelligence for the current industry."
+      }
+    ],
+    "states": [
+      "closed",
+      "welcome",
+      "conversation",
+      "loading",
+      "results",
+      "handoff",
+      "error"
+    ],
+    "welcome": {
+      "headline": "Meet Beacon",
+      "subtitle": "Newport's Market Intelligence Agent",
+      "message": "I help leaders navigate talent markets, workforce strategy, hiring intelligence, and emerging opportunities.",
+      "quick_actions": [
+        "Talent market insights",
+        "Salary intelligence",
+        "Hiring trends",
+        "Build a workforce strategy",
+        "Talk to Newport"
+      ]
+    }
+  },
+  "capabilities": [
+    {
+      "id": "market_intelligence",
+      "description": "Provide evidence-based workforce and recruiting intelligence from approved connected data."
+    },
+    {
+      "id": "talent_availability",
+      "description": "Explain talent supply and recruiting difficulty when verified data exists."
+    },
+    {
+      "id": "compensation_guidance",
+      "description": "Present salary insights only from approved datasets.",
+      "guardrail": "Never invent compensation benchmarks."
+    },
+    {
+      "id": "hiring_strategy",
+      "description": "Guide employers through recruiting strategy, staffing, RPO, offshore recruiting, and workforce planning."
+    },
+    {
+      "id": "industry_signals",
+      "description": "Surface verified funding, hiring, leadership, stealth, or market signals when supported."
+    },
+    {
+      "id": "human_handoff",
+      "description": "Route qualified employer conversations into Newport's business development workflow."
+    }
+  ],
+  "guardrails": {
+    "must_do": [
+      "Distinguish verified intelligence from assumptions.",
+      "State uncertainty when data is unavailable.",
+      "Use concise executive-friendly responses.",
+      "Offer structured next steps."
+    ],
+    "must_not_do": [
+      "Invent market statistics.",
+      "Fabricate company hiring activity.",
+      "Expose CRM or private candidate data.",
+      "Claim proprietary data access unless connected.",
+      "Provide unsupported compensation figures."
+    ]
+  },
+  "integration_contract": {
+    "frontend_events": [
+      "beacon_opened",
+      "beacon_closed",
+      "beacon_message_sent",
+      "beacon_quick_action_selected",
+      "beacon_market_query",
+      "beacon_insight_viewed",
+      "beacon_handoff_requested",
+      "beacon_error"
+    ],
+    "agent_adapter": {
+      "interface_name": "BeaconAgentAdapter",
+      "method": {
+        "name": "sendMessage",
+        "input": [
+          "message",
+          "sessionId",
+          "pageContext",
+          "visitorType_optional",
+          "companyContext_optional"
+        ],
+        "output": [
+          "message",
+          "insights_optional",
+          "citations_optional",
+          "suggestedActions_optional",
+          "handoff_optional"
+        ]
+      },
+      "page_context": [
+        "url",
+        "pageTitle",
+        "industry_optional",
+        "service_optional"
+      ]
+    },
+    "future_integrations": [
+      {
+        "system": "Newport OS",
+        "purpose": "Agent orchestration",
+        "status": "adapter_ready"
+      },
+      {
+        "system": "Attio",
+        "purpose": "Employer CRM handoff",
+        "status": "adapter_ready"
+      },
+      {
+        "system": "Market Intelligence MCPs",
+        "purpose": "Verified intelligence sources",
+        "status": "adapter_ready"
+      }
+    ]
+  },
+  "ui_requirements": {
+    "responsive": true,
+    "desktop": "Floating launcher opens a right-side conversational panel.",
+    "mobile": "Bottom-safe launcher opens a full-height touch sheet.",
+    "accessibility": [
+      "Keyboard navigation",
+      "Visible focus states",
+      "Screen reader labels",
+      "ARIA live responses",
+      "Reduced motion",
+      "Escape closes panel"
+    ],
+    "visual_direction": [
+      "Native Newport styling",
+      "Premium executive feel",
+      "Beacon artwork is the primary identity",
+      "Subtle warm lantern glow",
+      "Avoid generic chatbot appearance"
+    ]
+  },
+  "analytics": {
+    "events": [
+      "launcher_impression",
+      "launcher_open",
+      "conversation_start",
+      "quick_action",
+      "market_query",
+      "insight_view",
+      "handoff",
+      "error"
+    ],
+    "instruction": "Use the website's existing analytics provider."
+  },
+  "security_privacy": {
+    "requirements": [
+      "No secrets in browser bundles.",
+      "Validate and sanitize inputs.",
+      "Respect privacy and cookie policies.",
+      "Avoid unnecessary PII logging.",
+      "Keep proprietary intelligence behind server-side adapters."
+    ]
+  },
+  "components": [
+    "BeaconLauncher",
+    "BeaconPanel",
+    "BeaconWelcome",
+    "BeaconConversation",
+    "BeaconQuickActions",
+    "BeaconInsightCards",
+    "BeaconHandoff",
+    "BeaconAgentAdapter",
+    "BeaconAnalytics"
+  ],
+  "acceptance_criteria": [
+    "Beacon appears at all defined entry points.",
+    "Canonical lighthouse mascot is integrated.",
+    "Responsive desktop and mobile UX works.",
+    "Page context is passed when available.",
+    "Quick actions function.",
+    "Human handoff is available.",
+    "Loading and failure states are graceful.",
+    "Accessibility requirements are met.",
+    "Existing analytics is reused.",
+    "No client-side secrets.",
+    "Lint passes.",
+    "Typecheck passes.",
+    "Tests pass.",
+    "Production build succeeds."
+  ],
+  "definition_of_done": {
+    "deliverables": [
+      "Beacon integrated into Newport website",
+      "Reusable launcher",
+      "Reusable intelligence panel",
+      "Agent adapter ready for Newport OS",
+      "Employer intelligence UX",
+      "Analytics instrumentation",
+      "Accessibility coverage",
+      "Implementation notes with changed files and required environment variables"
+    ]
+  }
+}

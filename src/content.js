@@ -23,8 +23,11 @@ const site = {
 };
 
 // ---------------------------------------------------------------------------
-// Duke & Scout — the two faces of the agentic platform.
-// Drop `duke.png` and `scout.png` (character cutouts) into src/assets/.
+// The Newport agents — the faces of the agentic platform.
+// Duke and Scout work the search; Finn (candidates) and Beacon (employers) are
+// the agents wired into the website itself (see src/agent-core.js, AGENTS.md).
+// Character cutouts live in src/assets/ — all transparent PNGs, so each one
+// composites onto the card gradient instead of sitting on a baked-in box.
 // ---------------------------------------------------------------------------
 const agents = [
   {
@@ -32,7 +35,7 @@ const agents = [
     role: "Chief Talent Retriever",
     side: "Human Relationships",
     accent: "gold",
-    img: "duke.jpg",
+    img: "duke.png", // transparent cutout
     imgAlt: "Duke, the Newport Search Group golden retriever agent",
     tagline: "Builds trust. Creates connections.",
     mission: "Retrieve the talent others cannot reach.",
@@ -44,12 +47,36 @@ const agents = [
     role: "The Newport Navigator",
     side: "Agentic Execution",
     accent: "blue",
-    img: "scout.jpg",
+    img: "scout.png", // transparent cutout
     imgAlt: "Scout, the Newport Search Group navigator seal agent",
     tagline: "Finds signal. Delivers results.",
     mission: "Navigate complex talent markets to find the people others miss.",
     ability: "Turns overlooked signals into clear paths to exceptional talent.",
     signature: "I'll find the way.",
+  },
+  {
+    name: "Finn",
+    role: "Candidate Experience Agent",
+    side: "Candidate Experience",
+    accent: "blue",
+    img: "finn.png", // transparent cutout — composites on the card's gradient
+    imgAlt: "Finn, the Newport Search Group dolphin agent",
+    tagline: "Guides candidates. Knows when to hand off.",
+    mission: "Make every candidate feel guided, never processed.",
+    ability: "Reads the current and steers people to the right next step.",
+    signature: "Let's find your next move.",
+  },
+  {
+    name: "Beacon",
+    role: "Market Intelligence Agent",
+    side: "Market Intelligence",
+    accent: "gold",
+    img: "beacon.png", // transparent cutout
+    imgAlt: "Beacon, the Newport Search Group lighthouse agent",
+    tagline: "Sees further. Says only what he can verify.",
+    mission: "Show employers the talent market as it actually is.",
+    ability: "Maps a market and names the edge of what is known.",
+    signature: "Greater opportunities ahead.",
   },
 ];
 
@@ -63,7 +90,7 @@ const nav = [
     route: "/agentic-platform",
     children: [
       { label: "Overview", route: "/agentic-platform" },
-      { label: "Meet Duke & Scout", route: "/agentic-platform/duke-and-scout" },
+      { label: "Meet the Agents", route: "/agentic-platform/meet-the-agents" },
     ],
   },
   {
@@ -109,7 +136,7 @@ const footer = {
       links: [
         { label: "About", route: "/about" },
         { label: "Agentic Platform", route: "/agentic-platform" },
-        { label: "Meet Duke & Scout", route: "/agentic-platform/duke-and-scout" },
+        { label: "Meet the Agents", route: "/agentic-platform/meet-the-agents" },
         { label: "Contact", route: "/contact" },
         // Timecard portal — separate Next.js app on Vercel. DISABLED 2026-07-13:
         // the deployment at newport-timecard.vercel.app returns
@@ -185,11 +212,11 @@ const pages = [
         type: "characters",
         center: true,
         eyebrow: "Meet the Agents",
-        headline: "Say hello to Duke & Scout",
-        body: "Behind every Newport search are two agents who split the work the way it should be split — Duke builds the human relationships, Scout navigates the market.",
+        headline: "Say hello to the Newport agents",
+        body: "Behind every Newport search is a team, and each of them has one job. Duke builds the human relationships. Scout navigates the market. Finn looks after candidates. Beacon reads the talent landscape for employers.",
         characters: agents,
-        unity: "Two sides. One mission. Together, they navigate what others miss.",
-        cta: { label: "Meet Duke & Scout", route: "/agentic-platform/duke-and-scout" },
+        unity: "Four sides. One mission. Together, they navigate what others miss.",
+        cta: { label: "Meet the Agents", route: "/agentic-platform/meet-the-agents" },
       },
       {
         // Trust strip — swap these for real client logos/names when available
@@ -252,6 +279,16 @@ const pages = [
           { value: "Human-led", label: "Every relationship and every close is owned by an experienced recruiter." },
           { value: "Scalable", label: "Add capacity without adding headcount or sacrificing quality." },
         ],
+      },
+      {
+        // BeaconHeroCTA — Beacon introduces himself on the homepage.
+        type: "agentCta",
+        agent: "beacon",
+        tint: true,
+        title: "Ask Beacon about your talent market",
+        body: "Newport's market intelligence agent can talk through talent availability, workforce strategy, and what a market map would actually tell you about your roles.",
+        cta: "Ask Beacon",
+        seed: "Talent market insights",
       },
       {
         type: "cta",
@@ -331,16 +368,16 @@ const pages = [
         type: "characters",
         center: true,
         eyebrow: "Meet the Agents",
-        headline: "The two faces of your search",
-        body: "Every Newport search is run by two agents who split the work the way it should be split — one builds the relationships, the other navigates the market.",
+        headline: "The four faces of your search",
+        body: "Every Newport search is run by a team of agents who split the work the way it should be split — relationships, market navigation, candidate experience, and market intelligence.",
         characters: agents,
-        unity: "Two sides. One mission. Together, they navigate what others miss.",
-        cta: { label: "Meet Duke & Scout", route: "/agentic-platform/duke-and-scout" },
+        unity: "Four sides. One mission. Together, they navigate what others miss.",
+        cta: { label: "Meet the Agents", route: "/agentic-platform/meet-the-agents" },
       },
       {
         type: "cards",
         eyebrow: "Their Capabilities",
-        headline: "What Duke and Scout actually do",
+        headline: "What the agents actually do",
         cards: [
           { title: "Talent Discovery Agents", body: "Continuously source active and passive candidates across every channel, building living pipelines instead of one-time lists." },
           { title: "Market Mapping Agents", body: "Map entire companies, teams, and talent pools so you see the complete landscape — competitors, comp, and where the best people sit today." },
@@ -375,37 +412,39 @@ const pages = [
     ],
   },
 
-  // ===================== MEET DUKE & SCOUT =====================
+  // ===================== MEET THE AGENTS =====================
   {
-    route: "/agentic-platform/duke-and-scout",
-    title: "Meet Duke & Scout | Newport Search Group",
+    route: "/agentic-platform/meet-the-agents",
+    title: "Meet the Agents | Newport Search Group",
     description:
-      "Duke and Scout are the two agents behind every Newport search — one builds human relationships, the other navigates the market. Human Relationships. Agentic Execution.",
+      "Duke, Scout, Finn, and Beacon are the agents behind every Newport search — building relationships, navigating the market, guiding candidates, and reading the talent landscape. Human Connection. Agentic Execution.",
     sections: [
       {
         type: "breadcrumbHero",
         eyebrow: "Meet the Agents",
-        headline: "Duke & Scout",
-        sub: "Human Relationships. Agentic Execution. Two agents, one mission — to navigate what others miss and deliver the talent that changes companies.",
+        headline: "Duke, Scout, Finn & Beacon",
+        sub: "Human Connection. Agentic Execution. Four agents, one mission — to navigate what others miss, deliver the talent that changes companies, treat every candidate like a person, and tell you the truth about your market.",
         primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
         secondary: { label: "See the platform", route: "/agentic-platform" },
       },
       {
         type: "characters",
         center: true,
-        eyebrow: "The Duo",
-        headline: "One retrieves. One navigates.",
+        eyebrow: "The Team",
+        headline: "One retrieves. One navigates. One guides. One sees further.",
         characters: agents,
-        unity: "Two sides. One mission. Together, they navigate what others miss.",
+        unity: "Four sides. One mission. Together, they navigate what others miss — and nobody gets lost along the way.",
       },
       {
         type: "split",
         eyebrow: "How They Work Together",
-        headline: "Scout finds the way. Duke brings them home.",
-        body: "Scout works the parts of recruiting that reward speed, coverage, and pattern-finding — mapping markets and surfacing the signals everyone else overlooks. Duke works the parts that reward trust — reaching the people others can't and building the relationships that actually close. Neither works without the other.",
+        headline: "Beacon reads the water. Scout finds the way. Duke brings them home. Finn keeps you with us.",
+        body: "Scout works the parts of recruiting that reward speed, coverage, and pattern-finding — mapping markets and surfacing the signals everyone else overlooks. Duke works the parts that reward trust — reaching the people others can't and building the relationships that actually close. Finn is the one candidates actually meet: he answers questions, points to the right role, and hands off to a recruiter the moment a human is the right answer. Beacon is the one employers meet, and his discipline is knowing where verified intelligence stops. None of them works without the others.",
         bullets: [
           "Scout: navigate, map, surface signal, find the path",
           "Duke: reach, build trust, advocate, bring them home",
+          "Finn: greet, guide, answer, hand off to a human",
+          "Beacon: map the market, brief employers, flag what isn't known",
           "You: a faster search with a human you actually trust",
         ],
       },
@@ -448,6 +487,15 @@ const pages = [
           { title: "RPO", body: "Embedded recruiting teams powered by agentic technology and recruiting leadership.", route: "/staffing-solutions/rpo" },
           { title: "Executive Search", body: "Retained search for the leaders who set strategy and culture.", route: "/staffing-solutions/executive-search" },
         ],
+      },
+      {
+        // BeaconInsightCTA — employer services.
+        type: "agentCta",
+        agent: "beacon",
+        title: "Not sure which model fits?",
+        body: "Beacon can walk you through direct hire, contract, RPO and executive search against what you're actually trying to build.",
+        cta: "Ask Beacon",
+        seed: "Build a workforce strategy",
       },
       { type: "ctaRef", ref: "buildYourTeam" },
     ],
@@ -667,6 +715,16 @@ const pages = [
           { title: "Staffing & Recruiting", body: "Talent for staffing firms, search firms, and workforce solutions providers.", route: "/industries/staffing" },
         ],
       },
+      {
+        // BeaconContextPanel — contextual intelligence for the industry pages.
+        type: "agentCta",
+        agent: "beacon",
+        tint: true,
+        title: "What does this talent market look like?",
+        body: "Beacon can explain how Newport maps a specialized market — who employs the skill, where the people sit, and what it takes to move them.",
+        cta: "Ask Beacon",
+        seed: "Talent market insights",
+      },
       { type: "ctaRef", ref: "buildYourTeam" },
     ],
   },
@@ -835,6 +893,17 @@ const pages = [
         type: "jobsearch",
         eyebrow: "Search",
         headline: "Browse open roles",
+      },
+      {
+        // Contextual entry point to Finn. `seed` sends his first question for
+        // the candidate so the panel opens already on-topic.
+        type: "agentCta",
+        agent: "finn",
+        tint: true,
+        title: "Not sure where to start?",
+        body: "Finn, Newport's candidate experience agent, can help you narrow down roles, explain how applying works, and put you in front of a recruiter.",
+        cta: "Ask Finn",
+        seed: "Find jobs for me",
       },
       {
         type: "cards",

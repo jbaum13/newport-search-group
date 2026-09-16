@@ -1,0 +1,227 @@
+{
+  "project": {
+    "name": "Finn Website Integration",
+    "company": "Newport Search Group",
+    "product_context": "Newport Agentic Recruiting Platform",
+    "implementation_target": "Existing Newport website",
+    "primary_goal": "Wire Finn into the website as the candidate-facing AI agent and candidate experience layer."
+  },
+  "agent": {
+    "name": "Finn",
+    "type": "Candidate Experience Agent",
+    "mascot": "Dolphin",
+    "brand_traits": [
+      "intelligent",
+      "social",
+      "fast",
+      "helpful",
+      "approachable",
+      "professional"
+    ],
+    "mission": "Guide candidates through discovery, engagement, application, interview coordination, follow-up, and status communication while escalating high-value or sensitive interactions to a human recruiter.",
+    "voice": {
+      "tone": "warm, concise, professional, human",
+      "avoid": [
+        "robotic language",
+        "overly long responses",
+        "making hiring promises",
+        "inventing job or candidate status"
+      ]
+    }
+  },
+  "claude_code_instructions": {
+    "mode": "inspect_then_implement",
+    "steps": [
+      "Inspect the existing repository and identify the framework, routing, component system, styling approach, authentication, API layer, analytics, and deployment configuration.",
+      "Preserve the current Newport visual system and reuse existing components, tokens, typography, spacing, and responsive patterns.",
+      "Search the repository for existing Finn assets before creating placeholders.",
+      "Implement Finn as a reusable component rather than hard-coding him into one page.",
+      "Keep AI/provider credentials server-side and use environment variables. Never expose secrets in browser code.",
+      "Use existing backend/API conventions where available. If no agent endpoint exists, create an adapter interface with a safe mock/fallback state so the UI can ship independently.",
+      "Run the repository's existing lint, typecheck, tests, and build commands after implementation.",
+      "Do not rewrite unrelated website functionality."
+    ]
+  },
+  "experience": {
+    "entry_points": [
+      {
+        "location": "global",
+        "component": "FinnLauncher",
+        "behavior": "Persistent but unobtrusive launcher on desktop and mobile. Opens the Finn experience."
+      },
+      {
+        "location": "candidate/job pages",
+        "component": "FinnContextCTA",
+        "behavior": "Contextual CTA inviting the candidate to ask about the role, application process, or next steps."
+      }
+    ],
+    "states": [
+      "closed",
+      "welcome",
+      "conversation",
+      "loading",
+      "handoff",
+      "error"
+    ],
+    "welcome": {
+      "headline": "Meet Finn",
+      "message": "I’m Newport’s candidate experience agent. I can help you explore opportunities, understand a role, and navigate next steps.",
+      "quick_actions": [
+        "Find jobs for me",
+        "Ask about this role",
+        "Start an application",
+        "Check my next step",
+        "Talk to a recruiter"
+      ]
+    }
+  },
+  "capabilities": [
+    {
+      "id": "job_discovery",
+      "description": "Help candidates discover relevant open opportunities.",
+      "required_context": [
+        "available job data"
+      ],
+      "fallback": "Direct the candidate to the website's existing jobs/search experience."
+    },
+    {
+      "id": "role_questions",
+      "description": "Answer questions using verified job data and approved website/company content.",
+      "guardrail": "Never invent compensation, location, requirements, client identity, interview stages, or hiring status."
+    },
+    {
+      "id": "candidate_intake",
+      "description": "Collect candidate interest and basic information using the site's existing application/intake flow.",
+      "fields": [
+        "name",
+        "email",
+        "phone_optional",
+        "linkedin_optional",
+        "resume_optional",
+        "role_interest"
+      ],
+      "guardrail": "Collect only information required by the existing workflow and privacy policy."
+    },
+    {
+      "id": "recruiter_handoff",
+      "description": "Escalate to a human recruiter when requested or when Finn cannot safely answer.",
+      "triggers": [
+        "candidate explicitly requests a person",
+        "compensation negotiation",
+        "offer discussion",
+        "complaint or sensitive issue",
+        "Finn lacks verified information",
+        "candidate-specific hiring decision or status unavailable to Finn"
+      ]
+    }
+  ],
+  "integration_contract": {
+    "frontend_events": [
+      "finn_opened",
+      "finn_closed",
+      "finn_message_sent",
+      "finn_quick_action_selected",
+      "finn_job_clicked",
+      "finn_application_started",
+      "finn_handoff_requested",
+      "finn_error"
+    ],
+    "agent_adapter": {
+      "suggested_interface": {
+        "sendMessage": {
+          "input": [
+            "message",
+            "sessionId",
+            "pageContext",
+            "candidateContext_optional"
+          ],
+          "output": [
+            "message",
+            "actions_optional",
+            "citations_optional",
+            "handoff_optional"
+          ]
+        }
+      },
+      "page_context": [
+        "url",
+        "page_title",
+        "job_id_optional",
+        "job_title_optional"
+      ]
+    },
+    "future_connectors": [
+      {
+        "system": "Manatal",
+        "purpose": "Candidate/ATS workflow where authorized",
+        "status": "adapter-ready; do not assume API implementation exists"
+      },
+      {
+        "system": "Newport OS",
+        "purpose": "Agent orchestration and candidate workflow",
+        "status": "adapter-ready"
+      }
+    ]
+  },
+  "ui_requirements": {
+    "responsive": true,
+    "accessible": true,
+    "keyboard_navigation": true,
+    "screen_reader_labels": true,
+    "focus_management": true,
+    "reduced_motion_support": true,
+    "mobile_safe_area_support": true,
+    "performance": "Lazy-load Finn's conversational UI where practical.",
+    "visual_direction": "Use the existing Newport website design system. Finn should feel native to the site, not like a third-party chatbot widget."
+  },
+  "security_privacy": {
+    "requirements": [
+      "No API keys or provider secrets in client-side bundles.",
+      "Sanitize and validate user input at trust boundaries.",
+      "Do not expose internal prompts, system configuration, recruiter notes, or private candidate records.",
+      "Do not claim access to candidate status unless verified data is actually available.",
+      "Respect existing consent, privacy, cookie, and analytics mechanisms.",
+      "Log operational errors without unnecessarily logging candidate PII."
+    ]
+  },
+  "files_to_create_or_modify": {
+    "instruction": "Determine exact paths from the repository rather than assuming framework-specific paths.",
+    "logical_components": [
+      "FinnLauncher",
+      "FinnPanel",
+      "FinnWelcome",
+      "FinnConversation",
+      "FinnQuickActions",
+      "FinnHandoff",
+      "Finn agent/API adapter",
+      "Finn analytics hooks",
+      "Finn tests"
+    ]
+  },
+  "acceptance_criteria": [
+    "Finn is available from the intended website entry points on desktop and mobile.",
+    "The experience matches the existing Newport brand and design system.",
+    "Users can open, close, and interact with Finn without navigation breakage.",
+    "Finn receives relevant page/job context when available.",
+    "Unverified information is never fabricated.",
+    "Human recruiter handoff is clearly available.",
+    "Loading, empty, offline, API failure, and handoff states are handled gracefully.",
+    "Accessibility basics pass for keyboard use, focus, labels, and contrast using the repository's standards.",
+    "Analytics events are emitted through the website's existing analytics layer when one exists.",
+    "No credentials are exposed client-side.",
+    "Existing lint/typecheck/tests pass.",
+    "Production build completes successfully.",
+    "Claude Code returns a concise summary of changed files, architecture decisions, environment variables required, tests run, and any remaining integration dependencies."
+  ],
+  "definition_of_done": {
+    "deliverables": [
+      "Working Finn website UI",
+      "Reusable agent adapter",
+      "Responsive implementation",
+      "Analytics instrumentation",
+      "Error and handoff handling",
+      "Tests appropriate to the existing stack",
+      "README or implementation notes for configuration"
+    ]
+  }
+}

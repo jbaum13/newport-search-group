@@ -11,6 +11,11 @@ const crypto = require("crypto");
 const fileVer = (p) => crypto.createHash("sha1").update(fs.readFileSync(p)).digest("hex").slice(0, 8);
 const CSS_VER = fileVer(path.join(__dirname, "src/styles.css"));
 const JS_VER = fileVer(path.join(__dirname, "src/main.js"));
+const AGENT_CSS_VER = fileVer(path.join(__dirname, "src/agent.css"));
+const AGENT_JS = { core: "agent-core.js", finn: "finn.js", beacon: "beacon.js" };
+const AGENT_VER = Object.fromEntries(
+  Object.entries(AGENT_JS).map(([k, f]) => [k, fileVer(path.join(__dirname, "src", f))])
+);
 const { site, nav, footer, pages, ctaBlocks, seoKeywords } = require("./src/content");
 const { articles } = require("./src/articles");
 
@@ -19,6 +24,14 @@ const DIST = path.join(ROOT, "dist");
 // Base path for sub-directory hosting (e.g. GitHub Pages project sites).
 // Empty by default -> site is served from the domain root. Set via env, e.g.
 //   BASE_PATH=/newport-search-group node build.js
+// Agent endpoints. Each is a URL to a server YOU control, which holds the
+// provider keys — never a key itself. Empty (the default) => that agent answers
+// from its own knowledge layer.
+//   FINN_ENDPOINT=https://api.example.com/finn BEACON_ENDPOINT=… node build.js
+const AGENT_ENDPOINTS = {
+  finn: (process.env.FINN_ENDPOINT || "").trim() || null,
+  beacon: (process.env.BEACON_ENDPOINT || "").trim() || null,
+};
 let BASE = (process.env.BASE_PATH || "").trim();
 if (BASE === "/") BASE = "";
 BASE = BASE.replace(/\/+$/, ""); // no trailing slash
@@ -286,6 +299,25 @@ const renderers = {
       <div class="btn-row">${btn(s.primary, "btn--primary")}${btn(s.secondary, "btn--ghost")}</div>
     </div></div></section>`;
   },
+  // Contextual invitation to open an agent. `seed` pre-sends a first question
+  // so the panel opens already on topic. The button ships hidden and the agent
+  // runtime reveals it, so no-JS visitors never see a dead control.
+  agentCta(s) {
+    const id = s.agent || "beacon";
+    const a = AGENTS[id];
+    const cls = `section ${s.dark ? "section--dark" : ""} ${s.tint ? "section--tint" : ""}`.trim();
+    return `<section class="${cls}"><div class="container">
+      ${s.headline || s.eyebrow ? head(s) : ""}
+      <div class="agent-cta" data-agent="${id}">
+        <span class="agent-cta__avatar">${agentAvatar(id)}</span>
+        <div class="agent-cta__body">
+          <h3>${esc(s.title || `Ask ${a.name}`)}</h3>
+          <p>${esc(s.body || "")}</p>
+        </div>
+        <button type="button" class="btn btn--primary" data-agent-open="${id}"${s.seed ? ` data-agent-seed="${esc(s.seed)}"` : ""} hidden>${esc(s.cta || `Ask ${a.name}`)}</button>
+      </div>
+    </div></section>`;
+  },
   ctaRef(s) { return renderers.cta(ctaBlocks[s.ref]); },
   jobsearch(s) {
     return `<section class="section section--tint"><div class="container">
@@ -341,6 +373,64 @@ const renderers = {
   },
 };
 
+
+// ---- Agents (Finn & Beacon) ------------------------------------------------
+// One page mounts one agent. Candidates get Finn; everyone else — employers,
+// which is most of this site — gets Beacon. Two floating launchers on one page
+// would be noise, so routing is explicit and exclusive.
+const AGENTS = {
+  finn: { name: "Finn", role: "Candidate Experience Agent", avatar: "finn-avatar.png", cta: "Ask Finn" },
+  beacon: { name: "Beacon", role: "Market Intelligence Agent", avatar: "beacon-avatar.png", cta: "Ask Beacon" },
+};
+const FINN_ROUTES = ["/jobs", "/contact", "/resources"];
+const agentForRoute = (route = "/") =>
+  FINN_ROUTES.some((r) => route === r || route.startsWith(r + "/")) ? "finn" : "beacon";
+
+// Line-icon fallback, kept for any surface where the portrait isn't wanted.
+const FINN_DOLPHIN =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<path d="M3.2 10.4c3.6-5 8.6-6.6 13.4-5.4 1.9.5 3.3 1.7 4.2 3.3-1.6-.4-2.9-.2-3.9.6"/>' +
+  '<path d="M20.8 8.3c.7 3.4-.6 6.8-3.4 9-2.6 2-6 2.7-9.2 1.9-2.2-.6-4-1.9-5.2-3.8 2 .5 3.9.2 5.5-.9"/>' +
+  '<path d="M8.5 14.5c-1.9.6-3.8.2-5.3-1.1"/><circle cx="16.6" cy="9.7" r=".9" fill="currentColor" stroke="none"/></svg>';
+
+const agentAvatar = (id) =>
+  `<img src="${BASE}/assets/${AGENTS[id].avatar}" alt="" width="128" height="128" loading="lazy" />`;
+
+// The launcher ships hidden and the runtime reveals it, so a no-JS visitor
+// never sees a control that does nothing.
+function renderAgentLauncher(id) {
+  const a = AGENTS[id];
+  return `<button type="button" class="agent-launcher" data-agent="${id}" hidden aria-label="Open ${esc(a.name)}, Newport's ${esc(a.role.toLowerCase())}">
+  <span class="agent-launcher__avatar">${agentAvatar(id)}</span>
+  <span class="agent-launcher__label">${esc(a.cta)}</span>
+  <span class="agent-launcher__dot" aria-hidden="true"></span>
+</button>`;
+}
+
+// Page context handed to the agent adapter, read off <main> at runtime.
+function agentContextAttrs(page) {
+  const r = page.route || "/";
+  let kind = "general";
+  if (r === "/jobs") kind = "job";
+  else if (r === "/contact") kind = "candidate";
+  else if (r.startsWith("/industries")) kind = "industry";
+  else if (r.startsWith("/staffing-solutions")) kind = "service";
+  else if (r.startsWith("/resources")) kind = "resource";
+  const seg = (prefix) => (r.startsWith(prefix + "/") ? r.slice(prefix.length + 1) : "");
+  const industry = seg("/industries");
+  const service = seg("/staffing-solutions");
+  return ` data-agent-context="${kind}"` +
+    (industry ? ` data-industry="${esc(industry)}"` : "") +
+    (service ? ` data-service="${esc(service)}"` : "") +
+    (page.jobTitle ? ` data-job-title="${esc(page.jobTitle)}"` : "") +
+    (page.jobId ? ` data-job-id="${esc(page.jobId)}"` : "");
+}
+
+function agentConfigScript() {
+  const cfg = { basePath: BASE, email: site.email, endpoints: AGENT_ENDPOINTS };
+  return `<script>window.NEWPORT_AGENT_CONFIG=${JSON.stringify(cfg)};</script>`;
+}
+
 function renderPage(page) {
   const body = page.article
     ? renderArticleBody(page.article)
@@ -366,6 +456,7 @@ ${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<link rel="canonic
 <link rel="preload" href="${BASE}/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="icon" type="image/png" href="${BASE}/assets/favicon.png" />
 <link rel="stylesheet" href="${BASE}/styles.css?v=${CSS_VER}" />
+<link rel="stylesheet" href="${BASE}/agent.css?v=${AGENT_CSS_VER}" />
 <script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org", "@type": "Organization", name: site.name,
     description: site.positioning, url: `https://${site.domain}`, email: site.email, telephone: site.phone,
@@ -374,11 +465,15 @@ ${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<link rel="canonic
 </head>
 <body>
 ${renderHeader(page.route)}
-<main>
+<main${agentContextAttrs(page)}>
 ${body}
 </main>
 ${renderFooter()}
+${renderAgentLauncher(agentForRoute(page.route))}
 <script src="${BASE}/main.js?v=${JS_VER}"></script>
+${agentConfigScript()}
+<script src="${BASE}/agent-core.js?v=${AGENT_VER.core}" defer></script>
+<script src="${BASE}/${AGENT_JS[agentForRoute(page.route)]}?v=${AGENT_VER[agentForRoute(page.route)]}" defer></script>
 </body>
 </html>`;
 }
@@ -392,8 +487,10 @@ function buildSite() {
   fs.mkdirSync(DIST, { recursive: true });
   fs.copyFileSync(path.join(ROOT, "src/styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(ROOT, "src/main.js"), path.join(DIST, "main.js"));
+  fs.copyFileSync(path.join(ROOT, "src/agent.css"), path.join(DIST, "agent.css"));
+  for (const f of Object.values(AGENT_JS)) fs.copyFileSync(path.join(ROOT, "src", f), path.join(DIST, f));
   fs.mkdirSync(path.join(DIST, "assets", "fonts"), { recursive: true });
-  for (const a of ["logo.png", "logo-white.png", "logo-white@2x.png", "favicon.png", "og-image.png", "duke.jpg", "scout.jpg"]) {
+  for (const a of ["logo.png", "logo-white.png", "logo-white@2x.png", "favicon.png", "og-image.png", "duke.png", "scout.png", "finn.png", "finn-avatar.png", "beacon.png", "beacon-avatar.png"]) {
     const src = path.join(ROOT, "src/assets", a);
     if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, "assets", a)); // optional assets skipped until added
   }
@@ -416,6 +513,26 @@ function buildSite() {
       },
     ],
   }));
+  // Legacy URL: the agents page was /agentic-platform/duke-and-scout before
+  // Finn joined. GitHub Pages has no server-side redirects, so serve a
+  // canonical-tagged meta-refresh stub to keep old links and SEO intact.
+  const MOVED_FROM = "/agentic-platform/duke-and-scout";
+  const MOVED_TO = "/agentic-platform/meet-the-agents";
+  writeFile(outFileFor(MOVED_FROM), `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Meet the Agents | ${esc(site.name)}</title>
+<link rel="canonical" href="https://${site.domain}${MOVED_TO}" />
+<meta name="robots" content="noindex, follow" />
+<meta http-equiv="refresh" content="0; url=${BASE}${MOVED_TO}" />
+</head>
+<body>
+<p>This page moved to <a href="${BASE}${MOVED_TO}">Meet the Agents</a>.</p>
+<script>location.replace(${JSON.stringify(BASE + MOVED_TO)});</script>
+</body>
+</html>`);
+
   // sitemap + robots
   const urls = allPages.map((p) => `  <url><loc>https://${site.domain}${p.route}</loc></url>`).join("\n");
   writeFile(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
