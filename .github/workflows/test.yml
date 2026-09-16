@@ -1,0 +1,59 @@
+name: Test
+
+# The deploy workflow only runs on main, so without this a pull request gets no
+# verification at all. This runs the same checks we run locally.
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build
+        run: node build.js --wix
+
+      # WIX-CONTENT.md is generated but committed, so it can drift when someone
+      # edits src/content.js without rebuilding. The build above just
+      # regenerated it; if that changed the file, the commit was incomplete.
+      - name: Check generated Wix export is up to date
+        run: |
+          if ! git diff --quiet -- WIX-CONTENT.md; then
+            echo "::error file=WIX-CONTENT.md::Out of date. Run 'node build.js --wix' and commit the result."
+            git diff --stat -- WIX-CONTENT.md
+            exit 1
+          fi
+
+      # The repo has no dependencies; Playwright is installed here only, and
+      # never enters package.json. Without it the smoke test skips, which would
+      # make this job pass while checking nothing.
+      - name: Install Playwright
+        run: |
+          npm install --no-save --no-package-lock playwright@1.50.1
+          npx playwright install --with-deps chromium
+
+      - name: Agent smoke test
+        env:
+          PLAYWRIGHT: playwright
+        run: node test/agents.smoke.mjs
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-screenshots
+          path: .agent-screenshots/
+          if-no-files-found: ignore
+          retention-days: 7

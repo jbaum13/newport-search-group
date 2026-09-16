@@ -13,7 +13,8 @@
     "wix": "node build.js --wix",
     "preview": "node build.js --wix && python3 -m http.server 8766 --directory dist",
     "serve": "python3 -m http.server 8766 --directory dist",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test": "node build.js && node test/agents.smoke.mjs"
   },
   "keywords": [
     "newport-search-group",

@@ -26,6 +26,8 @@ _Paste-ready copy for the Wix Editor. One section per heading. Generated from `s
 
 - **Home** → `/`
 - **Agentic Platform** → `/agentic-platform`
+  - Overview → `/agentic-platform`
+  - Meet the Agents → `/agentic-platform/meet-the-agents`
 - **Services** → `/staffing-solutions`
   - Overview → `/staffing-solutions`
   - Direct Hire → `/staffing-solutions/direct-hire`
@@ -64,7 +66,7 @@ Newport Search Group combines autonomous AI agents with experienced recruiters t
 - **24/7** — Continuous sourcing
 - **3x** — Faster pipeline build
 - **100%** — Human-led closing
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 ### Section 2 — Intro / statement
 *Eyebrow:* What Is Agentic Recruiting?  
@@ -72,7 +74,13 @@ Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5T
 Traditional recruiting is capped by human bandwidth — a recruiter can only source, screen, and follow up with so many people in a day. Agentic recruiting removes that ceiling. Our autonomous agents run sourcing, market mapping, candidate engagement, and intelligence workflows around the clock, then hand qualified, contextualized candidates to our recruiters. The result: the speed and coverage of automation with the judgment and trust of an experienced human team.
 Buttons: [Explore the Agentic Platform] → `/agentic-platform`
 
-### Section 3 — logos
+### Section 3 — characters
+*Eyebrow:* Meet the Agents  
+**Say hello to the Newport agents**  
+Behind every Newport search is a team, and each of them has one job. Duke builds the human relationships. Scout navigates the market. Finn looks after candidates. Beacon reads the talent landscape for employers.
+Buttons: [Meet the Agents] → `/agentic-platform/meet-the-agents`
+
+### Section 4 — logos
 - Cybersecurity & Identity
 - Advanced Energy
 - Aerospace & Defense
@@ -80,7 +88,7 @@ Buttons: [Explore the Agentic Platform] → `/agentic-platform`
 - Technology
 - Staffing & Recruiting
 
-### Section 4 — Card grid
+### Section 5 — Card grid
 *Eyebrow:* Staffing Solutions  
 **Hiring models built for how you actually scale**  
 - **Direct Hire** — Permanent placement across technical, operational, commercial, and executive functions. (links to `/staffing-solutions/direct-hire`)
@@ -88,7 +96,7 @@ Buttons: [Explore the Agentic Platform] → `/agentic-platform`
 - **RPO** — Embedded recruiting teams powered by agentic technology and senior recruiting leadership. (links to `/staffing-solutions/rpo`)
 - **Executive Search** — Retained search for the leaders who define the next chapter of your company. (links to `/staffing-solutions/executive-search`)
 
-### Section 5 — Split feature
+### Section 6 — Split feature
 *Eyebrow:* Staffing Industry Solutions  
 **We Recruit Recruiters**  
 Staffing firms, search firms, RPO providers, MSPs, and workforce solutions companies come to us to build their own recruiting, sales, and leadership teams — and to modernize how they operate with agentic technology.
@@ -98,7 +106,7 @@ Staffing firms, search firms, RPO providers, MSPs, and workforce solutions compa
 - Corporate development & staffing M&A support
 Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 
-### Section 6 — Card grid
+### Section 7 — Card grid
 *Eyebrow:* Industries Served  
 **Deep specialization where talent is scarce**  
 - **Cybersecurity & Identity** — IAM, PAM, CIAM, cloud and application security, GRC. (links to `/industries/cybersecurity`)
@@ -108,7 +116,7 @@ Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 - **Technology** — Engineering, product, sales, and leadership for growth and enterprise. (links to `/industries/technology`)
 - **Staffing & Recruiting** — Talent for the firms that build other companies' teams. (links to `/industries/staffing`)
 
-### Section 7 — Stats band
+### Section 8 — Stats band
 *Eyebrow:* Why Newport  
 **The advantages of automation, none of the cold-machine feeling**  
 - [object Object]
@@ -116,10 +124,14 @@ Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 - [object Object]
 - [object Object]
 
-### Section 8 — Call to action
+### Section 9 — agentCta
+Newport's market intelligence agent can talk through talent availability, workforce strategy, and what a market map would actually tell you about your roles.
+Buttons: [undefined] → `undefined`
+
+### Section 10 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -163,7 +175,7 @@ The best candidates are rarely looking, and they don't make career decisions bec
 ### Section 6 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -178,18 +190,24 @@ Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5T
 *Eyebrow:* Agentic Platform  
 **Meet your digital recruiting workforce**  
 Traditional recruiting is limited by human bandwidth. Agentic recruiting is not. Our agents execute sourcing, market mapping, engagement, and intelligence workflows continuously — so our recruiters can focus on judgment, relationships, and closing.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation`
 
-### Section 2 — Card grid
-*Eyebrow:* The Agents  
-**Five specialized agent teams, one search**  
+### Section 2 — characters
+*Eyebrow:* Meet the Agents  
+**The four faces of your search**  
+Every Newport search is run by a team of agents who split the work the way it should be split — relationships, market navigation, candidate experience, and market intelligence.
+Buttons: [Meet the Agents] → `/agentic-platform/meet-the-agents`
+
+### Section 3 — Card grid
+*Eyebrow:* Their Capabilities  
+**What the agents actually do**  
 - **Talent Discovery Agents** — Continuously source active and passive candidates across every channel, building living pipelines instead of one-time lists.
 - **Market Mapping Agents** — Map entire companies, teams, and talent pools so you see the complete landscape — competitors, comp, and where the best people sit today.
 - **Candidate Engagement Agents** — Initiate and nurture personalized outreach at scale, keeping passive candidates warm until the right moment and a recruiter takes over.
 - **Talent Intelligence Agents** — Synthesize market data, compensation benchmarks, and competitor signals into briefings your team and your hiring managers can act on.
 - **Recruiting Operations Agents** — Handle scheduling, status tracking, data hygiene, and reporting so nothing slips and everyone stays aligned.
 
-### Section 3 — Split feature
+### Section 4 — Split feature
 *Eyebrow:* The Model  
 **Agents handle scale. Humans handle judgment.**  
 Every Newport search runs on a simple division of labor. The agents work the parts of recruiting that reward speed, repetition, and coverage. The recruiters work the parts that reward experience, empathy, and trust. You get both — without choosing between them.
@@ -197,7 +215,7 @@ Every Newport search runs on a simple division of labor. The agents work the par
 - Recruiters: qualify, advise, advocate, negotiate, close
 - You: a faster search with a human you actually trust
 
-### Section 4 — Stats band
+### Section 5 — Stats band
 *Eyebrow:* Benefits  
 **What an agentic workforce changes**  
 - [object Object]
@@ -205,10 +223,53 @@ Every Newport search runs on a simple division of labor. The agents work the par
 - [object Object]
 - [object Object]
 
+### Section 6 — Call to action
+**Let's build your team.**  
+Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
+
+
+
+---
+
+## Page: Meet the Agents
+**URL slug:** `/agentic-platform/meet-the-agents`  
+**SEO title:** Meet the Agents | Newport Search Group  
+**Meta description:** Duke, Scout, Finn, and Beacon are the agents behind every Newport search — building relationships, navigating the market, guiding candidates, and reading the talent landscape. Human Connection. Agentic Execution.
+
+### Section 1 — Page header
+*Eyebrow:* Meet the Agents  
+**Duke, Scout, Finn & Beacon**  
+Human Connection. Agentic Execution. Four agents, one mission — to navigate what others miss, deliver the talent that changes companies, treat every candidate like a person, and tell you the truth about your market.
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [See the platform] → `/agentic-platform`
+
+### Section 2 — characters
+*Eyebrow:* The Team  
+**One retrieves. One navigates. One guides. One sees further.**  
+
+### Section 3 — Split feature
+*Eyebrow:* How They Work Together  
+**Beacon reads the water. Scout finds the way. Duke brings them home. Finn keeps you with us.**  
+Scout works the parts of recruiting that reward speed, coverage, and pattern-finding — mapping markets and surfacing the signals everyone else overlooks. Duke works the parts that reward trust — reaching the people others can't and building the relationships that actually close. Finn is the one candidates actually meet: he answers questions, points to the right role, and hands off to a recruiter the moment a human is the right answer. Beacon is the one employers meet, and his discipline is knowing where verified intelligence stops. None of them works without the others.
+- Scout: navigate, map, surface signal, find the path
+- Duke: reach, build trust, advocate, bring them home
+- Finn: greet, guide, answer, hand off to a human
+- Beacon: map the market, brief employers, flag what isn't known
+- You: a faster search with a human you actually trust
+
+### Section 4 — Card grid
+*Eyebrow:* Their Capabilities  
+**What they do behind the scenes**  
+- **Talent Discovery** — Continuously source active and passive candidates across every channel, building living pipelines instead of one-time lists.
+- **Market Mapping** — Map entire companies, teams, and talent pools so you see the complete landscape — competitors, comp, and where the best people sit today.
+- **Candidate Engagement** — Initiate and nurture personalized outreach at scale, keeping passive candidates warm until the right moment and a recruiter takes over.
+- **Talent Intelligence** — Synthesize market data, compensation benchmarks, and competitor signals into briefings your team and hiring managers can act on.
+- **Recruiting Operations** — Handle scheduling, status tracking, data hygiene, and reporting so nothing slips and everyone stays aligned.
+
 ### Section 5 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -232,10 +293,14 @@ However you need to hire — one critical leader, a project team, or an embedded
 - **RPO** — Embedded recruiting teams powered by agentic technology and recruiting leadership. (links to `/staffing-solutions/rpo`)
 - **Executive Search** — Retained search for the leaders who set strategy and culture. (links to `/staffing-solutions/executive-search`)
 
-### Section 3 — Call to action
+### Section 3 — agentCta
+Beacon can walk you through direct hire, contract, RPO and executive search against what you're actually trying to build.
+Buttons: [undefined] → `undefined`
+
+### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -271,7 +336,7 @@ Our discovery and mapping agents build a complete picture of the available talen
 ### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -305,7 +370,7 @@ When timelines move faster than headcount approvals, contract staffing keeps you
 ### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -320,7 +385,7 @@ Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5T
 *Eyebrow:* Staffing Solutions / RPO  
 **Your recruiting function, embedded and amplified**  
 Embedded recruiting teams powered by agentic technology and experienced recruiting leadership.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation`
 
 ### Section 2 — Intro / statement
 *Eyebrow:* How it works  
@@ -340,7 +405,7 @@ Newport RPO drops a complete, agent-powered recruiting function into your organi
 ### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -355,7 +420,7 @@ Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5T
 *Eyebrow:* Staffing Solutions / Executive Search  
 **Find the leaders who define what's next**  
 Retained search for the executives and senior leaders who set strategy, build teams, and shape culture.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation`
 
 ### Section 2 — Intro / statement
 *Eyebrow:* How it works  
@@ -374,7 +439,7 @@ Executive searches are won on coverage and discretion. Our market mapping agents
 ### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -463,7 +528,7 @@ From recruiting team buildouts to executive search, staffing M&A support, and co
 ### Section 9 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -489,10 +554,14 @@ We focus where the talent market is tightest — and where deep domain knowledge
 - **Technology** — Engineering, product, sales, and leadership for growth-stage and enterprise. (links to `/industries/technology`)
 - **Staffing & Recruiting** — Talent for staffing firms, search firms, and workforce solutions providers. (links to `/industries/staffing`)
 
-### Section 3 — Call to action
+### Section 3 — agentCta
+Beacon can explain how Newport maps a specialized market — who employs the skill, where the people sit, and what it takes to move them.
+Buttons: [undefined] → `undefined`
+
+### Section 4 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -523,7 +592,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -553,7 +622,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -583,7 +652,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -613,7 +682,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -643,7 +712,7 @@ Buttons: [Request Talent] → `/contact?intent=talent`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -673,7 +742,7 @@ Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 ### Section 3 — Call to action
 **Let's build your team.**  
 Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport delivers talent solutions built for the future.
-Buttons: [Schedule a Consultation] → `https://calendar.app.google/Y5jYXQbb4y5THX8V8` · [Request Talent] → `/contact?intent=talent`
+Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation` · [Request Talent] → `/contact?intent=talent`
 
 
 
@@ -694,7 +763,11 @@ Buttons: [Submit Your Resume] → `/contact?intent=candidate`
 *Eyebrow:* Search  
 **Browse open roles**  
 
-### Section 3 — Card grid
+### Section 3 — agentCta
+Finn, Newport's candidate experience agent, can help you narrow down roles, explain how applying works, and put you in front of a recruiter.
+Buttons: [undefined] → `undefined`
+
+### Section 4 — Card grid
 *Eyebrow:* Categories  
 **Explore by category**  
 - **Engineering** — Software, hardware, systems, and platform roles.
@@ -705,7 +778,7 @@ Buttons: [Submit Your Resume] → `/contact?intent=candidate`
 - **Sales** — Business development, account management, and revenue leadership.
 - **Operations** — Ops leadership, program management, and continuous improvement.
 
-### Section 4 — Split feature
+### Section 5 — Split feature
 *Eyebrow:* Stay in the loop  
 **Set up job alerts**  
 Tell us what you're looking for and we'll notify you when matching roles open. Upload your resume once and our recruiters — backed by agentic talent intelligence — will reach out when there's a genuine fit.
