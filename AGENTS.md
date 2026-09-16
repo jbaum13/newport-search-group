@@ -152,8 +152,14 @@ Each agent ships two assets, both cut out of the supplied master render:
 npm test            # build, then run the smoke test
 ```
 
-Playwright is optional — if `playwright-core` can't be resolved the test
-**skips** rather than failing, so CI stays green on a zero-dependency checkout:
+`.github/workflows/test.yml` runs this on every pull request — the deploy
+workflow only fires on `main`, so without it a PR gets no verification at all.
+CI installs Playwright itself (never into `package.json`) so the test actually
+executes rather than skipping, and it also fails the build if `WIX-CONTENT.md`
+has drifted from `src/content.js`.
+
+Locally, Playwright is optional — if `playwright-core` can't be resolved the
+test **skips** rather than failing, so a zero-dependency checkout still works:
 
 ```bash
 PLAYWRIGHT=/path/to/node_modules/playwright-core/index.mjs node test/agents.smoke.mjs
