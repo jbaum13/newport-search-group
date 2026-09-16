@@ -10,7 +10,7 @@ _Paste-ready copy for the Wix Editor. One section per heading. Generated from `s
 
 **Business name:** Newport Search Group  
 **Primary email:** hello@newportsg.com  
-**Phone:** (949) 555-0100
+**Phone:** 1-415-539-8167
 
 **Theme colors** (Wix → Site Design → Color):
 - Primary / Background dark: `#0a1124` (navy)

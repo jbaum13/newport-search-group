@@ -15,9 +15,10 @@ const site = {
   category: "Agentic Staffing Company",
   tagline: "Human Connection. Agentic Execution.",
   domain: "newportsg.com",
-  email: "hello@newportsg.com",
+  email: "hello@newportsg.com", // display address shown on the contact page
+  emailTo: "jason@newportsg.com", // where the "Email" link actually routes
   schedulingUrl: "mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation",
-  phone: "(949) 555-0100",
+  phone: "1-415-539-8167",
   positioning:
     "Newport Search Group is an Agentic Staffing Company built for the future of hiring. We pair autonomous AI agents with experienced recruiters to deliver faster searches, deeper talent intelligence, and better hiring outcomes. Our technology works around the clock while our recruiters focus on what matters most — building relationships and securing exceptional talent.",
 };
