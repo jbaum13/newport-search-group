@@ -364,8 +364,8 @@ const renderers = {
       <aside class="contact-aside">
         <h3>Talk to a recruiter</h3>
         <p class="muted">Prefer to reach us directly? We respond fast.</p>
-        <p><strong>Email</strong><br><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></p>
-        <p><strong>Phone</strong><br><a href="tel:${esc(site.phone)}">${esc(site.phone)}</a></p>
+        <p><strong>Email</strong><br><a href="mailto:${esc(site.emailTo || site.email)}">${esc(site.email)}</a></p>
+        <p><strong>Phone</strong><br><a href="tel:${esc(site.phone.replace(/[^\d+]/g, ""))}">${esc(site.phone)}</a></p>
         <hr style="border:0;border-top:1px solid var(--line-dark);margin:1.2rem 0" />
         <p class="muted">${esc(site.tagline)}</p>
       </aside>
