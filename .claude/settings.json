@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(node build.js)",
+      "Bash(node build.js --wix)",
+      "Bash(npm run build)",
+      "Bash(npm run build:site)",
+      "Bash(npm run wix)",
+      "Bash(npm run clean)",
+      "Bash(npm test)",
+      "Bash(node test/agents.smoke.mjs)",
+      "Bash(node --check *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git branch *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh run list *)",
+      "Bash(gh run view *)"
+    ]
+  }
+}

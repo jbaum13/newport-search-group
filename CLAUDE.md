@@ -2,14 +2,22 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Working in this repo
+
+Open it as its own project — `cd ~/code/newport-search-group && claude` — rather than from the home directory. This file and `AGENTS.md` are then the full context; nothing about this site needs to be carried in from outside.
+
+- `npm test` before you push. It builds and runs the smoke test, and it is the same thing CI runs on the PR.
+- Never hand-edit `dist/` or `WIX-CONTENT.md`. Both are generated; CI fails the build if the Wix export has drifted from `src/content.js`.
+- `main` deploys to newportsg.com on every push. Work on a branch and open a PR.
+
 ## What this is
 
-Marketing website for Newport Search Group ("Human Relationships. Agentic Execution.") — a zero-dependency static-site generator. There is no `npm install`; plain Node >= 18 only. One content source (`src/content.js`) drives both the live website (`dist/`) and a paste-ready Wix document (`WIX-CONTENT.md`), so the two never drift.
+Marketing website for Newport Search Group ("Human Connection. Agentic Execution.") — a zero-dependency static-site generator. There is no `npm install`; plain Node >= 18 only. One content source (`src/content.js`) drives both the live website (`dist/`) and a paste-ready Wix document (`WIX-CONTENT.md`), so the two never drift.
 
 ## Commands
 
 ```bash
-node build.js            # generate dist/ (19 pages + sitemap + robots)
+node build.js            # generate dist/ (26 pages + sitemap + robots)
 node build.js --wix      # also regenerate WIX-CONTENT.md  (= npm run build)
 npm run preview          # build --wix, then serve dist/ at http://localhost:8766
 npm run clean            # rm -rf dist
@@ -25,7 +33,7 @@ FINN_ENDPOINT=https://… BEACON_ENDPOINT=https://… node build.js   # point th
 
 ## How build.js produces dist/
 
-`build.js` requires `src/content.js` (site meta, nav, footer, pages, CTA blocks, SEO keywords) and `src/articles.js`, then renders each page's array of typed sections (`hero`, `cards`, `split`, `list`, `stats`, `cta`, `form`, …) to HTML with shared header/footer chrome. Routes map to pretty URLs: `/a/b` → `dist/a/b/index.html`. It also:
+`build.js` requires `src/content.js` (site meta, nav, footer, pages, agent roster, CTA blocks, SEO keywords) and `src/articles.js`, then renders each page's array of typed sections (`hero`, `cards`, `split`, `list`, `stats`, `cta`, `form`, …) to HTML with shared header/footer chrome. Routes map to pretty URLs: `/a/b` → `dist/a/b/index.html`. It also:
 
 - copies `src/styles.css` / `src/main.js` / `src/assets/` into `dist/`, cache-busting CSS/JS URLs with a short content hash;
 - prefixes all internal links with `BASE_PATH` when set (absolute/`mailto:`/`tel:` URLs are left alone);
@@ -57,6 +65,10 @@ The `agentCta` section type drops a contextual block into any page (`agent:` pic
 - Character art in `src/assets/`: `duke.png`, `scout.png`, `finn.png`, `beacon.png` — all transparent cutouts, so each composites onto the card gradient rather than sitting on a baked-in box. Keep new character art transparent. `finn-avatar.png` / `beacon-avatar.png` are the 128px head crops for the launchers, panels and CTAs. (`duke.jpg` / `scout.jpg` are the superseded originals; nothing references them.)
 - Logo assets in `src/assets/`: `logo.png` (color, light backgrounds), `logo-white.png` (+`@2x`, dark header/footer), `favicon.png`.
 - `_archive-velo-execsearch/` (if present) is an unrelated archived Velo/Wix build — reference only.
+
+## Repo settings
+
+`.claude/settings.json` is committed and carries this repo's allowed commands (build, test, read-only git and gh). `.claude/settings.local.json` stays machine-local and gitignored — put anything personal there, not in the shared file.
 
 ## Routes
 
