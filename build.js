@@ -109,6 +109,7 @@ function renderFooter() {
     </div>
     <div class="footer-bottom">
       <span>© ${" "}${esc(site.name)}. All rights reserved.</span>
+      ${footer.legal && footer.legal.length ? `<nav class="footer-legal" aria-label="Legal">${footer.legal.map(footerLink).join('<span aria-hidden="true">·</span>')}</nav>` : ""}
       <span class="tag">${esc(footer.tagline)}</span>
     </div>
   </div></footer>`;
@@ -200,6 +201,22 @@ const renderers = {
       </div>
       ${s.cta ? `<div class="btn-row" style="justify-content:center">${btn(s.cta, "btn--primary")}</div>` : ""}
     </div></section>`;
+  },
+  legal(s) {
+    const blocks = (s.body || []).map((b) => {
+      if (b.h2) return `<h2>${esc(b.h2)}</h2>`;
+      if (b.ul) return `<ul>${b.ul.map((li) => `<li>${esc(li)}</li>`).join("")}</ul>`;
+      if (b.contact) {
+        const em = b.contact.email ? `<p><strong>Email:</strong> <a href="mailto:${esc(b.contact.email)}">${esc(b.contact.email)}</a></p>` : "";
+        const web = b.contact.website ? `<p><strong>Website:</strong> <a href="https://${esc(b.contact.website)}">${esc(b.contact.website)}</a></p>` : "";
+        return `<p><strong>${esc(b.contact.name || site.name)}</strong></p>${em}${web}`;
+      }
+      return `<p>${esc(b.p)}</p>`;
+    }).join("\n");
+    return `<section class="section"><div class="container"><div class="prose">
+      ${s.updated ? `<p class="article-meta" style="margin-bottom:1.8rem">${esc(s.updated)}</p>` : ""}
+      ${blocks}
+    </div></div></section>`;
   },
   cards(s) {
     const n = s.cards.length % 4 === 0 ? 4 : (s.cards.length % 3 === 0 || s.cards.length > 4 ? 3 : 2);
