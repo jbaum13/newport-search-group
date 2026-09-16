@@ -825,3 +825,37 @@ Whether you need one critical hire, an entire project team, or recruiters for yo
 ### Section 2 — Contact form
 Form fields: Name, Company, Email, Phone, Hiring Need (dropdown), Message. Connect to Wix Forms → email + CRM.
 
+
+
+---
+
+## Page: Privacy Policy
+**URL slug:** `/privacy-policy`  
+**SEO title:** Privacy Policy | Newport Search Group  
+**Meta description:** How Newport Search Group collects, uses, discloses, and safeguards personal information, including SMS/MMS messaging and consent data.
+
+### Section 1 — Page header
+*Eyebrow:* Legal  
+**Privacy Policy**  
+How Newport Search Group collects, uses, discloses, and safeguards the information you share with us.
+
+### Section 2 — legal
+[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+
+
+
+---
+
+## Page: SMS/MMS Terms & Conditions
+**URL slug:** `/sms-terms`  
+**SEO title:** SMS/MMS Terms & Conditions | Newport Search Group  
+**Meta description:** Terms governing Newport Search Group SMS/MMS text messaging: program description, consent, message frequency, rates, STOP/HELP, and privacy.
+
+### Section 1 — Page header
+*Eyebrow:* Legal  
+**SMS/MMS Terms & Conditions**  
+The terms that govern text messaging communications from Newport Search Group.
+
+### Section 2 — legal
+[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+

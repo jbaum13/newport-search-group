@@ -176,6 +176,11 @@ const footer = {
       ],
     },
   ],
+  // Compliance links shown in the footer bottom bar on every page.
+  legal: [
+    { label: "Privacy Policy", route: "/privacy-policy" },
+    { label: "SMS Terms & Conditions", route: "/sms-terms" },
+  ],
 };
 
 // ---------------------------------------------------------------------------
@@ -973,6 +978,142 @@ const pages = [
         sub: "Whether you need one critical hire, an entire project team, or recruiters for your staffing firm, Newport Search Group delivers talent solutions built for the future.",
       },
       { type: "form" },
+    ],
+  },
+
+  // ===================== PRIVACY POLICY =====================
+  {
+    route: "/privacy-policy",
+    title: "Privacy Policy | Newport Search Group",
+    description:
+      "How Newport Search Group collects, uses, discloses, and safeguards personal information, including SMS/MMS messaging and consent data.",
+    sections: [
+      {
+        type: "breadcrumbHero",
+        eyebrow: "Legal",
+        headline: "Privacy Policy",
+        sub: "How Newport Search Group collects, uses, discloses, and safeguards the information you share with us.",
+      },
+      {
+        type: "legal",
+        updated: "Effective Date: September 15, 2026",
+        body: [
+          { h2: "Introduction" },
+          { p: "Newport Search Group (“Newport Search Group,” “Newport,” “we,” “us,” or “our”) respects your privacy and is committed to protecting the personal information you provide to us. This Privacy Policy explains how we collect, use, disclose, and safeguard information when you interact with Newport Search Group, including through our website, recruiting and staffing services, telephone communications, email, and SMS/MMS messaging." },
+
+          { h2: "Information We Collect" },
+          { p: "We may collect personal information that you voluntarily provide to us, including your name, email address, telephone number, mailing address, employment history, résumé, professional qualifications, certifications, skills, job preferences, availability, compensation expectations, and other information relevant to recruiting, staffing, employment, or business services." },
+          { p: "We may also collect information from communications with you, including email correspondence, telephone communications, SMS/MMS messages, job applications, interviews, and other interactions with Newport Search Group." },
+          { p: "When you consent to SMS/MMS communications, we may maintain records relating to your mobile telephone number, consent status, date or method of consent, messaging preferences, and opt-out requests." },
+
+          { h2: "How We Use Your Information" },
+          { p: "Newport Search Group may use personal information to provide recruiting and staffing services; identify and communicate relevant employment opportunities; evaluate candidate qualifications; coordinate applications and interviews; communicate regarding availability, assignments, placements, onboarding, and employment-related matters; communicate with clients regarding staffing requirements and candidates; respond to inquiries; maintain business and compliance records; improve our services; and comply with applicable legal and regulatory requirements." },
+          { p: "Providing a mobile telephone number does not automatically authorize Newport Search Group to send SMS/MMS messages where consent is required. We obtain appropriate consent before sending such communications." },
+
+          { h2: "SMS/MMS Communications" },
+          { p: "If you consent to receive SMS/MMS messages from Newport Search Group, messages may relate to recruiting and staffing activities, including job opportunities, candidate inquiries, application status, interview scheduling and reminders, availability, onboarding, assignments, placements, and related staffing communications." },
+          { p: "Message frequency varies. Message and data rates may apply." },
+          { p: "You may opt out of SMS/MMS communications at any time by replying STOP to a message from Newport Search Group. You may reply HELP for assistance." },
+          { p: "Consent to receive SMS/MMS communications is not a condition of purchasing goods or services from Newport Search Group." },
+
+          { h2: "Mobile Information and SMS Consent" },
+          { p: "No mobile information will be shared with third parties or affiliates for marketing or promotional purposes." },
+          { p: "Text messaging originator opt-in data and consent information will not be shared with any third parties, except as necessary to provide the messaging service or as required by law." },
+          { p: "Newport Search Group does not sell SMS/MMS opt-in information or consent records." },
+          { p: "This SMS-specific restriction applies notwithstanding any other provision of this Privacy Policy concerning the disclosure or sharing of information." },
+
+          { h2: "How We May Share Other Information" },
+          { p: "Outside of mobile information and SMS consent data addressed above, Newport Search Group may disclose personal information when reasonably necessary to provide recruiting and staffing services." },
+          { p: "For example, with appropriate authorization or where otherwise permitted, candidate information may be provided to prospective or current clients in connection with employment opportunities, assignments, placements, or staffing services." },
+          { p: "We may also use service providers that perform services on our behalf, such as technology, communications, data hosting, recruiting, administrative, or professional services. Such providers may receive information only as reasonably necessary to perform services on our behalf and are expected to protect the information appropriately." },
+          { p: "We may also disclose information when required by law, legal process, governmental request, or when reasonably necessary to protect the rights, property, security, or safety of Newport Search Group, our clients, candidates, employees, or others." },
+
+          { h2: "Data Security" },
+          { p: "Newport Search Group uses reasonable administrative, technical, and organizational safeguards designed to protect personal information from unauthorized access, disclosure, alteration, misuse, or destruction. However, no electronic transmission or storage system can be guaranteed to be completely secure." },
+
+          { h2: "Data Retention" },
+          { p: "We retain personal information for as long as reasonably necessary to provide our recruiting and staffing services, maintain appropriate business records, fulfill the purposes described in this Privacy Policy, and comply with applicable legal, contractual, and regulatory obligations." },
+
+          { h2: "Your Choices" },
+          { p: "You may contact Newport Search Group to request that we update or correct certain personal information. You may opt out of marketing email communications by following the unsubscribe instructions provided in those communications, where applicable. For SMS/MMS communications, reply STOP to opt out or HELP for assistance." },
+
+          { h2: "Third-Party Websites" },
+          { p: "Our website or communications may contain links to websites or services operated by third parties. Newport Search Group is not responsible for the privacy practices of third-party websites, and their handling of information is governed by their respective privacy policies." },
+
+          { h2: "Changes to This Privacy Policy" },
+          { p: "Newport Search Group may update this Privacy Policy periodically to reflect changes in our business practices, services, technology, or applicable requirements. The effective date displayed at the top of this policy indicates when it was most recently updated." },
+
+          { h2: "Contact Newport Search Group" },
+          { contact: { name: "Newport Search Group", email: "Derrek@newportsg.com", website: "newportsg.com" } },
+        ],
+      },
+    ],
+  },
+
+  // ===================== SMS TERMS =====================
+  {
+    route: "/sms-terms",
+    title: "SMS/MMS Terms & Conditions | Newport Search Group",
+    description:
+      "Terms governing Newport Search Group SMS/MMS text messaging: program description, consent, message frequency, rates, STOP/HELP, and privacy.",
+    sections: [
+      {
+        type: "breadcrumbHero",
+        eyebrow: "Legal",
+        headline: "SMS/MMS Terms & Conditions",
+        sub: "The terms that govern text messaging communications from Newport Search Group.",
+      },
+      {
+        type: "legal",
+        updated: "Effective Date: September 15, 2026",
+        body: [
+          { p: "These SMS/MMS Terms & Conditions govern text messaging communications provided by Newport Search Group (“Newport Search Group,” “Newport,” “we,” “us,” or “our”)." },
+
+          { h2: "Program Description" },
+          { p: "By providing your mobile telephone number and consenting to receive SMS/MMS communications from Newport Search Group, you agree that Newport Search Group may send you text messages relating to our recruiting and staffing services." },
+          { p: "Messages may include communications regarding:" },
+          { ul: [
+            "Job opportunities and recruiting communications",
+            "Candidate inquiries and application status",
+            "Interview scheduling and interview reminders",
+            "Candidate availability",
+            "Onboarding and placement information",
+            "Work assignments and assignment updates",
+            "Staffing-related communications",
+            "Responses to questions or requests you send to Newport Search Group",
+          ] },
+
+          { h2: "Consent" },
+          { p: "Newport Search Group obtains consent before sending SMS/MMS messages when consent is required. Consent may be provided verbally, electronically, through an eligible website form, or through another compliant opt-in method." },
+          { p: "Your consent to receive SMS/MMS communications is voluntary and is not a condition of purchasing any goods or services from Newport Search Group." },
+
+          { h2: "Message Frequency" },
+          { p: "Message frequency varies depending upon your interactions with Newport Search Group, available employment opportunities, applications, interviews, assignments, and other recruiting or staffing activities." },
+
+          { h2: "Message and Data Rates" },
+          { p: "Message and data rates may apply according to the terms of your mobile telephone service plan. Newport Search Group does not charge a separate fee for receiving SMS/MMS messages, although your wireless carrier may impose charges." },
+
+          { h2: "Opting Out — STOP" },
+          { p: "You may opt out of Newport Search Group SMS/MMS communications at any time by replying STOP to any SMS message you receive from us. After opting out, you may receive a confirmation message, and Newport Search Group will cease sending SMS/MMS messages covered by your opt-out unless you subsequently provide consent to receive them again." },
+
+          { h2: "Help and Support — HELP" },
+          { p: "If you need assistance or have questions about Newport Search Group SMS/MMS communications, reply HELP to any SMS message you receive from us, or contact Newport Search Group at Derrek@newportsg.com." },
+
+          { h2: "Privacy" },
+          { p: "Your personal information and mobile telephone number are handled in accordance with the Newport Search Group Privacy Policy." },
+          { p: "No mobile information will be shared with third parties or affiliates for marketing or promotional purposes." },
+          { p: "Text messaging originator opt-in data and consent information will not be shared with any third parties, except as necessary to provide the messaging service or as required by law." },
+
+          { h2: "Supported Carriers and Delivery" },
+          { p: "SMS/MMS delivery is subject to your wireless carrier's network availability and other technical factors outside Newport Search Group's control. Newport Search Group and wireless carriers cannot guarantee that every message will be delivered." },
+
+          { h2: "Changes to These Terms" },
+          { p: "Newport Search Group may update these SMS/MMS Terms & Conditions periodically. Changes will become effective when the revised terms are posted, subject to applicable law." },
+
+          { h2: "Contact Information" },
+          { contact: { name: "Newport Search Group", email: "Derrek@newportsg.com", website: "newportsg.com" } },
+        ],
+      },
     ],
   },
 ];

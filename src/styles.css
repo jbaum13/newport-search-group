@@ -358,6 +358,10 @@ a.card:hover .card__icon { background: var(--blue); color: #fff; transform: tran
   border-top: 1px solid var(--line); margin-top: 2.6rem; padding-top: 1.6rem; font-size: 0.86rem;
 }
 .footer-bottom .tag { color: var(--blue-bright); font-weight: 600; }
+.footer-legal { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; }
+.footer-legal a { color: var(--steel-300); }
+.footer-legal a:hover { color: #fff; }
+.footer-legal span { color: var(--steel-500); }
 
 /* ---- Responsive ---- */
 @media (max-width: 980px) {
