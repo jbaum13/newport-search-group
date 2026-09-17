@@ -831,13 +831,13 @@ Form fields: Name, Company, Email, Phone, Hiring Need (dropdown), Message. Conne
 
 ## Page: Privacy Policy
 **URL slug:** `/privacy-policy`  
-**SEO title:** Privacy Policy | Newport Search Group  
-**Meta description:** How Newport Search Group collects, uses, discloses, and safeguards personal information, including SMS/MMS messaging and consent data.
+**SEO title:** Privacy Policy | Newport Search Group LLC  
+**Meta description:** How Newport Search Group LLC collects, uses, discloses, and safeguards personal information, including SMS/MMS messaging and consent data.
 
 ### Section 1 — Page header
-*Eyebrow:* Legal  
+*Eyebrow:* Newport Search Group LLC  
 **Privacy Policy**  
-How Newport Search Group collects, uses, discloses, and safeguards the information you share with us.
+How Newport Search Group LLC collects, uses, discloses, and safeguards the information you share with us.
 
 ### Section 2 — legal
 [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
