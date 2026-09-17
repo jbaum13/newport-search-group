@@ -1059,8 +1059,8 @@ const pages = [
     sections: [
       {
         type: "breadcrumbHero",
-        eyebrow: "Legal",
-        headline: "Newport Search Group LLC — SMS/MMS Terms & Conditions",
+        eyebrow: "Newport Search Group LLC",
+        headline: "SMS/MMS Terms & Conditions",
         sub: "The terms that govern text messaging communications from Newport Search Group LLC.",
       },
       {
