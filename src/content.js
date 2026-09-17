@@ -12,6 +12,7 @@
 
 const site = {
   name: "Newport Search Group",
+  legalName: "Newport Search Group LLC", // registered entity — used in footer copyright and legal pages
   category: "Agentic Staffing Company",
   tagline: "Human Connection. Agentic Execution.",
   domain: "newportsg.com",
@@ -984,22 +985,22 @@ const pages = [
   // ===================== PRIVACY POLICY =====================
   {
     route: "/privacy-policy",
-    title: "Privacy Policy | Newport Search Group",
+    title: "Privacy Policy | Newport Search Group LLC",
     description:
-      "How Newport Search Group collects, uses, discloses, and safeguards personal information, including SMS/MMS messaging and consent data.",
+      "How Newport Search Group LLC collects, uses, discloses, and safeguards personal information, including SMS/MMS messaging and consent data.",
     sections: [
       {
         type: "breadcrumbHero",
-        eyebrow: "Legal",
+        eyebrow: "Newport Search Group LLC",
         headline: "Privacy Policy",
-        sub: "How Newport Search Group collects, uses, discloses, and safeguards the information you share with us.",
+        sub: "How Newport Search Group LLC collects, uses, discloses, and safeguards the information you share with us.",
       },
       {
         type: "legal",
         updated: "Effective Date: September 15, 2026",
         body: [
           { h2: "Introduction" },
-          { p: "Newport Search Group (“Newport Search Group,” “Newport,” “we,” “us,” or “our”) respects your privacy and is committed to protecting the personal information you provide to us. This Privacy Policy explains how we collect, use, disclose, and safeguard information when you interact with Newport Search Group, including through our website, recruiting and staffing services, telephone communications, email, and SMS/MMS messaging." },
+          { p: "Newport Search Group LLC (“Newport Search Group,” “Newport,” “we,” “us,” or “our”) respects your privacy and is committed to protecting the personal information you provide to us. This Privacy Policy explains how we collect, use, disclose, and safeguard information when you interact with Newport Search Group, including through our website, recruiting and staffing services, telephone communications, email, and SMS/MMS messaging." },
 
           { h2: "Information We Collect" },
           { p: "We may collect personal information that you voluntarily provide to us, including your name, email address, telephone number, mailing address, employment history, résumé, professional qualifications, certifications, skills, job preferences, availability, compensation expectations, and other information relevant to recruiting, staffing, employment, or business services." },

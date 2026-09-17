@@ -108,7 +108,7 @@ function renderFooter() {
       ${cols}
     </div>
     <div class="footer-bottom">
-      <span>© ${" "}${esc(site.name)}. All rights reserved.</span>
+      <span>© ${" "}${esc(site.legalName || site.name)}. All rights reserved.</span>
       ${footer.legal && footer.legal.length ? `<nav class="footer-legal" aria-label="Legal">${footer.legal.map(footerLink).join('<span aria-hidden="true">·</span>')}</nav>` : ""}
       <span class="tag">${esc(footer.tagline)}</span>
     </div>
