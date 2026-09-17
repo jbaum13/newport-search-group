@@ -1053,21 +1053,21 @@ const pages = [
   // ===================== SMS TERMS =====================
   {
     route: "/sms-terms",
-    title: "SMS/MMS Terms & Conditions | Newport Search Group",
+    title: "SMS/MMS Terms & Conditions | Newport Search Group LLC",
     description:
       "Terms governing Newport Search Group SMS/MMS text messaging: program description, consent, message frequency, rates, STOP/HELP, and privacy.",
     sections: [
       {
         type: "breadcrumbHero",
         eyebrow: "Legal",
-        headline: "SMS/MMS Terms & Conditions",
-        sub: "The terms that govern text messaging communications from Newport Search Group.",
+        headline: "Newport Search Group LLC — SMS/MMS Terms & Conditions",
+        sub: "The terms that govern text messaging communications from Newport Search Group LLC.",
       },
       {
         type: "legal",
         updated: "Effective Date: September 15, 2026",
         body: [
-          { p: "These SMS/MMS Terms & Conditions govern text messaging communications provided by Newport Search Group (“Newport Search Group,” “Newport,” “we,” “us,” or “our”)." },
+          { p: "These SMS/MMS Terms & Conditions govern text messaging communications provided by Newport Search Group LLC (“Newport Search Group,” “Newport,” “we,” “us,” or “our”)." },
 
           { h2: "Program Description" },
           { p: "By providing your mobile telephone number and consenting to receive SMS/MMS communications from Newport Search Group, you agree that Newport Search Group may send you text messages relating to our recruiting and staffing services." },

@@ -848,13 +848,13 @@ How Newport Search Group collects, uses, discloses, and safeguards the informati
 
 ## Page: SMS/MMS Terms & Conditions
 **URL slug:** `/sms-terms`  
-**SEO title:** SMS/MMS Terms & Conditions | Newport Search Group  
+**SEO title:** SMS/MMS Terms & Conditions | Newport Search Group LLC  
 **Meta description:** Terms governing Newport Search Group SMS/MMS text messaging: program description, consent, message frequency, rates, STOP/HELP, and privacy.
 
 ### Section 1 — Page header
 *Eyebrow:* Legal  
-**SMS/MMS Terms & Conditions**  
-The terms that govern text messaging communications from Newport Search Group.
+**Newport Search Group LLC — SMS/MMS Terms & Conditions**  
+The terms that govern text messaging communications from Newport Search Group LLC.
 
 ### Section 2 — legal
 [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
