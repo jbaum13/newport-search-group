@@ -1024,7 +1024,8 @@ const pages = [
           { p: "This SMS-specific restriction applies notwithstanding any other provision of this Privacy Policy concerning the disclosure or sharing of information." },
 
           { h2: "How We May Share Other Information" },
-          { p: "Outside of mobile information and SMS consent data addressed above, Newport Search Group may disclose personal information when reasonably necessary to provide recruiting and staffing services." },
+          { p: "Newport Search Group does not sell your personal information, and does not share personal information with third parties or affiliates for their own marketing or promotional purposes." },
+          { p: "Outside of mobile information and SMS consent data addressed above, Newport Search Group may disclose personal information only as described in this Privacy Policy and when reasonably necessary to provide recruiting and staffing services." },
           { p: "For example, with appropriate authorization or where otherwise permitted, candidate information may be provided to prospective or current clients in connection with employment opportunities, assignments, placements, or staffing services." },
           { p: "We may also use service providers that perform services on our behalf, such as technology, communications, data hosting, recruiting, administrative, or professional services. Such providers may receive information only as reasonably necessary to perform services on our behalf and are expected to protect the information appropriately." },
           { p: "We may also disclose information when required by law, legal process, governmental request, or when reasonably necessary to protect the rights, property, security, or safety of Newport Search Group, our clients, candidates, employees, or others." },
