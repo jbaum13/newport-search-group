@@ -162,7 +162,7 @@ console.log("\nBeacon — / (home)");
   await page.click('[data-agent-open="beacon"]');
   await page.waitForSelector(".agent-msg--user", { timeout: 5000 });
   ok("CTA seeds the first question", /Talent market insights/i.test(await page.textContent(".agent-msg--user")));
-  ok("welcome shows his role", (await page.textContent(".agent-welcome__sub")) === "Newport's Market Intelligence Agent".replace("'", "’"));
+  ok("welcome shows his role", (await page.textContent(".agent-welcome__sub")) === "Newport's AI Orchestrator".replace("'", "’"));
   ok("beacon_opened fired", events.some((e) => e.e === "beacon_opened"));
   ok("market_query fired", events.some((e) => e.e === "beacon_market_query"));
 
