@@ -77,7 +77,7 @@ Buttons: [Explore the Agentic Platform] → `/agentic-platform`
 ### Section 3 — characters
 *Eyebrow:* Meet the Agents  
 **Say hello to the Newport agents**  
-Behind every Newport search is a team, and each of them has one job. Duke builds the human relationships. Scout navigates the market. Finn looks after candidates. Beacon reads the talent landscape for employers.
+Behind every Newport search is a team, and each of them has one job. Duke builds the human relationships. Scout navigates the market. Finn looks after candidates. Beacon orchestrates the three of them, so every search runs as one system.
 Buttons: [Meet the Agents] → `/agentic-platform/meet-the-agents`
 
 ### Section 4 — logos
@@ -125,7 +125,7 @@ Buttons: [Explore Staffing Industry Solutions] → `/staffing-industry`
 - [object Object]
 
 ### Section 9 — agentCta
-Newport's market intelligence agent can talk through talent availability, workforce strategy, and what a market map would actually tell you about your roles.
+Newport's AI orchestrator coordinates Duke, Scout, and Finn — ask how a search comes together, which hiring model fits, and where a market map would help.
 Buttons: [undefined] → `undefined`
 
 ### Section 10 — Call to action
@@ -235,7 +235,7 @@ Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Sched
 ## Page: Meet the Agents
 **URL slug:** `/agentic-platform/meet-the-agents`  
 **SEO title:** Meet the Agents | Newport Search Group  
-**Meta description:** Duke, Scout, Finn, and Beacon are the agents behind every Newport search — building relationships, navigating the market, guiding candidates, and reading the talent landscape. Human Connection. Agentic Execution.
+**Meta description:** Duke, Scout, Finn, and Beacon are the agents behind every Newport search — building relationships, navigating the market, guiding candidates, and orchestrating the whole search. Human Connection. Agentic Execution.
 
 ### Section 1 — Page header
 *Eyebrow:* Meet the Agents  
@@ -245,16 +245,16 @@ Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Sched
 
 ### Section 2 — characters
 *Eyebrow:* The Team  
-**One retrieves. One navigates. One guides. One sees further.**  
+**One retrieves. One navigates. One guides. One conducts.**  
 
 ### Section 3 — Split feature
 *Eyebrow:* How They Work Together  
-**Beacon reads the water. Scout finds the way. Duke brings them home. Finn keeps you with us.**  
-Scout works the parts of recruiting that reward speed, coverage, and pattern-finding — mapping markets and surfacing the signals everyone else overlooks. Duke works the parts that reward trust — reaching the people others can't and building the relationships that actually close. Finn is the one candidates actually meet: he answers questions, points to the right role, and hands off to a recruiter the moment a human is the right answer. Beacon is the one employers meet, and his discipline is knowing where verified intelligence stops. None of them works without the others.
+**Beacon conducts. Scout finds the way. Duke brings them home. Finn keeps you with us.**  
+Scout works the parts of recruiting that reward speed, coverage, and pattern-finding — mapping markets and surfacing the signals everyone else overlooks. Duke works the parts that reward trust — reaching the people others can't and building the relationships that actually close. Finn is the one candidates actually meet: he answers questions, points to the right role, and hands off to a recruiter the moment a human is the right answer. Beacon is the one employers meet first — the orchestrator that coordinates the other three so a search runs as a single system, with the discipline to say what Newport can verify and when to bring in a person. None of them works without the others.
 - Scout: navigate, map, surface signal, find the path
 - Duke: reach, build trust, advocate, bring them home
 - Finn: greet, guide, answer, hand off to a human
-- Beacon: map the market, brief employers, flag what isn't known
+- Beacon: coordinate the agents, brief employers, bring in a person
 - You: a faster search with a human you actually trust
 
 ### Section 4 — Card grid
@@ -555,7 +555,7 @@ We focus where the talent market is tightest — and where deep domain knowledge
 - **Staffing & Recruiting** — Talent for staffing firms, search firms, and workforce solutions providers. (links to `/industries/staffing`)
 
 ### Section 3 — agentCta
-Beacon can explain how Newport maps a specialized market — who employs the skill, where the people sit, and what it takes to move them.
+Beacon can explain how Newport's agents map a specialized market — who employs the skill, where the people sit, and what it takes to move them.
 Buttons: [undefined] → `undefined`
 
 ### Section 4 — Call to action

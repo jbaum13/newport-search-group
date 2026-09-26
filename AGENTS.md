@@ -4,7 +4,7 @@ Two conversational agents live on this site, sharing one runtime:
 
 | | **Finn** | **Beacon** |
 | --- | --- | --- |
-| Role | Candidate Experience Agent | Market Intelligence Agent |
+| Role | Candidate Experience Agent | AI Orchestrator |
 | Audience | Candidates | Employers |
 | Mascot | Dolphin | Lighthouse |
 | Accent | Newport blue | Lantern gold |
@@ -90,9 +90,10 @@ own application status or hiring decision, complaints, or an explicit request
 for a person. He never states a salary, location, requirement, client name,
 interview stage, or status.
 
-**Beacon** is the one to be careful with, because a market intelligence agent is
-exactly the kind of thing that sounds authoritative while making things up. He
-has **no market dataset connected**, so:
+**Beacon** is the one to be careful with. As the orchestrator he fields employer
+questions about talent markets, comp, and availability — exactly the kind of
+thing that sounds authoritative while making things up. He has **no market
+dataset connected**, so:
 
 - No market statistic, comp benchmark, time-to-fill, or pool count. Ever.
 - No named company's hiring activity.
@@ -177,9 +178,10 @@ the legacy-URL redirect.
 - **No live job data.** Finn points candidates at `/jobs`; he cannot describe
   individual roles because the site has no job feed. Wire an ATS (Manatal) to
   `/jobs` first, then give Finn the same data through the adapter.
-- **No market data.** Beacon's entire value proposition is gated on a verified
-  source — Newport OS, a market intelligence MCP, something. Until then he is
-  honest and useful but cannot quote anything.
+- **No market data.** Beacon orchestrates the agents today, but the market
+  questions he fields are gated on a verified source — Newport OS, a market
+  intelligence MCP, something. Until then he is honest and useful but cannot
+  quote anything.
 - **No agent endpoints.** Both ship on their knowledge layers.
 - **No visitor context.** `visitorContext` is in the adapter signature and always
   `null`; it needs an authenticated session or a CRM (Attio) to mean anything.

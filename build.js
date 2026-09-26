@@ -397,7 +397,7 @@ const renderers = {
 // would be noise, so routing is explicit and exclusive.
 const AGENTS = {
   finn: { name: "Finn", role: "Candidate Experience Agent", avatar: "finn-avatar.png", cta: "Ask Finn" },
-  beacon: { name: "Beacon", role: "Market Intelligence Agent", avatar: "beacon-avatar.png", cta: "Ask Beacon" },
+  beacon: { name: "Beacon", role: "AI Orchestrator", avatar: "beacon-avatar.png", cta: "Ask Beacon" },
 };
 const FINN_ROUTES = ["/jobs", "/contact", "/resources"];
 const agentForRoute = (route = "/") =>

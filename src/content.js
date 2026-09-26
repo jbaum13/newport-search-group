@@ -26,7 +26,8 @@ const site = {
 
 // ---------------------------------------------------------------------------
 // The Newport agents — the faces of the agentic platform.
-// Duke and Scout work the search; Finn (candidates) and Beacon (employers) are
+// Duke and Scout work the search; Finn (candidate-facing) and Beacon (the AI
+// orchestrator, employer-facing) are
 // the agents wired into the website itself (see src/agent-core.js, AGENTS.md).
 // Character cutouts live in src/assets/ — all transparent PNGs, so each one
 // composites onto the card gradient instead of sitting on a baked-in box.
@@ -70,15 +71,15 @@ const agents = [
   },
   {
     name: "Beacon",
-    role: "Market Intelligence Agent",
-    side: "Market Intelligence",
+    role: "AI Orchestrator",
+    side: "Agentic Orchestration",
     accent: "gold",
     img: "beacon.png", // transparent cutout
     imgAlt: "Beacon, the Newport Search Group lighthouse agent",
-    tagline: "Sees further. Says only what he can verify.",
-    mission: "Show employers the talent market as it actually is.",
-    ability: "Maps a market and names the edge of what is known.",
-    signature: "Greater opportunities ahead.",
+    tagline: "Coordinates the agents. Keeps every search in sync.",
+    mission: "Coordinate Duke, Scout, and Finn so every search runs as one system.",
+    ability: "Directs the right agent to the right work at the right moment.",
+    signature: "Everything, working as one.",
   },
 ];
 
@@ -220,7 +221,7 @@ const pages = [
         center: true,
         eyebrow: "Meet the Agents",
         headline: "Say hello to the Newport agents",
-        body: "Behind every Newport search is a team, and each of them has one job. Duke builds the human relationships. Scout navigates the market. Finn looks after candidates. Beacon reads the talent landscape for employers.",
+        body: "Behind every Newport search is a team, and each of them has one job. Duke builds the human relationships. Scout navigates the market. Finn looks after candidates. Beacon orchestrates the three of them, so every search runs as one system.",
         characters: agents,
         unity: "Four sides. One mission. Together, they navigate what others miss.",
         cta: { label: "Meet the Agents", route: "/agentic-platform/meet-the-agents" },
@@ -292,8 +293,8 @@ const pages = [
         type: "agentCta",
         agent: "beacon",
         tint: true,
-        title: "Ask Beacon about your talent market",
-        body: "Newport's market intelligence agent can talk through talent availability, workforce strategy, and what a market map would actually tell you about your roles.",
+        title: "Ask Beacon how your search runs",
+        body: "Newport's AI orchestrator coordinates Duke, Scout, and Finn — ask how a search comes together, which hiring model fits, and where a market map would help.",
         cta: "Ask Beacon",
         seed: "Talent market insights",
       },
@@ -424,7 +425,7 @@ const pages = [
     route: "/agentic-platform/meet-the-agents",
     title: "Meet the Agents | Newport Search Group",
     description:
-      "Duke, Scout, Finn, and Beacon are the agents behind every Newport search — building relationships, navigating the market, guiding candidates, and reading the talent landscape. Human Connection. Agentic Execution.",
+      "Duke, Scout, Finn, and Beacon are the agents behind every Newport search — building relationships, navigating the market, guiding candidates, and orchestrating the whole search. Human Connection. Agentic Execution.",
     sections: [
       {
         type: "breadcrumbHero",
@@ -438,20 +439,20 @@ const pages = [
         type: "characters",
         center: true,
         eyebrow: "The Team",
-        headline: "One retrieves. One navigates. One guides. One sees further.",
+        headline: "One retrieves. One navigates. One guides. One conducts.",
         characters: agents,
         unity: "Four sides. One mission. Together, they navigate what others miss — and nobody gets lost along the way.",
       },
       {
         type: "split",
         eyebrow: "How They Work Together",
-        headline: "Beacon reads the water. Scout finds the way. Duke brings them home. Finn keeps you with us.",
-        body: "Scout works the parts of recruiting that reward speed, coverage, and pattern-finding — mapping markets and surfacing the signals everyone else overlooks. Duke works the parts that reward trust — reaching the people others can't and building the relationships that actually close. Finn is the one candidates actually meet: he answers questions, points to the right role, and hands off to a recruiter the moment a human is the right answer. Beacon is the one employers meet, and his discipline is knowing where verified intelligence stops. None of them works without the others.",
+        headline: "Beacon conducts. Scout finds the way. Duke brings them home. Finn keeps you with us.",
+        body: "Scout works the parts of recruiting that reward speed, coverage, and pattern-finding — mapping markets and surfacing the signals everyone else overlooks. Duke works the parts that reward trust — reaching the people others can't and building the relationships that actually close. Finn is the one candidates actually meet: he answers questions, points to the right role, and hands off to a recruiter the moment a human is the right answer. Beacon is the one employers meet first — the orchestrator that coordinates the other three so a search runs as a single system, with the discipline to say what Newport can verify and when to bring in a person. None of them works without the others.",
         bullets: [
           "Scout: navigate, map, surface signal, find the path",
           "Duke: reach, build trust, advocate, bring them home",
           "Finn: greet, guide, answer, hand off to a human",
-          "Beacon: map the market, brief employers, flag what isn't known",
+          "Beacon: coordinate the agents, brief employers, bring in a person",
           "You: a faster search with a human you actually trust",
         ],
       },
@@ -728,7 +729,7 @@ const pages = [
         agent: "beacon",
         tint: true,
         title: "What does this talent market look like?",
-        body: "Beacon can explain how Newport maps a specialized market — who employs the skill, where the people sit, and what it takes to move them.",
+        body: "Beacon can explain how Newport's agents map a specialized market — who employs the skill, where the people sit, and what it takes to move them.",
         cta: "Ask Beacon",
         seed: "Talent market insights",
       },

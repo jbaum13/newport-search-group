@@ -119,7 +119,7 @@
         match: /\b(duke\b|scout\b|finn\b|beacon\b|agents?\b|\bai\b|bot\b|dolphin|retriever|who are you|are you (a )?(human|real|robot))/i,
         reply:
           "<p>I’m Finn — Newport’s candidate experience agent, and yes, an AI. I work alongside Duke, who builds " +
-          "relationships, Scout, who navigates the market, and Beacon, who handles market intelligence for employers.</p>" +
+          "relationships, Scout, who navigates the market, and Beacon, the AI orchestrator who coordinates all of us for employers.</p>" +
           "<p>I help you find your way around; a human recruiter handles anything that affects your candidacy.</p>",
         cites: [{ label: "Meet the agents", href: BASE + "/agentic-platform/meet-the-agents" }],
         actions: ["Find jobs for me", "Talk to a recruiter"],
