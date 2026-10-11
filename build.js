@@ -140,6 +140,26 @@ const articlePages = sortedArticles.map((a) => ({
   article: a,
 }));
 
+// Article share row. LinkedIn pulls the title/description/image from the page's
+// Open Graph tags, so the shared card is populated automatically. Copy-link is
+// wired in src/main.js (delegated click on [data-copy-link]).
+function shareRow(a) {
+  const url = `https://${site.domain}${articleRoute(a)}`;
+  const li = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+  return `<div class="share">
+      <span class="share__label">Share this article</span>
+      <div class="share__btns">
+        <a class="share-btn share-btn--li" href="${li}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          <span>Share on LinkedIn</span>
+        </a>
+        <button class="share-btn share-btn--copy" type="button" data-copy-link="${url}" aria-label="Copy link to article">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6"/><path d="M11 6l1-1a5 5 0 0 1 7 7l-1 1"/><path d="M13 18l-1 1a5 5 0 0 1-7-7l1-1"/></svg>
+          <span class="share-btn__t">Copy link</span>
+        </button>
+      </div>
+    </div>`;
+}
 function renderArticleBody(a) {
   const blocks = a.body.map((b) => {
     if (b.h2) return `<h2>${esc(b.h2)}</h2>`;
@@ -153,6 +173,7 @@ function renderArticleBody(a) {
     </div></section>
     <article class="section"><div class="container"><div class="prose">
       ${blocks}
+      ${shareRow(a)}
       <p class="prose-back"><a href="${hrefFor("/resources")}">&larr; All articles</a></p>
     </div></div></article>
     ${renderers.cta(ctaBlocks.buildYourTeam)}`;
@@ -461,6 +482,7 @@ function renderPage(page) {
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.description)}" />
 ${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<link rel="canonical" href="https://${site.domain}${page.route === "/404.html" ? "/" : page.route}" />
+<link rel="alternate" type="application/rss+xml" title="${esc(site.name)} — Resources" href="https://${site.domain}/feed.xml" />
 <meta property="og:title" content="${esc(page.title)}" />
 <meta property="og:description" content="${esc(page.description)}" />
 <meta property="og:type" content="website" />
@@ -560,6 +582,27 @@ function buildSite() {
   const urls = allPages.map((p) => `  <url><loc>https://${site.domain}${p.route}</loc></url>`).join("\n");
   writeFile(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
   writeFile(path.join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: https://${site.domain}/sitemap.xml\n`);
+  // RSS feed of articles — powers auto-posting (Buffer / n8n RSS trigger) and readers.
+  const feedItems = sortedArticles.map((a) => `    <item>
+      <title>${esc(a.title)}</title>
+      <link>https://${site.domain}${articleRoute(a)}</link>
+      <guid isPermaLink="true">https://${site.domain}${articleRoute(a)}</guid>
+      <pubDate>${new Date(a.date + "T09:00:00Z").toUTCString()}</pubDate>
+      <category>${esc(a.category)}</category>
+      <description>${esc(a.excerpt)}</description>
+    </item>`).join("\n");
+  writeFile(path.join(DIST, "feed.xml"), `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${esc(site.name)} — Resources</title>
+    <link>https://${site.domain}/resources</link>
+    <atom:link href="https://${site.domain}/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Insights from the front lines of AI-native recruiting.</description>
+    <language>en-us</language>
+${feedItems}
+  </channel>
+</rss>
+`);
   // Custom domain for GitHub Pages (apex). www redirects to it automatically.
   if (site.domain) writeFile(path.join(DIST, "CNAME"), site.domain + "\n");
   console.log(`✓ Built ${allPages.length} pages (${articlePages.length} articles) → dist/`);

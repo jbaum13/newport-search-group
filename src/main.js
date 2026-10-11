@@ -1,5 +1,27 @@
 // Newport Search Group — light client behavior (no dependencies)
 (function () {
+  // Copy-link buttons (article share row). Delegated so it works for any
+  // [data-copy-link] element without per-element wiring.
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest("[data-copy-link]");
+    if (!btn) return;
+    var url = btn.getAttribute("data-copy-link");
+    var label = btn.querySelector(".share-btn__t");
+    var reset = function (text) {
+      if (!label) return;
+      var prev = label.getAttribute("data-prev") || label.textContent;
+      label.setAttribute("data-prev", prev);
+      label.textContent = text;
+      btn.classList.add("is-copied");
+      setTimeout(function () { label.textContent = prev; btn.classList.remove("is-copied"); }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { reset("Copied!"); }, function () { reset("Press ⌘C"); });
+    } else {
+      reset("Copy manually");
+    }
+  });
+
   // Shrink header on scroll (big logo at top, compact once scrolling)
   var hdr = document.querySelector(".site-header");
   if (hdr) {
