@@ -13,7 +13,7 @@
 const site = {
   name: "Newport Search Group",
   legalName: "Newport Search Group LLC", // registered entity — used in footer copyright and legal pages
-  category: "Agentic Staffing Company",
+  category: "AI-Native Recruiting Platform",
   tagline: "Human Connection. Agentic Execution.",
   domain: "newportsg.com",
   email: "hello@newportsg.com", // display address shown on the contact page
@@ -21,7 +21,7 @@ const site = {
   schedulingUrl: "mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation",
   phone: "1-415-539-8167",
   positioning:
-    "Newport Search Group is an Agentic Staffing Company built for the future of hiring. We pair autonomous AI agents with experienced recruiters to deliver faster searches, deeper talent intelligence, and better hiring outcomes. Our technology works around the clock while our recruiters focus on what matters most — building relationships and securing exceptional talent.",
+    "Newport Search Group is an AI-native recruiting platform. A coordinated system of specialized AI agents runs every search end to end — sourcing, market mapping, engagement, and intelligence — around the clock, while experienced recruiters own the judgment, the relationships, and the close. Not a staffing agency with AI bolted on: recruiting built AI-native, so you get the speed and coverage of automation with the trust of a human team.",
 };
 
 // ---------------------------------------------------------------------------
@@ -132,7 +132,7 @@ const nav = [
 const footer = {
   tagline: site.tagline,
   blurb:
-    "An agentic staffing company pairing autonomous AI recruiting agents with experienced search professionals.",
+    "An AI-native recruiting platform pairing a coordinated system of AI agents with experienced search professionals.",
   columns: [
     {
       title: "Company",
@@ -192,15 +192,15 @@ const pages = [
   // ===================== HOME =====================
   {
     route: "/",
-    title: "Newport Search Group | Agentic Staffing Company",
+    title: "Newport Search Group | AI-Native Recruiting Platform",
     description:
-      "Newport Search Group is an agentic staffing company pairing autonomous AI recruiting agents with experienced recruiters for faster searches and better hires.",
+      "Newport Search Group is an AI-native recruiting platform — a coordinated system of AI agents paired with experienced recruiters for faster searches and better hires.",
     sections: [
       {
         type: "hero",
-        eyebrow: "Human Connection, Agentic Execution",
-        headline: "The Future of Hiring Is Agentic",
-        sub: "Newport Search Group combines autonomous AI agents with experienced recruiters to deliver faster searches, deeper talent intelligence, and better hiring outcomes.",
+        eyebrow: "The AI-Native Recruiting Platform",
+        headline: "The future of hiring is AI-native",
+        sub: "Newport Search Group is an AI-native recruiting platform: a coordinated system of specialized AI agents runs every search around the clock, while experienced recruiters own the judgment, the relationships, and the close.",
         primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
         secondary: { label: "Request Talent", route: "/contact?intent=talent" },
         stats: [
@@ -211,10 +211,10 @@ const pages = [
       },
       {
         type: "intro",
-        eyebrow: "What Is Agentic Recruiting?",
-        headline: "Recruiters set the strategy. Agents do the work that never sleeps.",
-        body: "Traditional recruiting is capped by human bandwidth — a recruiter can only source, screen, and follow up with so many people in a day. Agentic recruiting removes that ceiling. Our autonomous agents run sourcing, market mapping, candidate engagement, and intelligence workflows around the clock, then hand qualified, contextualized candidates to our recruiters. The result: the speed and coverage of automation with the judgment and trust of an experienced human team.",
-        cta: { label: "Explore the Agentic Platform", route: "/agentic-platform" },
+        eyebrow: "What AI-Native Means",
+        headline: "Recruiters set the strategy. The platform does the work that never sleeps.",
+        body: "Traditional recruiting is capped by human bandwidth — one recruiter can only source, screen, and follow up with so many people in a day. An AI-native platform removes that ceiling. Newport's agents run sourcing, market mapping, candidate engagement, and intelligence workflows continuously, then hand qualified, contextualized candidates to our recruiters. You get the speed and coverage of automation with the judgment and trust of an experienced human team.",
+        cta: { label: "Explore the platform", route: "/agentic-platform" },
       },
       {
         type: "characters",
@@ -239,7 +239,7 @@ const pages = [
         cards: [
           { icon: "direct-hire", title: "Direct Hire", body: "Permanent placement across technical, operational, commercial, and executive functions.", route: "/staffing-solutions/direct-hire" },
           { icon: "contract", title: "Contract Staffing", body: "Flexible workforce solutions that let you scale quickly while keeping operational control.", route: "/staffing-solutions/contract-staffing" },
-          { icon: "rpo", title: "RPO", body: "Embedded recruiting teams powered by agentic technology and senior recruiting leadership.", route: "/staffing-solutions/rpo" },
+          { icon: "rpo", title: "RPO", body: "Embedded recruiting teams powered by an AI-native platform and senior recruiting leadership.", route: "/staffing-solutions/rpo" },
           { icon: "executive", title: "Executive Search", body: "Retained search for the leaders who define the next chapter of your company.", route: "/staffing-solutions/executive-search" },
         ],
       },
@@ -247,7 +247,7 @@ const pages = [
         type: "split",
         eyebrow: "Staffing Industry Solutions",
         headline: "We Recruit Recruiters",
-        body: "Staffing firms, search firms, RPO providers, MSPs, and workforce solutions companies come to us to build their own recruiting, sales, and leadership teams — and to modernize how they operate with agentic technology.",
+        body: "Staffing firms, search firms, RPO providers, MSPs, and workforce solutions companies come to us to build their own recruiting, sales, and leadership teams — and to modernize how they operate with an AI-native platform.",
         bullets: [
           "Recruiting, sales & leadership talent for staffing firms",
           "Offshore recruiting team buildouts",
@@ -313,7 +313,7 @@ const pages = [
     route: "/about",
     title: "About | Newport Search Group",
     description:
-      "Newport Search Group was founded on a belief: technology should make recruiters better, not replace them. Meet the agentic staffing company.",
+      "Newport Search Group was founded on a belief: technology should make recruiters better, not replace them. Meet the AI-native recruiting platform.",
     sections: [
       {
         type: "breadcrumbHero",
@@ -363,13 +363,13 @@ const pages = [
     route: "/agentic-platform",
     title: "Agentic Platform | Newport Search Group",
     description:
-      "Meet your digital recruiting workforce — talent discovery, market mapping, candidate engagement, intelligence, and operations agents working 24/7.",
+      "The AI-native platform behind every Newport search — a coordinated system of agents handling talent discovery, market mapping, engagement, intelligence, and operations around the clock.",
     sections: [
       {
         type: "breadcrumbHero",
-        eyebrow: "Agentic Platform",
-        headline: "Meet your digital recruiting workforce",
-        sub: "Traditional recruiting is limited by human bandwidth. Agentic recruiting is not. Our agents execute sourcing, market mapping, engagement, and intelligence workflows continuously — so our recruiters can focus on judgment, relationships, and closing.",
+        eyebrow: "The AI-Native Platform",
+        headline: "The platform behind every search",
+        sub: "Newport is AI-native: a coordinated system of specialized agents executes sourcing, market mapping, engagement, and intelligence continuously — so our recruiters can focus on judgment, relationships, and closing.",
         primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
       },
       {
@@ -477,12 +477,12 @@ const pages = [
     route: "/staffing-solutions",
     title: "Staffing Solutions | Newport Search Group",
     description:
-      "Direct hire, contract staffing, RPO, and executive search — flexible hiring models powered by agentic recruiting and human relationships.",
+      "Direct hire, contract staffing, RPO, and executive search — flexible hiring models powered by Newport's AI-native platform and human relationships.",
     sections: [
       {
         type: "breadcrumbHero",
         eyebrow: "Staffing Solutions",
-        headline: "Flexible hiring models, one agentic engine",
+        headline: "Flexible hiring models, one AI-native platform",
         sub: "However you need to hire — one critical leader, a project team, or an embedded recruiting function — Newport delivers it with the speed of agents and the judgment of experienced recruiters.",
       },
       {
@@ -492,7 +492,7 @@ const pages = [
         cards: [
           { title: "Direct Hire", body: "Permanent placement for high-growth companies across technical, operational, commercial, and executive functions.", route: "/staffing-solutions/direct-hire" },
           { title: "Contract Staffing", body: "Flexible workforce solutions to scale quickly while maintaining operational control.", route: "/staffing-solutions/contract-staffing" },
-          { title: "RPO", body: "Embedded recruiting teams powered by agentic technology and recruiting leadership.", route: "/staffing-solutions/rpo" },
+          { title: "RPO", body: "Embedded recruiting teams powered by an AI-native platform and recruiting leadership.", route: "/staffing-solutions/rpo" },
           { title: "Executive Search", body: "Retained search for the leaders who set strategy and culture.", route: "/staffing-solutions/executive-search" },
         ],
       },
@@ -574,13 +574,13 @@ const pages = [
     route: "/staffing-solutions/rpo",
     title: "RPO | Newport Search Group",
     description:
-      "Recruitment Process Outsourcing — embedded recruiting teams powered by agentic technology and experienced recruiting leadership.",
+      "Recruitment Process Outsourcing — embedded recruiting teams powered by Newport's AI-native platform and experienced recruiting leadership.",
     sections: [
       {
         type: "breadcrumbHero",
         eyebrow: "Staffing Solutions / RPO",
         headline: "Your recruiting function, embedded and amplified",
-        sub: "Embedded recruiting teams powered by agentic technology and experienced recruiting leadership.",
+        sub: "Embedded recruiting teams powered by an AI-native platform and experienced recruiting leadership.",
         primary: { label: "Schedule a Consultation", route: site.schedulingUrl },
       },
       {
@@ -675,13 +675,13 @@ const pages = [
         id: "offshore",
         eyebrow: "Offshore Recruiting Teams",
         headline: "Stand up offshore recruiting capacity, fast",
-        body: "Expand your sourcing and delivery capacity with offshore recruiting teams built and managed to your standards. We recruit, structure, and ramp the team; our agentic platform makes them productive faster.",
+        body: "Expand your sourcing and delivery capacity with offshore recruiting teams built and managed to your standards. We recruit, structure, and ramp the team; our AI-native platform makes them productive faster.",
         bullets: ["Sourcer and recruiter pods", "Trained on your process and tech stack", "Agent-augmented for higher output", "Managed quality and reporting"],
       },
       {
         type: "split",
         eyebrow: "Agentic Recruiting Transformation",
-        headline: "Modernize your firm with agentic recruiting",
+        headline: "Modernize your firm with an AI-native platform",
         body: "Already have a team? We help staffing and search firms adopt agentic workflows — discovery, mapping, engagement, and intelligence — so your recruiters do more of what only humans can, and your firm competes on speed and coverage.",
         bullets: ["Agentic workflow design", "Tooling and integration guidance", "Recruiter enablement & training", "Productivity benchmarking"],
       },
@@ -702,7 +702,7 @@ const pages = [
     route: "/industries",
     title: "Industries | Newport Search Group",
     description:
-      "Specialized agentic recruiting for cybersecurity, advanced energy, aerospace & defense, manufacturing, technology, and the staffing industry.",
+      "Specialized AI-native recruiting for cybersecurity, advanced energy, aerospace & defense, manufacturing, technology, and the staffing industry.",
     sections: [
       {
         type: "breadcrumbHero",
@@ -942,12 +942,12 @@ const pages = [
     route: "/resources",
     title: "Resources | Newport Search Group",
     description:
-      "Insights on agentic recruiting, hiring trends, the staffing industry, talent intelligence, executive hiring, and AI in recruiting.",
+      "Insights on AI-native recruiting, hiring trends, the staffing industry, talent intelligence, executive hiring, and AI in recruiting.",
     sections: [
       {
         type: "breadcrumbHero",
         eyebrow: "Resources",
-        headline: "Insights from the front lines of agentic recruiting",
+        headline: "Insights from the front lines of AI-native recruiting",
         sub: "Perspectives on where hiring is going — and how to win talent in the markets that matter most.",
       },
       {
@@ -960,7 +960,7 @@ const pages = [
         type: "split",
         eyebrow: "Newsletter",
         headline: "Get our talent intelligence briefing",
-        body: "A periodic, no-fluff briefing on hiring trends and the agentic recruiting shift. Subscribe and stay ahead of the market.",
+        body: "A periodic, no-fluff briefing on hiring trends and the AI-native recruiting shift. Subscribe and stay ahead of the market.",
         cta: { label: "Subscribe", route: "/contact?intent=subscribe" },
       },
     ],
@@ -1133,7 +1133,7 @@ const ctaBlocks = {
 };
 
 const seoKeywords = [
-  "agentic staffing company", "AI recruiting firm", "executive search firm",
+  "AI-native recruiting platform", "AI-native staffing", "agentic staffing company", "AI recruiting firm", "executive search firm",
   "contract staffing agency", "staffing industry recruiting", "recruit recruiters",
   "cybersecurity recruiting", "manufacturing staffing", "aerospace recruiting", "energy recruiting",
 ];
