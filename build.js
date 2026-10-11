@@ -530,25 +530,31 @@ function buildSite() {
       },
     ],
   }));
-  // Legacy URL: the agents page was /agentic-platform/duke-and-scout before
-  // Finn joined. GitHub Pages has no server-side redirects, so serve a
-  // canonical-tagged meta-refresh stub to keep old links and SEO intact.
-  const MOVED_FROM = "/agentic-platform/duke-and-scout";
-  const MOVED_TO = "/agentic-platform/meet-the-agents";
-  writeFile(outFileFor(MOVED_FROM), `<!doctype html>
+  // Legacy URLs → canonical-tagged meta-refresh stubs. GitHub Pages has no
+  // server-side redirects, so serve a stub at each old path to keep inbound
+  // links and SEO intact. Add a row whenever a route or article slug changes.
+  const REDIRECTS = [
+    // The agents page was /agentic-platform/duke-and-scout before Finn joined.
+    { from: "/agentic-platform/duke-and-scout", to: "/agentic-platform/meet-the-agents", label: "Meet the Agents" },
+    // Article retitled when the brand moved to "AI-native recruiting platform".
+    { from: "/resources/what-is-an-agentic-staffing-company", to: "/resources/what-is-an-ai-native-recruiting-platform", label: "What Is an AI-Native Recruiting Platform?" },
+  ];
+  for (const r of REDIRECTS) {
+    writeFile(outFileFor(r.from), `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Meet the Agents | ${esc(site.name)}</title>
-<link rel="canonical" href="https://${site.domain}${MOVED_TO}" />
+<title>${esc(r.label)} | ${esc(site.name)}</title>
+<link rel="canonical" href="https://${site.domain}${r.to}" />
 <meta name="robots" content="noindex, follow" />
-<meta http-equiv="refresh" content="0; url=${BASE}${MOVED_TO}" />
+<meta http-equiv="refresh" content="0; url=${BASE}${r.to}" />
 </head>
 <body>
-<p>This page moved to <a href="${BASE}${MOVED_TO}">Meet the Agents</a>.</p>
-<script>location.replace(${JSON.stringify(BASE + MOVED_TO)});</script>
+<p>This page moved to <a href="${BASE}${r.to}">${esc(r.label)}</a>.</p>
+<script>location.replace(${JSON.stringify(BASE + r.to)});</script>
 </body>
 </html>`);
+  }
 
   // sitemap + robots
   const urls = allPages.map((p) => `  <url><loc>https://${site.domain}${p.route}</loc></url>`).join("\n");
