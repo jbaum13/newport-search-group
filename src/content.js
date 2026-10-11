@@ -89,7 +89,7 @@ const agents = [
 const nav = [
   { label: "Home", route: "/" },
   {
-    label: "Agentic Platform",
+    label: "Platform",
     route: "/agentic-platform",
     children: [
       { label: "Overview", route: "/agentic-platform" },
@@ -138,7 +138,7 @@ const footer = {
       title: "Company",
       links: [
         { label: "About", route: "/about" },
-        { label: "Agentic Platform", route: "/agentic-platform" },
+        { label: "Platform", route: "/agentic-platform" },
         { label: "Meet the Agents", route: "/agentic-platform/meet-the-agents" },
         { label: "Contact", route: "/contact" },
         // Timecard portal — separate Next.js app on Vercel. DISABLED 2026-07-13:
@@ -361,7 +361,7 @@ const pages = [
   // ===================== AGENTIC PLATFORM =====================
   {
     route: "/agentic-platform",
-    title: "Agentic Platform | Newport Search Group",
+    title: "Platform | Newport Search Group",
     description:
       "The AI-native platform behind every Newport search — a coordinated system of agents handling talent discovery, market mapping, engagement, intelligence, and operations around the clock.",
     sections: [

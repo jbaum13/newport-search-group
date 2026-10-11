@@ -25,7 +25,7 @@ _Paste-ready copy for the Wix Editor. One section per heading. Generated from `s
 ## Primary navigation (Wix menu)
 
 - **Home** → `/`
-- **Agentic Platform** → `/agentic-platform`
+- **Platform** → `/agentic-platform`
   - Overview → `/agentic-platform`
   - Meet the Agents → `/agentic-platform/meet-the-agents`
 - **Services** → `/staffing-solutions`
@@ -181,9 +181,9 @@ Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Sched
 
 ---
 
-## Page: Agentic Platform
+## Page: Platform
 **URL slug:** `/agentic-platform`  
-**SEO title:** Agentic Platform | Newport Search Group  
+**SEO title:** Platform | Newport Search Group  
 **Meta description:** The AI-native platform behind every Newport search — a coordinated system of agents handling talent discovery, market mapping, engagement, intelligence, and operations around the clock.
 
 ### Section 1 — Page header
