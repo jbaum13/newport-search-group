@@ -9,28 +9,28 @@
 
 const articles = [
   {
-    slug: "what-is-an-agentic-staffing-company",
-    category: "Agentic Recruiting",
-    title: "What Is an Agentic Staffing Company?",
+    slug: "what-is-an-ai-native-recruiting-platform",
+    category: "AI-Native Recruiting",
+    title: "What Is an AI-Native Recruiting Platform?",
     date: "2026-07-06",
     readTime: "5 min",
     excerpt:
-      "Agentic staffing pairs autonomous AI agents with human recruiters. Here's what that actually means, what the agents do, and why the model outperforms both traditional firms and pure-AI tools.",
+      "An AI-native recruiting platform pairs a coordinated system of AI agents with human recruiters. Here's what that actually means, what the agents do, and why the model beats both traditional firms and bolt-on AI tools.",
     body: [
-      { p: "Every staffing firm now claims to \"use AI.\" Most mean a résumé parser, a chatbot, or an outreach tool a recruiter has to drive by hand. An agentic staffing company is something structurally different: a firm where autonomous software agents execute entire recruiting workflows — sourcing, market mapping, engagement, intelligence — continuously and without being prompted, while human recruiters own judgment, relationships, and the close." },
+      { p: "Every staffing firm now claims to \"use AI.\" Most mean a résumé parser, a chatbot, or an outreach tool a recruiter still has to drive by hand. An AI-native recruiting platform is something structurally different: recruiting built around software from the start, where a coordinated system of autonomous agents executes entire workflows — sourcing, market mapping, engagement, intelligence — continuously and without being prompted, while human recruiters own judgment, relationships, and the close." },
       { h2: "The core idea: divide the work by what it rewards" },
-      { p: "Recruiting is really two jobs fused together. One job rewards speed, repetition, and coverage: searching every channel, mapping every competitor's org chart, following up on time, keeping data clean. The other rewards experience, empathy, and trust: qualifying real fit, advising a hesitant candidate, negotiating an offer that sticks. Traditional firms staff both jobs with the same expensive humans, so both get done partially. Agentic firms split them." },
+      { p: "Recruiting is really two jobs fused together. One job rewards speed, repetition, and coverage: searching every channel, mapping every competitor's org chart, following up on time, keeping data clean. The other rewards experience, empathy, and trust: qualifying real fit, advising a hesitant candidate, negotiating an offer that sticks. Traditional firms staff both jobs with the same expensive humans, so both get done partially. An AI-native platform splits them." },
       { ul: [
         "Agents do the work that scales — 24/7 sourcing, continuous market mapping, personalized outreach at volume, data hygiene, scheduling.",
         "Recruiters do the work that matters — screening for real fit, candidate advocacy, offer strategy, relationship building.",
         "Clients get both — the coverage of automation and a single accountable human partner.",
       ]},
-      { h2: "What the agents actually do" },
-      { p: "At Newport, five specialized agent teams run under every search: Talent Discovery agents build living pipelines instead of one-time lists; Market Mapping agents chart entire companies and talent pools; Candidate Engagement agents keep passive candidates warm until timing is right; Talent Intelligence agents turn market data into briefings; Recruiting Operations agents keep scheduling, tracking, and reporting airtight. None of this replaces the recruiter — it hands the recruiter a materially better starting position every morning." },
+      { h2: "What the platform actually does" },
+      { p: "At Newport, the platform is a team of named agents, coordinated end to end. Beacon orchestrates the search; Scout maps markets and surfaces the signals others miss; Duke reaches and builds the relationships that actually close; Finn looks after candidates. Beneath them run the specialized workflows — talent discovery that builds living pipelines instead of one-time lists, continuous market mapping, candidate engagement that keeps passive talent warm, talent intelligence that turns market data into briefings, and recruiting operations that keep scheduling and tracking airtight. None of it replaces the recruiter — it hands the recruiter a materially better starting position every morning." },
       { h2: "Why not just buy AI tools?" },
-      { p: "Because tools still consume recruiter hours to operate, and internal teams rarely have the volume to keep them sharp. An agentic staffing partner amortizes the technology across hundreds of searches and ships you the output: qualified, contextualized candidates and market intelligence — not another license to manage." },
+      { p: "Because tools still consume recruiter hours to operate, and internal teams rarely have the volume to keep them sharp. An AI-native platform amortizes the technology across hundreds of searches and ships you the output: qualified, contextualized candidates and market intelligence — not another license to manage." },
       { h2: "The test to apply" },
-      { p: "Ask any firm claiming AI capability one question: what happens on your search at 2 a.m.? If the honest answer is \"nothing,\" it's a traditional firm with software. If the answer is \"sourcing, mapping, and engagement are still running,\" you've found an agentic one." },
+      { p: "Ask any firm claiming AI capability one question: what happens on your search at 2 a.m.? If the honest answer is \"nothing,\" it's a traditional firm with software. If the answer is \"sourcing, mapping, and engagement are still running,\" you've found an AI-native platform." },
     ],
   },
   {
