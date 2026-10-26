@@ -16,6 +16,9 @@ const site = {
   category: "AI-Native Recruiting Platform",
   tagline: "Human Connection. Agentic Execution.",
   domain: "newportsg.com",
+  // Manatal-hosted career page. build.js reads open roles from it at build
+  // time (src/jobs-feed.js); every Apply button opens its application form.
+  careersPage: "https://nsg.careers-page.com",
   email: "hello@newportsg.com", // display address shown on the contact page
   emailTo: "jason@newportsg.com", // where the "Email" link actually routes
   schedulingUrl: "mailto:jason@newportsg.com?subject=Schedule%20a%20Consultation",
@@ -888,13 +891,13 @@ const pages = [
     route: "/jobs",
     title: "Jobs | Newport Search Group",
     description:
-      "Search jobs, upload your resume, and set job alerts across engineering, manufacturing, cybersecurity, executive, sales, and operations roles.",
+      "Search open roles and apply online across engineering, manufacturing, cybersecurity, executive, sales, and operations.",
     sections: [
       {
         type: "breadcrumbHero",
         eyebrow: "Jobs",
         headline: "Find your next role",
-        sub: "Search open roles, apply online, and set alerts so the right opportunity finds you.",
+        sub: "Search open roles and apply online in a few minutes. Don't see the right fit? Send us your resume and we'll reach out when one opens.",
         primary: { label: "Submit Your Resume", route: "/contact?intent=candidate" },
       },
       {
@@ -930,8 +933,8 @@ const pages = [
       {
         type: "split",
         eyebrow: "Stay in the loop",
-        headline: "Set up job alerts",
-        body: "Tell us what you're looking for and we'll notify you when matching roles open. Upload your resume once and our recruiters — backed by agentic talent intelligence — will reach out when there's a genuine fit.",
+        headline: "Get matched to new roles",
+        body: "Tell us what you're looking for and we'll reach out when matching roles open. Upload your resume once and our recruiters — backed by agentic talent intelligence — will reach out when there's a genuine fit.",
         cta: { label: "Submit Your Resume", route: "/contact?intent=candidate" },
       },
     ],

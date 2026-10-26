@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # /jobs and the per-job pages are built from the Manatal career page
+  # (src/jobs-feed.js), so rebuild hourly to pick up new and closed roles.
+  # Run it by hand from the Actions tab to publish a new job immediately.
+  schedule:
+    - cron: "17 * * * *"
   workflow_dispatch: {}
 
 # Allow the workflow to publish to Pages via OIDC
@@ -38,6 +43,9 @@ jobs:
         run: node build.js
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Fail rather than publish a /jobs with no roles if Manatal is down;
+          # Pages keeps serving the last good deploy until the next run.
+          JOBS_FEED_REQUIRED: "1"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

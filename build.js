@@ -18,6 +18,9 @@ const AGENT_VER = Object.fromEntries(
 );
 const { site, nav, footer, pages, ctaBlocks, seoKeywords } = require("./src/content");
 const { articles } = require("./src/articles");
+const { fetchJobs } = require("./src/jobs-feed");
+// Filled by the job feed before the site renders (see main at the bottom).
+let JOBS = { ok: false, jobs: [] };
 
 const ROOT = __dirname;
 const DIST = path.join(ROOT, "dist");
@@ -177,6 +180,60 @@ function renderArticleBody(a) {
       <p class="prose-back"><a href="${hrefFor("/resources")}">&larr; All articles</a></p>
     </div></div></article>
     ${renderers.cta(ctaBlocks.buildYourTeam)}`;
+}
+
+// ---- jobs (from the Manatal career page — src/jobs-feed.js) -----------------
+const jobRoute = (j) => `/jobs/${j.slug}`;
+const jobMeta = (j) => [j.location, j.employmentType].filter(Boolean).map(esc).join(" · ");
+// Job data -> page object (rendered via the `job` branch in renderPage)
+const jobPages = () => JOBS.jobs.map((j) => ({
+  route: jobRoute(j),
+  title: `${j.title}${j.city ? ` — ${j.city}` : ""} | Jobs | ${site.name}`,
+  description: j.summary || `${j.title} — an open role represented by ${site.name}.`,
+  job: j,
+  jobTitle: j.title,
+  jobId: j.id,
+}));
+// Apply opens Manatal's hosted form for this job (same tab), so the
+// application lands in the ATS as a candidate on the right job.
+const applyBtn = (j, cls = "btn--primary") => `<a class="btn ${cls}" href="${esc(j.applyUrl)}" rel="noopener">Apply now</a>`;
+
+function renderJobBody(j) {
+  const posted = j.datePosted ? `Posted ${fmtDate(j.datePosted.slice(0, 10))}` : "";
+  const meta = [jobMeta(j), posted].filter(Boolean).join(" · ");
+  const jobsPage = pages.find((p) => p.route === "/jobs");
+  const finn = jobsPage && jobsPage.sections.find((s) => s.type === "agentCta");
+  return `<section class="breadcrumb-hero"><div class="container">
+      <span class="eyebrow">Jobs${j.region ? ` / ${esc(j.region)}` : ""}</span>
+      <h1>${esc(j.title)}</h1>
+      ${meta ? `<p class="article-meta">${meta}</p>` : ""}
+      <div class="btn-row">${applyBtn(j)}<a class="btn btn--ghost" href="${hrefFor("/jobs")}">All open roles</a></div>
+    </div></section>
+    <article class="section"><div class="container"><div class="prose job-desc">
+      ${j.descriptionHtml}
+      <div class="job-apply">
+        <div><h3>Interested in this role?</h3><p>Applying takes a few minutes. Your application goes straight to the Newport recruiter running this search.</p></div>
+        ${applyBtn(j)}
+      </div>
+      <p class="prose-back"><a href="${hrefFor("/jobs")}">&larr; All open roles</a></p>
+    </div></div></article>
+    ${finn ? renderers.agentCta(finn) : ""}`;
+}
+
+// schema.org JobPosting for a job page — makes it eligible for Google's job results.
+function jobPostingLd(j) {
+  const ld = {
+    "@context": "https://schema.org", "@type": "JobPosting",
+    title: j.title, description: j.descriptionHtml, identifier: { "@type": "PropertyValue", name: site.name, value: j.id },
+    datePosted: j.datePosted || undefined, validThrough: j.validThrough || undefined,
+    employmentType: j.employmentTypeRaw.length ? j.employmentTypeRaw : undefined,
+    hiringOrganization: { "@type": "Organization", name: site.name, sameAs: `https://${site.domain}`, logo: `https://${site.domain}/assets/logo.png` },
+    jobLocation: { "@type": "Place", address: { "@type": "PostalAddress", addressLocality: j.city || undefined, addressRegion: j.region || undefined, addressCountry: j.country || undefined } },
+    directApply: false,
+    url: `https://${site.domain}${jobRoute(j)}`,
+  };
+  // "</script>" inside a description must not close the tag early.
+  return JSON.stringify(ld).replace(/</g, "\\u003c");
 }
 
 // Wrap the last word of a heading in a gradient accent span
@@ -357,19 +414,39 @@ const renderers = {
     </div></section>`;
   },
   ctaRef(s) { return renderers.cta(ctaBlocks[s.ref]); },
+  // Open roles from the job feed. The filter ships hidden and main.js reveals
+  // it, so no-JS visitors still get the full list of links.
   jobsearch(s) {
-    return `<section class="section section--tint"><div class="container">
-      ${head(s)}
-      <form class="jobsearch" data-demo onsubmit="return false">
-        <input type="text" placeholder="Keyword, title, or skill" aria-label="Keyword" />
-        <select aria-label="Category">
-          <option>All categories</option><option>Engineering</option><option>Manufacturing</option>
-          <option>Cybersecurity</option><option>Executive</option><option>Staffing Industry</option>
-          <option>Sales</option><option>Operations</option>
+    const careers = site.careersPage;
+    const resume = btn({ label: "Submit Your Resume", route: "/contact?intent=candidate" }, "btn--ghost");
+    let inner;
+    if (!JOBS.ok) {
+      inner = `<div class="jobs-empty"><p>Browse every open role and apply online on our career page.</p>
+        <div class="btn-row">${btn({ label: "View open roles", route: careers }, "btn--primary")}${resume}</div></div>`;
+    } else if (!JOBS.jobs.length) {
+      inner = `<div class="jobs-empty"><p>No roles are posted right now. New searches open every week — send us your resume and we'll reach out when one fits.</p>
+        <div class="btn-row">${resume}</div></div>`;
+    } else {
+      const regions = [...new Set(JOBS.jobs.map((j) => j.region).filter(Boolean))].sort();
+      const list = JOBS.jobs.map((j) => `<a class="card job-card" href="${hrefFor(jobRoute(j))}" data-job-text="${esc([j.title, j.location, j.employmentType, j.summary].join(" ").toLowerCase())}" data-job-region="${esc(j.region)}">
+          <h3>${esc(j.title)}</h3>
+          ${jobMeta(j) ? `<p class="job-card__meta">${jobMeta(j)}</p>` : ""}
+          ${j.summary ? `<p>${esc(j.summary)}${j.summary.length >= 220 ? "…" : ""}</p>` : ""}
+          <span class="arrow">View role →</span>
+        </a>`).join("");
+      inner = `<form class="jobsearch" data-job-filter role="search" hidden onsubmit="return false">
+        <input type="search" name="q" placeholder="Keyword, title, or skill" aria-label="Keyword" />
+        <select name="region" aria-label="Location">
+          <option value="">All locations</option>${regions.map((r) => `<option value="${esc(r)}">${esc(r)}</option>`).join("")}
         </select>
-        <button class="btn btn--primary" type="submit">Search</button>
       </form>
-      <p class="form-status muted" style="margin-top:1rem"></p>
+      <p class="jobs-count muted" aria-live="polite" data-job-count>${JOBS.jobs.length} open ${JOBS.jobs.length === 1 ? "role" : "roles"}</p>
+      <div class="jobs-list">${list}</div>
+      <p class="jobs-none muted" data-job-none hidden>No roles match that search. Try a different keyword or location.</p>`;
+    }
+    return `<section class="section section--tint" id="open-roles"><div class="container">
+      ${head(s)}
+      ${inner}
     </div></section>`;
   },
   form() {
@@ -449,7 +526,7 @@ function renderAgentLauncher(id) {
 function agentContextAttrs(page) {
   const r = page.route || "/";
   let kind = "general";
-  if (r === "/jobs") kind = "job";
+  if (r === "/jobs" || r.startsWith("/jobs/")) kind = "job";
   else if (r === "/contact") kind = "candidate";
   else if (r.startsWith("/industries")) kind = "industry";
   else if (r.startsWith("/staffing-solutions")) kind = "service";
@@ -472,6 +549,8 @@ function agentConfigScript() {
 function renderPage(page) {
   const body = page.article
     ? renderArticleBody(page.article)
+    : page.job
+    ? renderJobBody(page.job)
     : page.sections.map((s) => (renderers[s.type] || (() => ""))(s)).join("\n");
   const kw = page.route === "/" ? seoKeywords.join(", ") : "";
   return `<!doctype html>
@@ -501,7 +580,7 @@ ${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<link rel="canonic
     description: site.positioning, url: `https://${site.domain}`, email: site.email, telephone: site.phone,
     slogan: site.tagline,
   })}</script>
-</head>
+${page.job ? `<script type="application/ld+json">${jobPostingLd(page.job)}</script>\n` : ""}</head>
 <body>
 ${renderHeader(page.route)}
 <main${agentContextAttrs(page)}>
@@ -534,7 +613,7 @@ function buildSite() {
     if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, "assets", a)); // optional assets skipped until added
   }
   fs.copyFileSync(path.join(ROOT, "src/assets/fonts/inter-var.woff2"), path.join(DIST, "assets/fonts/inter-var.woff2"));
-  const allPages = [...pages, ...articlePages];
+  const allPages = [...pages, ...articlePages, ...jobPages()];
   for (const page of allPages) writeFile(outFileFor(page.route), renderPage(page));
   // Branded 404 (GitHub Pages serves /404.html for unknown routes)
   writeFile(path.join(DIST, "404.html"), renderPage({
@@ -605,7 +684,8 @@ ${feedItems}
 `);
   // Custom domain for GitHub Pages (apex). www redirects to it automatically.
   if (site.domain) writeFile(path.join(DIST, "CNAME"), site.domain + "\n");
-  console.log(`✓ Built ${allPages.length} pages (${articlePages.length} articles) → dist/`);
+  const jobsNote = JOBS.ok ? `${JOBS.jobs.length} jobs` : JOBS.skipped ? "job feed skipped" : "job feed unavailable";
+  console.log(`✓ Built ${allPages.length} pages (${articlePages.length} articles, ${jobsNote}) → dist/`);
 }
 
 // ---- Wix export (paste-ready Markdown) ------------------------------------
@@ -671,5 +751,14 @@ function labelFor(t) {
 }
 
 // ---- main ------------------------------------------------------------------
-buildSite();
-if (process.argv.includes("--wix")) buildWix();
+(async () => {
+  JOBS = await fetchJobs(site.careersPage);
+  // Deploys set this so a feed outage never publishes a /jobs with no roles —
+  // the build fails and GitHub Pages keeps serving the last good deploy.
+  if (process.env.JOBS_FEED_REQUIRED === "1" && !JOBS.ok) {
+    console.error("✗ Job feed required (JOBS_FEED_REQUIRED=1) but unavailable — not building.");
+    process.exit(1);
+  }
+  buildSite();
+  if (process.argv.includes("--wix")) buildWix();
+})().catch((err) => { console.error(err); process.exit(1); });
