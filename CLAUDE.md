@@ -27,6 +27,7 @@ BASE_PATH=/newport-search-group npm run build:site   # sub-path build (GitHub Pa
 ```bash
 npm test                 # build, then run the agent smoke test (skips if Playwright is absent)
 FINN_ENDPOINT=https://… BEACON_ENDPOINT=https://… node build.js   # point the agents at real services
+JOBS_FEED=off node build.js                                          # skip the Manatal job fetch (offline)
 ```
 
 `.github/workflows/deploy.yml` builds and publishes `dist/` to GitHub Pages on every push to `main`, auto-detecting the Pages base path. `.github/workflows/test.yml` runs the smoke test on every pull request and fails if `WIX-CONTENT.md` has drifted from `src/content.js` — regenerate it with `node build.js --wix` and commit the result.
