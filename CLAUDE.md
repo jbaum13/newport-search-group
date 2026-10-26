@@ -74,6 +74,14 @@ The `agentCta` section type drops a contextual block into any page (`agent:` pic
 
 `/agentic-platform/duke-and-scout` was renamed to `/agentic-platform/meet-the-agents` when Finn and Beacon joined. `build.js` emits a canonical-tagged meta-refresh stub at the old path — GitHub Pages has no server-side redirects, so don't delete it.
 
+## Jobs (Manatal feed)
+
+`/jobs` and one page per role (`/jobs/<title-slug>-<id8>`) are built from the Manatal-hosted career page (`site.careersPage`) by `src/jobs-feed.js`: it reads the listing's `/jobs/<uuid>` links and each job's JSON-LD `JobPosting` — no API key. Every Apply button opens Manatal's form (`…/jobs/<uuid>/apply`), so applicants land in Manatal as candidates on that job. Descriptions are recruiter HTML and pass through `sanitize()` (tag allowlist, no attributes) before rendering.
+
+- Publishing a job = toggling it to published in Manatal. `deploy.yml` rebuilds hourly (or run it by hand from Actions) to pick it up.
+- Locally a failed fetch falls back to a "View open roles" link. Deploys set `JOBS_FEED_REQUIRED=1`, so an outage fails the build and Pages keeps the last good site instead of publishing an empty `/jobs`.
+- The career page rate-limits (HTTP 429); `get()` retries with backoff. Don't remove the spacing between job fetches.
+
 ## Known gaps (from REVIEW.md)
 
-The contact form and Jobs search are not wired to anything yet — before a real launch, connect the form (`build.js` `form()` / `src/main.js`) to a CRM/email and Jobs to an ATS. REVIEW.md lists remaining recommendations: proof/case studies, lead routing, a real job feed, Resources content.
+The contact form is not wired to anything yet — before a real launch, connect it (`build.js` `form()` / `src/main.js`) to a CRM/email. REVIEW.md lists remaining recommendations: proof/case studies, lead routing, Resources content.

@@ -751,12 +751,12 @@ Buttons: [Schedule a Consultation] → `mailto:jason@newportsg.com?subject=Sched
 ## Page: Jobs
 **URL slug:** `/jobs`  
 **SEO title:** Jobs | Newport Search Group  
-**Meta description:** Search jobs, upload your resume, and set job alerts across engineering, manufacturing, cybersecurity, executive, sales, and operations roles.
+**Meta description:** Search open roles and apply online across engineering, manufacturing, cybersecurity, executive, sales, and operations.
 
 ### Section 1 — Page header
 *Eyebrow:* Jobs  
 **Find your next role**  
-Search open roles, apply online, and set alerts so the right opportunity finds you.
+Search open roles and apply online in a few minutes. Don't see the right fit? Send us your resume and we'll reach out when one opens.
 Buttons: [Submit Your Resume] → `/contact?intent=candidate`
 
 ### Section 2 — Job search
@@ -780,8 +780,8 @@ Buttons: [undefined] → `undefined`
 
 ### Section 5 — Split feature
 *Eyebrow:* Stay in the loop  
-**Set up job alerts**  
-Tell us what you're looking for and we'll notify you when matching roles open. Upload your resume once and our recruiters — backed by agentic talent intelligence — will reach out when there's a genuine fit.
+**Get matched to new roles**  
+Tell us what you're looking for and we'll reach out when matching roles open. Upload your resume once and our recruiters — backed by agentic talent intelligence — will reach out when there's a genuine fit.
 Buttons: [Submit Your Resume] → `/contact?intent=candidate`
 
 

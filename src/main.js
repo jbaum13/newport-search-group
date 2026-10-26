@@ -68,6 +68,34 @@
     });
   }
 
+  // Job list filter (/jobs). The form ships hidden so no-JS visitors just see
+  // the full list; here we reveal it and filter cards by keyword + location.
+  var jobFilter = document.querySelector("form[data-job-filter]");
+  if (jobFilter) {
+    var cards = Array.prototype.slice.call(document.querySelectorAll(".job-card"));
+    var count = document.querySelector("[data-job-count]");
+    var none = document.querySelector("[data-job-none]");
+    var q = jobFilter.querySelector("[name=q]");
+    var region = jobFilter.querySelector("[name=region]");
+    var apply = function () {
+      var words = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+      var r = region.value;
+      var shown = 0;
+      cards.forEach(function (c) {
+        var text = c.getAttribute("data-job-text") || "";
+        var ok = (!r || c.getAttribute("data-job-region") === r) &&
+          words.every(function (w) { return text.indexOf(w) !== -1; });
+        c.hidden = !ok;
+        if (ok) shown++;
+      });
+      if (count) count.textContent = shown + " of " + cards.length + " open " + (cards.length === 1 ? "role" : "roles");
+      if (none) none.hidden = shown !== 0;
+    };
+    jobFilter.hidden = false;
+    q.addEventListener("input", apply);
+    region.addEventListener("change", apply);
+  }
+
   // Scroll reveal — elements fade/slide in as they enter the viewport.
   // Gated by the 'anim' class so content still shows if JS is disabled.
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
