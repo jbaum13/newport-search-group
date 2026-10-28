@@ -608,7 +608,7 @@ function buildSite() {
   fs.copyFileSync(path.join(ROOT, "src/agent.css"), path.join(DIST, "agent.css"));
   for (const f of Object.values(AGENT_JS)) fs.copyFileSync(path.join(ROOT, "src", f), path.join(DIST, f));
   fs.mkdirSync(path.join(DIST, "assets", "fonts"), { recursive: true });
-  for (const a of ["logo.png", "logo-white.png", "logo-white@2x.png", "favicon.png", "og-image.png", "duke.png", "scout.png", "finn.png", "finn-avatar.png", "beacon.png", "beacon-avatar.png"]) {
+  for (const a of ["logo.png", "logo-white.png", "logo-white@2x.png", "email-signature-logo.png", "favicon.png", "og-image.png", "duke.png", "scout.png", "finn.png", "finn-avatar.png", "beacon.png", "beacon-avatar.png"]) {
     const src = path.join(ROOT, "src/assets", a);
     if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, "assets", a)); // optional assets skipped until added
   }
