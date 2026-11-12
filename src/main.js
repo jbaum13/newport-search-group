@@ -55,16 +55,94 @@
     }
   }
 
-  // Demo form handler (replace action with a real endpoint or Wix form)
-  var form = document.querySelector("form[data-demo]");
+  // Contact form. With a build-time endpoint (data-endpoint) the enquiry is
+  // POSTed as JSON to a service we run or rent; without one, or if that call
+  // fails, it falls back to a prefilled email so no enquiry is silently lost.
+  // Nothing here holds a credential, and no field value reaches analytics.
+  var form = document.querySelector("form[data-contact]");
   if (form) {
+    var status = form.querySelector(".form-status");
+    var button = form.querySelector('button[type="submit"]');
+    var value = function (name) {
+      var el = form.elements[name];
+      return el && el.value ? String(el.value).trim() : "";
+    };
+    var say = function (text, tone, link) {
+      if (!status) return;
+      status.textContent = text;
+      status.setAttribute("data-tone", tone || "");
+      if (link) {
+        var a = document.createElement("a");
+        a.href = link.href;
+        a.textContent = link.text;
+        a.setAttribute("data-contact-fallback", "");
+        status.appendChild(document.createTextNode(" "));
+        status.appendChild(a);
+      }
+      // The message sits under the Send button; make sure an outcome is seen.
+      if (tone && status.scrollIntoView) status.scrollIntoView({ block: "center", behavior: "instant" });
+    };
+    var mailtoHref = function (d) {
+      var lines = [
+        "Name: " + d.name,
+        d.company ? "Company: " + d.company : "",
+        "Email: " + d.email,
+        d.phone ? "Phone: " + d.phone : "",
+        "Hiring need: " + d.hiringNeed,
+        "",
+        d.message,
+      ].filter(function (l, i) { return l !== "" || i === 5; });
+      return "mailto:" + form.getAttribute("data-mailto") +
+        "?subject=" + encodeURIComponent(d._subject) +
+        "&body=" + encodeURIComponent(lines.join("\n"));
+    };
+    var track = function (evt, d) {
+      var data = { hiringNeed: d.hiringNeed, intent: d.intent || "" };
+      document.dispatchEvent(new CustomEvent("newport-contact", { detail: { event: evt, data: data } }));
+      if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: evt, hiringNeed: data.hiringNeed, intent: data.intent });
+    };
+    var byEmail = function (d, lead) {
+      var href = mailtoHref(d);
+      say(lead, "warn", { href: href, text: "Open your email app" });
+      track("contact_form_email_fallback", d);
+      window.location.href = href;
+    };
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var note = form.querySelector(".form-status");
-      if (note) {
-        note.textContent = "Thanks — this is a demo build. Wire this form to your CRM, email, or Wix form to go live.";
-        note.style.color = "var(--blue)";
+      if (form.getAttribute("data-busy")) return;
+      var d = {
+        name: value("name"), company: value("company"), email: value("email"),
+        phone: value("phone"), hiringNeed: value("hiringNeed"), message: value("message"),
+        intent: intent || "", page: window.location.pathname,
+      };
+      d._subject = "Website enquiry: " + d.hiringNeed + " (" + d.name + ")";
+      // Honeypot: a filled trap field is a bot. Report success and send nothing.
+      if (value("_gotcha")) { say("Thanks. We have your message and will be in touch shortly.", "ok"); form.reset(); return; }
+
+      var endpoint = form.getAttribute("data-endpoint");
+      if (!endpoint) {
+        byEmail(d, "Your email app should open with this message ready to send. If it did not:");
+        return;
       }
+      form.setAttribute("data-busy", "1");
+      if (button) button.disabled = true;
+      say("Sending…", "");
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(d),
+      }).then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        say("Thanks, " + d.name.split(" ")[0] + ". We have your message and will be in touch shortly.", "ok");
+        track("contact_form_submitted", d);
+        form.reset();
+      }).catch(function () {
+        byEmail(d, "We could not send that just now. Your message is not lost:");
+      }).then(function () {
+        form.removeAttribute("data-busy");
+        if (button) button.disabled = false;
+      });
     });
   }
 

@@ -286,6 +286,12 @@ a.card:hover .card__icon { background: var(--blue); color: #fff; transform: tran
 .contact-aside h3 { margin-top: 0; }
 .contact-aside a { color: var(--blue); font-weight: 600; }
 .form-note { font-size: 0.85rem; color: var(--steel-500); }
+.form-status:empty { display: none; }
+.form-status[data-tone="ok"] { color: #0f7a4d; font-weight: 600; }
+.form-status[data-tone="warn"] { color: var(--ink, #0b1220); }
+.form-status a, .form-note a { color: var(--blue-btn); text-decoration: underline; }
+/* Honeypot: off-screen for people, present for bots. Not display:none, which some bots skip. */
+.field--trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* ---- Job search ---- */
 .jobsearch {

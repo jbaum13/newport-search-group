@@ -28,6 +28,7 @@ BASE_PATH=/newport-search-group npm run build:site   # sub-path build (GitHub Pa
 npm test                 # build, then run the agent smoke test (skips if Playwright is absent)
 FINN_ENDPOINT=https://… BEACON_ENDPOINT=https://… node build.js   # point the agents at real services
 JOBS_FEED=off node build.js                                          # skip the Manatal job fetch (offline)
+CONTACT_ENDPOINT=https://… node build.js                             # where the contact form posts
 ```
 
 `.github/workflows/deploy.yml` builds and publishes `dist/` to GitHub Pages on every push to `main`, auto-detecting the Pages base path. `.github/workflows/test.yml` runs the smoke test on every pull request and fails if `WIX-CONTENT.md` has drifted from `src/content.js` — regenerate it with `node build.js --wix` and commit the result.
@@ -85,4 +86,14 @@ The `agentCta` section type drops a contextual block into any page (`agent:` pic
 
 ## Known gaps (from REVIEW.md)
 
-The contact form is not wired to anything yet — before a real launch, connect it (`build.js` `form()` / `src/main.js`) to a CRM/email. REVIEW.md lists remaining recommendations: proof/case studies, lead routing, Resources content.
+REVIEW.md lists remaining recommendations: proof/case studies, real booking, Resources content.
+
+## Contact form
+
+`/contact` posts the enquiry as JSON to `CONTACT_ENDPOINT`, a build-time URL (`build.js` `form()` renders it as `data-endpoint`; the handler is in `src/main.js`). Deploys read it from the repository variable of the same name.
+
+- Payload: `{ name, company, email, phone, hiringNeed, message, intent, page, _subject }`, sent with `Accept: application/json`. Any 2xx is success. That shape works with a form relay as-is and is what a Harbor lead endpoint should accept.
+- **Unset, or when the POST fails, the form falls back to a prefilled email** to `site.emailTo` and says so. An enquiry is never silently dropped; never reintroduce a handler that only shows a message.
+- The endpoint is a URL, never a key. Same rule as the agent endpoints.
+- `_gotcha` is a honeypot: a filled value reports success and sends nothing.
+- Events `contact_form_submitted` / `contact_form_email_fallback` go to a `newport-contact` DOM event and `window.dataLayer` with `hiringNeed` and `intent` only. No field values.

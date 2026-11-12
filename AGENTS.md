@@ -185,5 +185,5 @@ the legacy-URL redirect.
 - **No agent endpoints.** Both ship on their knowledge layers.
 - **No visitor context.** `visitorContext` is in the adapter signature and always
   `null`; it needs an authenticated session or a CRM (Attio) to mean anything.
-- **Contact form is still a demo handler** (pre-existing — see `REVIEW.md`).
+- **Contact form needs `CONTACT_ENDPOINT` set to deliver server-side.** Until it is, both agents' handoffs end at a form that falls back to a prefilled email (see `CLAUDE.md`, "Contact form").
   Both agents hand off to it, so wiring it up matters more now than it did.
