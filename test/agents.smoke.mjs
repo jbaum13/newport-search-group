@@ -32,7 +32,22 @@ try {
 const TYPES = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript",
   ".png": "image/png", ".jpg": "image/jpeg", ".woff2": "font/woff2", ".xml": "application/xml", ".txt": "text/plain" };
 
+// Stand-in for the contact endpoint: /__contact accepts, anything else fails.
+const posts = [];
 const server = createServer(async (req, res) => {
+  if (req.method === "POST") {
+    let body = "";
+    for await (const chunk of req) body += chunk;
+    if (req.url === "/__contact") {
+      posts.push({ headers: req.headers, body: JSON.parse(body) });
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end('{"ok":true}');
+    } else {
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end('{"error":"down"}');
+    }
+    return;
+  }
   let p = decodeURIComponent(req.url.split("?")[0]);
   if (p.endsWith("/")) p += "index.html";
   const file = path.join(DIST, p);
@@ -239,6 +254,104 @@ console.log("\nshared behaviour");
   await r.goto(BASE + "/agentic-platform/duke-and-scout/", { waitUntil: "networkidle" });
   ok("legacy agents URL redirects", r.url().includes("meet-the-agents"), r.url());
   await r.close();
+}
+
+// ----------------------------------------------------------- contact form --
+// The form must never swallow an enquiry: it either reaches the endpoint or
+// hands the visitor a prefilled email. These checks never touch a real
+// endpoint — data-endpoint is always overridden or removed first.
+console.log("\ncontact form");
+{
+  const LEAD = { name: "Ada Lovelace", company: "Analytical Engines", email: "ada@example.test",
+    phone: "555 0100", message: "We need two IAM engineers." };
+  const open = async (endpoint) => {
+    const page = await browser.newPage();
+    const events = [];
+    await page.exposeFunction("__contactEvent", (e, d) => events.push({ e, d }));
+    await page.addInitScript(() => {
+      document.addEventListener("newport-contact", (ev) => window.__contactEvent(ev.detail.event, ev.detail.data));
+    });
+    page.on("pageerror", (e) => errors.push(`/contact/: ${e}`));
+    await page.goto(BASE + "/contact/?intent=recruiter", { waitUntil: "networkidle" });
+    await page.evaluate((url) => {
+      const f = document.querySelector("form[data-contact]");
+      if (url) f.setAttribute("data-endpoint", url); else f.removeAttribute("data-endpoint");
+    }, endpoint);
+    return { page, events };
+  };
+  const fill = async (page) => {
+    for (const [k, v] of Object.entries(LEAD)) await page.fill(`#${k}`, v);
+  };
+  const send = (page) => page.click('form[data-contact] button[type="submit"]');
+  const tone = (page) => page.getAttribute(".form-status", "data-tone");
+
+  // No endpoint -> prefilled email, and the visitor is told.
+  let { page, events } = await open(null);
+  ok("demo handler is gone", (await page.locator("form[data-demo]").count()) === 0);
+  ok("?intent= preselects the hiring need", (await page.inputValue("#hiringNeed")) === "Staffing Firm — Hire Recruiters");
+  await send(page);
+  ok("empty required fields block the submit", (await page.textContent(".form-status")) === "");
+  await fill(page);
+  await send(page);
+  await page.waitForSelector("[data-contact-fallback]");
+  const href = decodeURIComponent(await page.getAttribute("[data-contact-fallback]", "href"));
+  ok("no endpoint -> prefilled email fallback", href.startsWith("mailto:") && href.includes(LEAD.name) &&
+    href.includes(LEAD.message) && href.includes("Staffing Firm"), href.slice(0, 60));
+  ok("fallback keeps what the visitor typed", (await page.inputValue("#message")) === LEAD.message);
+  ok("fallback event fired", events.some((e) => e.e === "contact_form_email_fallback"));
+  ok("no field values in analytics", !JSON.stringify(events).includes("ada@") && !JSON.stringify(events).includes("Lovelace"), "no PII");
+  await page.close();
+
+  // Endpoint accepts -> JSON POST, confirmation, cleared form.
+  ({ page, events } = await open(BASE + "/__contact"));
+  await fill(page);
+  await send(page);
+  await page.waitForSelector('.form-status[data-tone="ok"]');
+  const sent = posts[0] || { headers: {}, body: {} };
+  ok("endpoint receives one JSON POST", posts.length === 1 && /application\/json/.test(sent.headers["content-type"] || "") &&
+    /application\/json/.test(sent.headers.accept || ""));
+  ok("payload carries every field", Object.entries(LEAD).every(([k, v]) => sent.body[k] === v) &&
+    sent.body.hiringNeed === "Staffing Firm — Hire Recruiters");
+  ok("payload carries intent, page and subject", sent.body.intent === "recruiter" && sent.body.page === "/contact/" &&
+    /Website enquiry/.test(sent.body._subject || ""));
+  ok("visitor sees a confirmation", /Thanks, Ada/.test(await page.textContent(".form-status")));
+  ok("form clears after a successful send", (await page.inputValue("#email")) === "");
+  ok("submitted event fired", events.some((e) => e.e === "contact_form_submitted"));
+  await page.screenshot({ path: path.join(SHOTS, "contact-sent.png") });
+  ok("confirmation message is on screen", await page.evaluate(() => {
+    const r = document.querySelector(".form-status").getBoundingClientRect();
+    return r.top >= 0 && r.bottom <= innerHeight;
+  }));
+  await page.close();
+
+  // Endpoint down -> the enquiry is not lost.
+  ({ page } = await open(BASE + "/__contact-down"));
+  await fill(page);
+  await send(page);
+  await page.waitForSelector("[data-contact-fallback]");
+  ok("endpoint failure -> email fallback", (await tone(page)) === "warn" &&
+    decodeURIComponent(await page.getAttribute("[data-contact-fallback]", "href")).includes(LEAD.message));
+  ok("failed send keeps what the visitor typed", (await page.inputValue("#message")) === LEAD.message);
+  ok("send button is usable again", await page.isEnabled('form[data-contact] button[type="submit"]'));
+  await page.screenshot({ path: path.join(SHOTS, "contact-fallback.png") });
+  ok("fallback message is on screen", await page.evaluate(() => {
+    const r = document.querySelector(".form-status").getBoundingClientRect();
+    return r.top >= 0 && r.bottom <= innerHeight;
+  }));
+  await page.close();
+
+  // Honeypot filled -> looks like success, sends nothing.
+  ({ page } = await open(BASE + "/__contact"));
+  await fill(page);
+  await page.evaluate(() => { document.querySelector('[name="_gotcha"]').value = "http://spam.example"; });
+  await send(page);
+  await page.waitForSelector('.form-status[data-tone="ok"]');
+  ok("honeypot submissions are dropped", posts.length === 1, `${posts.length} POST(s) total`);
+  ok("honeypot is hidden from people", await page.evaluate(() => {
+    const r = document.querySelector(".field--trap").getBoundingClientRect();
+    return r.right < 0;
+  }));
+  await page.close();
 }
 
 ok("no uncaught page errors", errors.length === 0, errors.join(" | "));

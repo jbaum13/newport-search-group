@@ -35,6 +35,11 @@ const AGENT_ENDPOINTS = {
   finn: (process.env.FINN_ENDPOINT || "").trim() || null,
   beacon: (process.env.BEACON_ENDPOINT || "").trim() || null,
 };
+// Contact form destination: a URL to a service that accepts a JSON POST and
+// delivers the enquiry (a form relay today, the Harbor later). Same rule as the
+// agent endpoints — it is a URL, never a key. Unset, the form falls back to a
+// prefilled email so an enquiry is never silently dropped.
+const CONTACT_ENDPOINT = (process.env.CONTACT_ENDPOINT || "").trim() || null;
 let BASE = (process.env.BASE_PATH || "").trim();
 if (BASE === "/") BASE = "";
 BASE = BASE.replace(/\/+$/, ""); // no trailing slash
@@ -451,14 +456,14 @@ const renderers = {
   },
   form() {
     return `<section class="section"><div class="container"><div class="form-wrap">
-      <form class="form" data-demo>
+      <form class="form" data-contact data-mailto="${esc(site.emailTo || site.email)}"${CONTACT_ENDPOINT ? ` data-endpoint="${esc(CONTACT_ENDPOINT)}"` : ""}>
         <div class="grid2">
-          <div class="field"><label for="name">Name</label><input id="name" name="name" required /></div>
-          <div class="field"><label for="company">Company</label><input id="company" name="company" /></div>
+          <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required /></div>
+          <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" /></div>
         </div>
         <div class="grid2">
-          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required /></div>
-          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" /></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
         </div>
         <div class="field"><label for="hiringNeed">Hiring Need</label>
           <select id="hiringNeed" name="hiringNeed">
@@ -473,8 +478,10 @@ const renderers = {
           </select>
         </div>
         <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="5"></textarea></div>
+        <div class="field field--trap" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="_gotcha" tabindex="-1" autocomplete="off" /></div>
         <div><button class="btn btn--primary" type="submit">Send</button></div>
-        <p class="form-status form-note"></p>
+        <p class="form-status form-note" role="status" aria-live="polite"></p>
+        <p class="form-note">We use these details only to reply to your enquiry. See our <a href="${hrefFor("/privacy-policy")}">Privacy Policy</a>.</p>
       </form>
       <aside class="contact-aside">
         <h3>Talk to a recruiter</h3>

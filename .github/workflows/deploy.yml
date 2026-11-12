@@ -46,6 +46,10 @@ jobs:
           # Fail rather than publish a /jobs with no roles if Manatal is down;
           # Pages keeps serving the last good deploy until the next run.
           JOBS_FEED_REQUIRED: "1"
+          # Where the contact form posts. Set the repository variable
+          # CONTACT_ENDPOINT (Settings → Variables) to a URL; it is not a secret.
+          # Unset, the form falls back to a prefilled email.
+          CONTACT_ENDPOINT: ${{ vars.CONTACT_ENDPOINT }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

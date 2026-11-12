@@ -49,9 +49,9 @@ Contract Staffing, RPO, Executive Search) · Staffing Industry · Industries
 ## Two ways to ship
 
 1. **As a real site** — deploy `dist/` to any static host (Netlify, Vercel,
-   Cloudflare Pages, S3). Pretty URLs work out of the box. Before launch, wire the
-   contact form (`build.js` `form()` / `src/main.js`) to your CRM or email, and
-   connect the Jobs search to your ATS.
+   Cloudflare Pages, S3). Pretty URLs work out of the box. Set
+   `CONTACT_ENDPOINT` at build time so the contact form posts to your form
+   service or CRM; without it the form falls back to a prefilled email.
 2. **In Wix** — follow `WIX-CONTENT.md`: theme colors, fonts, menu structure,
    per-page SEO, and every section's copy ready to paste.
 
