@@ -220,6 +220,22 @@ function renderJobBody(j) {
     ${finn ? renderers.agentCta(finn) : ""}`;
 }
 
+// schema.org Article for a Resources article — tells search engines and answer
+// engines this is a dated, attributed piece rather than a generic page.
+function articleLd(a) {
+  const url = `https://${site.domain}${articleRoute(a)}`;
+  const org = { "@type": "Organization", name: site.name, url: `https://${site.domain}` };
+  return JSON.stringify({
+    "@context": "https://schema.org", "@type": "Article",
+    headline: a.title, description: a.excerpt, articleSection: a.category || undefined,
+    datePublished: a.date, dateModified: a.updated || a.date,
+    author: org,
+    publisher: { ...org, logo: { "@type": "ImageObject", url: `https://${site.domain}/assets/logo.png` } },
+    image: `https://${site.domain}/assets/og-image.png`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url }, url,
+  }).replace(/</g, "\\u003c");
+}
+
 // schema.org JobPosting for a job page — makes it eligible for Google's job results.
 function jobPostingLd(j) {
   const ld = {
@@ -564,8 +580,8 @@ ${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<link rel="canonic
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)} — Resources" href="https://${site.domain}/feed.xml" />
 <meta property="og:title" content="${esc(page.title)}" />
 <meta property="og:description" content="${esc(page.description)}" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://${site.domain}${page.route === "/404.html" ? "/" : page.route}" />
+<meta property="og:type" content="${page.article ? "article" : "website"}" />
+${page.article ? `<meta property="article:published_time" content="${esc(page.article.date)}" />\n` : ""}<meta property="og:url" content="https://${site.domain}${page.route === "/404.html" ? "/" : page.route}" />
 <meta property="og:image" content="https://${site.domain}/assets/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -578,9 +594,9 @@ ${kw ? `<meta name="keywords" content="${esc(kw)}" />\n` : ""}<link rel="canonic
 <script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org", "@type": "Organization", name: site.name,
     description: site.positioning, url: `https://${site.domain}`, email: site.email, telephone: site.phone,
-    slogan: site.tagline,
+    slogan: site.tagline, logo: `https://${site.domain}/assets/logo.png`,
   })}</script>
-${page.job ? `<script type="application/ld+json">${jobPostingLd(page.job)}</script>\n` : ""}</head>
+${page.article ? `<script type="application/ld+json">${articleLd(page.article)}</script>\n` : ""}${page.job ? `<script type="application/ld+json">${jobPostingLd(page.job)}</script>\n` : ""}</head>
 <body>
 ${renderHeader(page.route)}
 <main${agentContextAttrs(page)}>
@@ -658,7 +674,12 @@ function buildSite() {
   }
 
   // sitemap + robots
-  const urls = allPages.map((p) => `  <url><loc>https://${site.domain}${p.route}</loc></url>`).join("\n");
+  // <lastmod> only where a real date exists (an article's date, a job's posted
+  // date). A build timestamp on every URL would change hourly and teach
+  // crawlers to ignore the field.
+  const isoDay = (d) => (/^\d{4}-\d{2}-\d{2}/.test(d || "") ? d.slice(0, 10) : "");
+  const lastmod = (p) => isoDay(p.article ? p.article.updated || p.article.date : p.job ? p.job.datePosted : "");
+  const urls = allPages.map((p) => `  <url><loc>https://${site.domain}${p.route}</loc>${lastmod(p) ? `<lastmod>${lastmod(p)}</lastmod>` : ""}</url>`).join("\n");
   writeFile(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
   writeFile(path.join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: https://${site.domain}/sitemap.xml\n`);
   // RSS feed of articles — powers auto-posting (Buffer / n8n RSS trigger) and readers.

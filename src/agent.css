@@ -27,6 +27,9 @@
   box-shadow: 0 16px 40px -14px rgba(10, 17, 36, 0.6);
   transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
 }
+/* The launcher floats over the bottom-right corner on every page. Give the
+   footer room beneath its last row so the launcher never covers it. */
+.site-footer { padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px)); }
 .agent-launcher:hover { transform: translateY(-2px); background: var(--navy-800); }
 .agent-launcher:focus-visible { outline: 2px solid var(--blue-bright); outline-offset: 3px; }
 .agent-launcher[hidden] { display: none; }

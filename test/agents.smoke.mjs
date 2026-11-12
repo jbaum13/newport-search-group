@@ -235,6 +235,80 @@ console.log("\nshared behaviour");
   await a.screenshot({ path: path.join(SHOTS, "agents-page.png"), fullPage: true });
   await a.close();
 
+  // Header: nav labels stay on one line and nothing overflows, at each tier.
+  const header = async (width, height = 800) => {
+    const h = await browser.newPage({ viewport: { width, height } });
+    await h.goto(BASE + "/", { waitUntil: "networkidle" });
+    const m = await h.evaluate(() => {
+      const box = (el) => el.getBoundingClientRect();
+      const nav = document.querySelector(".nav");
+      const inner = document.querySelector(".site-header .container");
+      const edge = box(inner).right - parseFloat(getComputedStyle(inner).paddingRight);
+      return {
+        navShown: getComputedStyle(nav).display !== "none",
+        wrapped: [...nav.children].filter((el) => box(el).height > 48).length,
+        overflow: Math.round(box(nav).right - edge),
+        brandSquashed: box(document.querySelector(".site-header .brand img")).width < 100,
+        headerH: Math.round(box(inner).height),
+        pageOverflow: document.documentElement.scrollWidth > innerWidth,
+      };
+    });
+    return { h, m };
+  };
+  for (const width of [1920, 1366, 1181, 1180, 1041]) {
+    const { h, m } = await header(width);
+    ok(`header fits on one line at ${width}px`, m.navShown && m.wrapped === 0 && m.overflow <= 0 && !m.brandSquashed && !m.pageOverflow,
+      JSON.stringify(m));
+    await h.close();
+  }
+  {
+    const { h, m } = await header(1040);
+    ok("nav collapses to the menu button at 1040px", !m.navShown && (await h.isVisible(".nav-toggle")) && !m.pageOverflow);
+    await h.close();
+  }
+  {
+    const { h, m } = await header(390, 700);
+    ok("phone header is compact", m.headerH <= 76, `${m.headerH}px`);
+    await h.click(".nav-toggle");
+    const menu = await h.evaluate(() => {
+      const r = document.querySelector(".nav").getBoundingClientRect();
+      return { bottom: Math.round(r.bottom), vh: innerHeight };
+    });
+    ok("open phone menu stays within the screen", menu.bottom <= menu.vh, `${menu.bottom}/${menu.vh}`);
+    await h.close();
+  }
+
+  // Footer: the floating launcher must not cover the last row at page end.
+  for (const [width, height] of [[1366, 700], [390, 700]]) {
+    const f = await browser.newPage({ viewport: { width, height } });
+    await f.goto(BASE + "/about/", { waitUntil: "networkidle" });
+    await f.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await f.waitForTimeout(700);
+    const clear = await f.evaluate(() => {
+      const l = document.querySelector(".agent-launcher").getBoundingClientRect();
+      return [...document.querySelectorAll(".footer-bottom > *")].every((el) => {
+        const r = el.getBoundingClientRect();
+        return r.bottom <= l.top || r.right <= l.left || r.top >= l.bottom;
+      });
+    });
+    ok(`launcher clears the footer's last row at ${width}px`, clear);
+    if (width === 1366) await f.screenshot({ path: path.join(SHOTS, "footer-clear.png") });
+    await f.close();
+  }
+
+  // Search markup: articles are articles; the sitemap dates what it can.
+  const articleHtml = await readFile(path.join(DIST, "resources/what-is-an-ai-native-recruiting-platform/index.html"), "utf8");
+  const lds = [...articleHtml.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((x) => JSON.parse(x[1]));
+  const art = lds.find((x) => x["@type"] === "Article");
+  ok("article pages carry Article markup", !!art && art.datePublished === "2026-07-06" && !!art.author && !!art.publisher.logo);
+  ok("article pages are og:type article", /property="og:type" content="article"/.test(articleHtml) &&
+    /property="article:published_time" content="2026-07-06"/.test(articleHtml));
+  const homeHtml = await readFile(path.join(DIST, "index.html"), "utf8");
+  ok("non-article pages stay og:type website", /property="og:type" content="website"/.test(homeHtml) && !/"@type":"Article"/.test(homeHtml));
+  const sitemap = await readFile(path.join(DIST, "sitemap.xml"), "utf8");
+  ok("sitemap dates articles", /what-is-an-ai-native-recruiting-platform<\/loc><lastmod>2026-07-06<\/lastmod>/.test(sitemap));
+  ok("sitemap does not invent dates for static pages", /<loc>https:\/\/newportsg\.com\/about<\/loc><\/url>/.test(sitemap));
+
   const r = await browser.newPage();
   await r.goto(BASE + "/agentic-platform/duke-and-scout/", { waitUntil: "networkidle" });
   ok("legacy agents URL redirects", r.url().includes("meet-the-agents"), r.url());
