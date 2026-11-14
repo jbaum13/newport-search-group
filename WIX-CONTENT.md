@@ -15,7 +15,7 @@ _Paste-ready copy for the Wix Editor. One section per heading. Generated from `s
 **Theme colors** (Wix → Site Design → Color):
 - Primary / Background dark: `#0a1124` (navy)
 - Surface: `#0e1830` / `#142142`
-- Accent (buttons/links): `#2f7bff` (electric blue)
+- Accent (buttons/links): `#0570c3` (the logo's blue); on the navy background use `#39b5eb` for links and labels
 - Neutral text on dark: `#9aa7bd` ; light surface: `#f5f7fb`
 
 **Fonts:** Inter (Headings 700–800, Body 400–500).

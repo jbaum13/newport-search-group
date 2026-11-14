@@ -11,7 +11,7 @@ copy drives both the live website and a paste-ready Wix document.
 | Path | What it is |
 |------|------------|
 | `src/content.js` | **Single source of truth** — all page copy, navigation, footer, SEO. Edit copy here. |
-| `src/styles.css` | Design system (navy / steel / electric-blue, Inter, responsive). |
+| `src/styles.css` | Design system (navy / steel / the logo's blues, Inter, responsive). |
 | `src/main.js` | Light client JS — mobile nav, contact-form intent prefill. |
 | `src/assets/` | Logo assets: `logo.png` (color, transparent — light bg), `logo-white.png` (white wordmark — dark bg), `favicon.png` (wave), plus `logo-real.png` (original source). |
 | `build.js` | Static-site generator + Wix exporter (no dependencies). |
