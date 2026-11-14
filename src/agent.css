@@ -68,7 +68,7 @@
   display: inline-flex; align-items: center; justify-content: center;
   width: 52px; height: 52px; border-radius: 14px; flex: none;
   background: radial-gradient(120% 100% at 50% 25%, #ffffff, #dde5f1 75%);
-  color: var(--blue);
+  color: var(--blue-btn);
 }
 .agent-cta__avatar svg { width: 30px; height: 30px; }
 .agent-cta__avatar { overflow: hidden; }
@@ -182,9 +182,9 @@ html.anim .agent-panel { animation: finn-rise .22s ease both; }
 .agent-msg__cites { margin-top: .5rem; display: flex; flex-wrap: wrap; gap: .4rem; }
 .agent-msg__cite {
   font-size: .78rem; font-weight: 600; color: var(--blue);
-  border: 1px solid rgba(47,123,255,.3); border-radius: 999px; padding: .2rem .6rem;
+  border: 1px solid rgba(5,112,195,.3); border-radius: 999px; padding: .2rem .6rem;
 }
-.agent-msg__cite:hover { background: rgba(47,123,255,.08); }
+.agent-msg__cite:hover { background: rgba(5,112,195,.08); }
 
 .agent-typing { display: inline-flex; gap: 4px; align-items: center; height: 1.2em; }
 .agent-typing span {
@@ -200,15 +200,15 @@ html.anim .agent-panel { animation: finn-rise .22s ease both; }
 .agent-chip {
   font-family: var(--font); font-size: 0.84rem; font-weight: 600; line-height: 1.25;
   padding: 0.42rem 0.8rem; border-radius: 999px; cursor: pointer;
-  border: 1px solid rgba(47, 123, 255, 0.35);
-  background: rgba(47, 123, 255, 0.06); color: var(--blue-btn);
+  border: 1px solid rgba(5,112,195,0.35);
+  background: rgba(5,112,195,0.06); color: var(--blue-btn);
   transition: background .15s ease;
 }
-.agent-chip:hover { background: rgba(47, 123, 255, 0.14); }
+.agent-chip:hover { background: rgba(5,112,195,0.14); }
 
 .agent-handoff {
-  border: 1px solid rgba(47,123,255,.3); border-radius: var(--radius);
-  background: rgba(47,123,255,.06); padding: 0.9rem;
+  border: 1px solid rgba(5,112,195,.3); border-radius: var(--radius);
+  background: rgba(5,112,195,.06); padding: 0.9rem;
 }
 .agent-handoff h4 { margin: 0 0 .3rem; font-size: .98rem; letter-spacing: -.01em; }
 .agent-handoff p { margin: 0 0 .75rem; font-size: .89rem; line-height: 1.5; color: var(--steel-500); }
@@ -228,7 +228,7 @@ html.anim .agent-panel { animation: finn-rise .22s ease both; }
   background: var(--blue-btn); color: #fff;
   display: inline-flex; align-items: center; justify-content: center;
 }
-.agent-send:hover { background: var(--blue); }
+.agent-send:hover { background: var(--blue-btn-hover); }
 .agent-send:disabled { opacity: .45; cursor: not-allowed; }
 .agent-send svg { width: 18px; height: 18px; }
 .agent-disclaimer {
@@ -263,7 +263,7 @@ html.anim .agent-panel { animation: finn-rise .22s ease both; }
 .agent-insight__src { font-size: .76rem !important; font-style: italic; margin-top: .35rem !important; }
 
 /* ---- Per-agent accent ----
-   Finn keeps the site's electric blue. Beacon carries a warm lantern tone —
+   Finn keeps the site's blue (the logo's). Beacon carries a warm lantern tone —
    his whole identity is a light in the dark. */
 .agent-launcher, .agent-panel, .agent-cta { --agent-accent: var(--blue-btn); }
 [data-agent="beacon"] { --agent-accent: #c8892c; }

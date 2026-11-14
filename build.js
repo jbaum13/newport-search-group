@@ -731,7 +731,7 @@ function buildWix() {
   L.push(`**Theme colors** (Wix → Site Design → Color):`);
   L.push(`- Primary / Background dark: \`#0a1124\` (navy)`);
   L.push(`- Surface: \`#0e1830\` / \`#142142\``);
-  L.push(`- Accent (buttons/links): \`#2f7bff\` (electric blue)`);
+  L.push(`- Accent (buttons/links): \`#0570c3\` (the logo's blue); on the navy background use \`#39b5eb\` for links and labels`);
   L.push(`- Neutral text on dark: \`#9aa7bd\` ; light surface: \`#f5f7fb\``);
   L.push(`\n**Fonts:** Inter (Headings 700–800, Body 400–500).`);
   L.push(`\n**Logo:** Upload \`src/assets/logo.png\` (full-color, transparent — for light backgrounds) and \`src/assets/logo-white.png\` (white wordmark — for the dark header/footer). Favicon: \`src/assets/favicon.png\` (wave mark).`);
