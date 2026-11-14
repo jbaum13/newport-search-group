@@ -13,7 +13,7 @@ copy drives both the live website and a paste-ready Wix document.
 | `src/content.js` | **Single source of truth** — all page copy, navigation, footer, SEO. Edit copy here. |
 | `src/styles.css` | Design system (navy / steel / the logo's blues, Inter, responsive). |
 | `src/main.js` | Light client JS — mobile nav, contact-form intent prefill. |
-| `src/assets/` | Logo assets: `logo.png` (color, transparent — light bg), `logo-white.png` (white wordmark — dark bg), `favicon.png` (wave), plus `logo-real.png` (original source). |
+| `src/assets/` | Logo assets: `logo.svg` (color — light bg) and `logo-white.svg` (white wordmark — dark bg), both from the vector master; `favicon.png` (wave). The PNG logos (`logo.png`, `logo-white.png`, `logo-white@2x.png`) stay for structured data, email signatures and old links; `logo-real.png` is the raster the vector was redrawn from. |
 | `build.js` | Static-site generator + Wix exporter (no dependencies). |
 | `dist/` | Generated website (19 pages + sitemap + robots). |
 | `WIX-CONTENT.md` | Paste-ready copy & setup guide for the Wix Editor. |

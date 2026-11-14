@@ -30,7 +30,7 @@ try {
 }
 
 const TYPES = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript",
-  ".png": "image/png", ".jpg": "image/jpeg", ".woff2": "font/woff2", ".xml": "application/xml", ".txt": "text/plain" };
+  ".png": "image/png", ".svg": "image/svg+xml", ".jpg": "image/jpeg", ".woff2": "font/woff2", ".xml": "application/xml", ".txt": "text/plain" };
 
 // Stand-in for the contact endpoint: /__contact accepts, anything else fails.
 const posts = [];
@@ -307,6 +307,9 @@ console.log("\nshared behaviour");
       });
     });
     ok(`launcher clears the footer's last row at ${width}px`, clear);
+    // The logo is a vector file in both the header and the footer, and it must actually draw.
+    const logos = await f.evaluate(() => [...document.querySelectorAll(".brand img")].map((i) => ({ src: i.getAttribute("src"), drawn: i.complete && i.naturalWidth > 0 })));
+    ok(`header and footer logos are the vector file and load at ${width}px`, logos.length === 2 && logos.every((l) => l.src.endsWith("/assets/logo-white.svg") && l.drawn), JSON.stringify(logos));
     if (width === 1366) await f.screenshot({ path: path.join(SHOTS, "footer-clear.png") });
     await f.close();
   }
