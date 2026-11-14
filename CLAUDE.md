@@ -65,7 +65,7 @@ The `agentCta` section type drops a contextual block into any page (`agent:` pic
 - Agent answers live in the `kb` arrays in `src/finn.js` and `src/beacon.js` — treat them as content, and keep them consistent with `src/content.js`.
 - `src/styles.css` is the design system (navy / steel / the logo's blues, Inter, responsive); `src/main.js` is light client JS (mobile nav, contact-form intent prefill).
 - Character art in `src/assets/`: `duke.png`, `scout.png`, `finn.png`, `beacon.png` — all transparent cutouts, so each composites onto the card gradient rather than sitting on a baked-in box. Keep new character art transparent. `finn-avatar.png` / `beacon-avatar.png` are the 128px head crops for the launchers, panels and CTAs. (`duke.jpg` / `scout.jpg` are the superseded originals; nothing references them.)
-- Logo assets in `src/assets/`: `logo.png` (color, light backgrounds), `logo-white.png` (+`@2x`, dark header/footer), `favicon.png`.
+- Logo assets in `src/assets/`: `logo.svg` (color, light backgrounds) and `logo-white.svg` (dark header/footer) are what the pages show; they come from the vector master approved Nov 14 2026 — replace them from the master, never edit them by hand. `logo.png`, `logo-white.png` (+`@2x`) stay published for structured data, email signatures and old links. `favicon.png` is the wave.
 - `_archive-velo-execsearch/` (if present) is an unrelated archived Velo/Wix build — reference only.
 
 ## Repo settings

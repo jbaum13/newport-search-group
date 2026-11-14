@@ -65,13 +65,12 @@ const icon = (k) => (ICONS[k] ? `<span class="card__icon" aria-hidden="true"><sv
 // to a placeholder until the real image is dropped in.
 const hasAsset = (f) => { try { return !!f && fs.existsSync(path.join(ROOT, "src/assets", f)); } catch { return false; } };
 
-// Brand lockup: the official logo. `white` variant (wave + white wordmark) is
-// used on dark surfaces (header/footer); `color` on light surfaces.
+// Brand lockup: the official logo, from the vector master (sharp at every size
+// and screen density). `white` variant (wave + white wordmark) is used on dark
+// surfaces (header/footer); `color` on light surfaces.
 function brand(href = "/", variant = "white") {
-  const file = variant === "color" ? "logo.png" : "logo-white.png";
-  // White wordmark ships a 2x asset for crisp rendering at larger / high-DPI sizes.
-  const srcset = variant === "color" ? "" : ` srcset="${BASE}/assets/logo-white.png 1x, ${BASE}/assets/logo-white@2x.png 2x"`;
-  return `<a class="brand" href="${BASE}${href}" aria-label="${esc(site.name)} home"><img src="${BASE}/assets/${file}"${srcset} alt="${esc(site.name)}" width="279" height="142" /></a>`;
+  const file = variant === "color" ? "logo.svg" : "logo-white.svg";
+  return `<a class="brand" href="${BASE}${href}" aria-label="${esc(site.name)} home"><img src="${BASE}/assets/${file}" alt="${esc(site.name)}" width="279" height="142" /></a>`;
 }
 
 // ---- routing helpers -------------------------------------------------------
@@ -631,7 +630,8 @@ function buildSite() {
   fs.copyFileSync(path.join(ROOT, "src/agent.css"), path.join(DIST, "agent.css"));
   for (const f of Object.values(AGENT_JS)) fs.copyFileSync(path.join(ROOT, "src", f), path.join(DIST, f));
   fs.mkdirSync(path.join(DIST, "assets", "fonts"), { recursive: true });
-  for (const a of ["logo.png", "logo-white.png", "logo-white@2x.png", "email-signature-logo.png", "favicon.png", "og-image.png", "duke.png", "scout.png", "finn.png", "finn-avatar.png", "beacon.png", "beacon-avatar.png"]) {
+  // The PNG logos stay published: structured data, email signatures and old links point at them.
+  for (const a of ["logo.svg", "logo-white.svg", "logo.png", "logo-white.png", "logo-white@2x.png", "email-signature-logo.png", "favicon.png", "og-image.png", "duke.png", "scout.png", "finn.png", "finn-avatar.png", "beacon.png", "beacon-avatar.png"]) {
     const src = path.join(ROOT, "src/assets", a);
     if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, "assets", a)); // optional assets skipped until added
   }
@@ -734,7 +734,7 @@ function buildWix() {
   L.push(`- Accent (buttons/links): \`#0570c3\` (the logo's blue); on the navy background use \`#39b5eb\` for links and labels`);
   L.push(`- Neutral text on dark: \`#9aa7bd\` ; light surface: \`#f5f7fb\``);
   L.push(`\n**Fonts:** Inter (Headings 700–800, Body 400–500).`);
-  L.push(`\n**Logo:** Upload \`src/assets/logo.png\` (full-color, transparent — for light backgrounds) and \`src/assets/logo-white.png\` (white wordmark — for the dark header/footer). Favicon: \`src/assets/favicon.png\` (wave mark).`);
+  L.push(`\n**Logo:** Upload \`src/assets/logo.svg\` (full-color — for light backgrounds) and \`src/assets/logo-white.svg\` (white wordmark — for the dark header/footer). Both are vector and stay sharp at any size. Favicon: \`src/assets/favicon.png\` (wave mark).`);
 
   L.push(`\n## Primary navigation (Wix menu)\n`);
   nav.forEach((n) => {

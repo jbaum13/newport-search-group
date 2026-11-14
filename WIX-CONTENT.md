@@ -20,7 +20,7 @@ _Paste-ready copy for the Wix Editor. One section per heading. Generated from `s
 
 **Fonts:** Inter (Headings 700–800, Body 400–500).
 
-**Logo:** Upload `src/assets/logo.png` (full-color, transparent — for light backgrounds) and `src/assets/logo-white.png` (white wordmark — for the dark header/footer). Favicon: `src/assets/favicon.png` (wave mark).
+**Logo:** Upload `src/assets/logo.svg` (full-color — for light backgrounds) and `src/assets/logo-white.svg` (white wordmark — for the dark header/footer). Both are vector and stay sharp at any size. Favicon: `src/assets/favicon.png` (wave mark).
 
 ## Primary navigation (Wix menu)
 
